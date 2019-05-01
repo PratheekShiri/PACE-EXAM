@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 29, 2019 at 07:27 PM
+-- Generation Time: May 01, 2019 at 07:49 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -240,6 +240,45 @@ INSERT INTO `countofstudents` (`id`, `sub_code`, `count`) VALUES
 (129, '18CPS', 34),
 (130, '18ELN', 34),
 (131, '18ME', 34);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `facultyAllotment`
+--
+
+CREATE TABLE `facultyAllotment` (
+  `id` int(11) NOT NULL,
+  `date` int(255) NOT NULL,
+  `facultyCount` int(255) NOT NULL,
+  `facultyId` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `facultyAllotment`
+--
+
+INSERT INTO `facultyAllotment` (`id`, `date`, `facultyCount`, `facultyId`) VALUES
+(1, 191218, 1, 4),
+(2, 221218, 1, 27),
+(3, 241218, 1, 36),
+(4, 261218, 1, 40),
+(5, 271218, 1, 41),
+(6, 291218, 1, 56),
+(7, 311218, 1, 62),
+(8, 20119, 1, 78),
+(9, 30119, 1, 84),
+(10, 50119, 1, 85),
+(11, 70119, 1, 87),
+(12, 80119, 1, 89),
+(13, 100119, 1, 93),
+(14, 140119, 1, 4),
+(15, 60219, 1, 27),
+(16, 80219, 1, 36),
+(17, 90219, 1, 40),
+(18, 110219, 1, 41),
+(19, 120219, 1, 56),
+(20, 130219, 1, 62);
 
 -- --------------------------------------------------------
 
@@ -1352,6 +1391,13 @@ ALTER TABLE `countofstudents`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `facultyAllotment`
+--
+ALTER TABLE `facultyAllotment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `facultyId` (`facultyId`);
+
+--
 -- Indexes for table `facultylist`
 --
 ALTER TABLE `facultylist`
@@ -1410,10 +1456,26 @@ ALTER TABLE `countofstudents`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
+-- AUTO_INCREMENT for table `facultyAllotment`
+--
+ALTER TABLE `facultyAllotment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
 -- AUTO_INCREMENT for table `studentCountPerDay`
 --
 ALTER TABLE `studentCountPerDay`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `facultyAllotment`
+--
+ALTER TABLE `facultyAllotment`
+  ADD CONSTRAINT `facultyAllotment_ibfk_1` FOREIGN KEY (`facultyId`) REFERENCES `facultylist` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
