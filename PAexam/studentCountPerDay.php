@@ -51,6 +51,7 @@
 
     // Truncate table before use
     $truncatestudentCountPerDay = mysqli_query($conn,"TRUNCATE TABLE studentCountPerDay");
+    $truncatefacultyAllotment = mysqli_query($conn,"TRUNCATE TABLE facultyAllotment");
 
     $sql1 = "SELECT * FROM calculateddata";
     $calculatedDataResult = mysqli_query($conn, $sql1);
@@ -80,7 +81,47 @@
         $previousDate = $date;
     }
 
-    $sql2 = "SELECT * FROM studentCountPerDay";
+    //reading available faculties and storing it in array `facultyList`
+    $facultyList = array();
+    $sql00 = "SELECT * FROM facultylist WHERE status = '1'";
+    $facultyListResult = mysqli_query($conn, $sql00);
+    
+    while ($facultyListResultRow = mysqli_fetch_array($facultyListResult)) {
+        array_push($facultyList,$facultyListResultRow['id']);
+    }
+
+
+    $sql01 = "SELECT * FROM studentCountPerDay WHERE studentCount != '0'";
+    $studentCountResult = mysqli_query($conn, $sql01);
+    $currentIndex = 0;
+    $totalFacultyCount = count($facultyList);
+    
+    while ($studentCountResultRow = mysqli_fetch_array($studentCountResult)) {
+        $studentCount = $studentCountResultRow['studentCount'];
+        $date = $studentCountResultRow['date'];
+        $requiredFacultyCount = ceil($studentCount/250);
+        $x = 0;
+
+        while($x < $requiredFacultyCount){
+
+            if($currentIndex == $totalFacultyCount){
+                $currentIndex=0;
+            }
+
+            $sql = mysqli_query($conn,"INSERT INTO facultyAllotment(`date`,`facultyCount`,`facultyId`)VALUES('$date','$requiredFacultyCount','$facultyList[$currentIndex]')");
+
+            $currentIndex++;
+            $x++;
+        }
+         
+    }
+
+
+
+
+
+    // $sql2 = "SELECT SC.date, SC.studentCount,FL.name FROM studentCountPerDay as SC,facultyAllotment as FA,facultylist as FL WHERE SC.date = FA.date AND FA.facultyId = FL.id";
+    $sql2 = "SELECT * FROM studentCountPerDay WHERE studentCount != 0";
     $studentCountPerDayResult = mysqli_query($conn, $sql2);
 
     echo '
@@ -90,6 +131,7 @@
                 <tr>
                     <th scope="col"> Date </th>
                     <th scope="col"> Student Count </th>
+                    <th scope="col"> Faculty Name </th>
                 </tr>
             </thead>
             <tbody>
@@ -98,12 +140,30 @@
     while ($studentCountPerDayResultRow = mysqli_fetch_array($studentCountPerDayResult)) {
         $date = $studentCountPerDayResultRow['date'];
         $studentCount = $studentCountPerDayResultRow['studentCount'];
+        // $facultyName = $studentCountPerDayResultRow['name'];
         echo '
             <tr>
                 <td style="font-weight:bold;">' . substr($date,0,2).'-'.substr($date,2,2).'-'.substr($date,4,2).'</td>
                 <td style="font-weight:bold;">' . $studentCount . '</td>
+                <td style="font-weight:bold;">
+                    <ul >
+                    
+        ';
+        $sql3 = "SELECT FL.name FROM facultylist AS FL, facultyAllotment AS FA WHERE FA.date = $date AND FA.facultyId = FL.id";
+        $Result = mysqli_query($conn, $sql3);
+        while ($ResultRow = mysqli_fetch_array($Result)) {
+            $facultyName = $ResultRow['name'];
+            echo '
+                <li>' . $facultyName . ' </li>
+                
+            ';
+        }
+        echo '
+            </ul>
+            </td>
             </tr>
         ';
+
     }
 
     echo '
@@ -112,6 +172,8 @@
     ';
 
     ?>
+
+
 
 
     <!-- JQuery -->
