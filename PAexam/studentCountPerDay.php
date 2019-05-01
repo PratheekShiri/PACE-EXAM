@@ -101,14 +101,12 @@
         $date = $studentCountResultRow['date'];
         $requiredFacultyCount = ceil($studentCount/250);
         $x = 0;
+
         while($x < $requiredFacultyCount){
 
             if($currentIndex == $totalFacultyCount){
                 $currentIndex=0;
             }
-            echo('<br> Date: '.$date);
-            echo('<br> Number of Faculty Alloted: '.$requiredFacultyCount);
-            echo('<br> Faculty: '.$facultyList[$currentIndex]);
 
             $sql = mysqli_query($conn,"INSERT INTO facultyAllotment(`date`,`facultyCount`,`facultyId`)VALUES('$date','$requiredFacultyCount','$facultyList[$currentIndex]')");
 
@@ -122,7 +120,8 @@
 
 
 
-    $sql2 = "SELECT * FROM studentCountPerDay";
+    // $sql2 = "SELECT SC.date, SC.studentCount,FL.name FROM studentCountPerDay as SC,facultyAllotment as FA,facultylist as FL WHERE SC.date = FA.date AND FA.facultyId = FL.id";
+    $sql2 = "SELECT * FROM studentCountPerDay WHERE studentCount != 0";
     $studentCountPerDayResult = mysqli_query($conn, $sql2);
 
     echo '
@@ -132,6 +131,7 @@
                 <tr>
                     <th scope="col"> Date </th>
                     <th scope="col"> Student Count </th>
+                    <th scope="col"> Faculty Name </th>
                 </tr>
             </thead>
             <tbody>
@@ -140,12 +140,30 @@
     while ($studentCountPerDayResultRow = mysqli_fetch_array($studentCountPerDayResult)) {
         $date = $studentCountPerDayResultRow['date'];
         $studentCount = $studentCountPerDayResultRow['studentCount'];
+        // $facultyName = $studentCountPerDayResultRow['name'];
         echo '
             <tr>
                 <td style="font-weight:bold;">' . substr($date,0,2).'-'.substr($date,2,2).'-'.substr($date,4,2).'</td>
                 <td style="font-weight:bold;">' . $studentCount . '</td>
+                <td style="font-weight:bold;">
+                    <ul >
+                    
+        ';
+        $sql3 = "SELECT FL.name FROM facultylist AS FL, facultyAllotment AS FA WHERE FA.date = $date AND FA.facultyId = FL.id";
+        $Result = mysqli_query($conn, $sql3);
+        while ($ResultRow = mysqli_fetch_array($Result)) {
+            $facultyName = $ResultRow['name'];
+            echo '
+                <li>' . $facultyName . ' </li>
+                
+            ';
+        }
+        echo '
+            </ul>
+            </td>
             </tr>
         ';
+
     }
 
     echo '
