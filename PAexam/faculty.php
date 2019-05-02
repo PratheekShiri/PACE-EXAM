@@ -79,9 +79,69 @@ if (isset($_POST['change'])) {
         <a data-toggle="modal" data-target="#changePasswordModal" class="btn btn-light" style="color:black;">Change my password <i class="fas fa-exchange-alt"></i></a>
         <a class="btn btn-light" href="logout.php"> logout <i class="fas fa-sign-out-alt"></i></a>
     </nav>
-
-
     <?php
+    include('connection.php');
+    
+    $sql0 = "SELECT * FROM facultylist WHERE facultyId = '$facultyId'";
+    $sql0Result = mysqli_query($conn, $sql0);
+
+    while ($sql0ResultRow = mysqli_fetch_array($sql0Result)) {  
+        if($sql0ResultRow['status'] == '1'){
+            
+            $sql2 = "SELECT * FROM studentCountPerDay WHERE studentCount != 0";
+            $studentCountPerDayResult = mysqli_query($conn, $sql2);
+
+            echo '
+            <div class="alert alert-success" role="alert">
+            <strong>Logged in as:</strong> '.$sql0ResultRow['name'].' ['.$facultyId.']
+            </div>
+                <h3 style="text-align:center">DCS Allocation Table</h3>
+                <table class="table table-bordered" style="text-align:center;font-weight:bold;">
+                    <thead class="black white-text">
+                        <tr>
+                            <th scope="col"> Date </th>
+                            <th scope="col"> Student Count </th>
+                            <th scope="col"> Faculty Name </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            ';
+
+            while ($studentCountPerDayResultRow = mysqli_fetch_array($studentCountPerDayResult)) {
+                $date = $studentCountPerDayResultRow['date'];
+                $studentCount = $studentCountPerDayResultRow['studentCount'];
+                echo '
+                    <tr>
+                        <td style="font-weight:bold;">' . substr($date,0,2).'-'.substr($date,2,2).'-'.substr($date,4,2).'</td>
+                        <td style="font-weight:bold;">' . $studentCount . '</td>
+                        <td style="font-weight:bold;">
+                            <ul >
+
+                ';
+                $sql3 = "SELECT FL.name FROM facultylist AS FL, facultyAllotment AS FA WHERE FA.date = $date AND FA.facultyId = FL.id";
+                $Result = mysqli_query($conn, $sql3);
+                while ($ResultRow = mysqli_fetch_array($Result)) {
+                    $facultyName = $ResultRow['name'];
+                    echo '
+                        <li>' . $facultyName . ' </li>
+
+                    ';
+                }
+                echo '
+                    </ul>
+                    </td>
+                    </tr>
+                ';  
+            }       
+            echo '
+                </tbody>
+                </table>
+                <br><br>
+            ';
+        }
+    }
+
+    
 
     // if (isset($_POST['enable'])) {
     //     chooseDutyFaculty();
@@ -90,7 +150,7 @@ if (isset($_POST['change'])) {
     // function chooseDutyFaculty()
     // {
 
-        include('connection.php');
+        
 
         echo '
                 <h3 style="text-align:center">Generate Duty allotment</h3>
@@ -130,7 +190,7 @@ if (isset($_POST['change'])) {
 
             echo '
                 <tr>
-                    <td style="font-weight:bold;">' . $date . '</td>
+                <td style="font-weight:bold;">' . substr($date,0,2).'-'.substr($date,2,2).'-'.substr($date,4,2).' ['.substr($date,6).']</td>
                     <td style="font-weight:bold;">' . $sub1 . '</td>';
 
             if ($sub1Count > 0) {

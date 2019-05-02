@@ -2,9 +2,19 @@
 
 session_start();
 
+if (isset($_SESSION['facultyId'])) {
+    header('location:faculty.php');
+}
+
+if (isset($_SESSION['adminId'])) {
+    header('location:admin.php');
+}
+
 if (isset($_POST['login'])) {
     login();
 }
+
+
 
 function login()
 {
