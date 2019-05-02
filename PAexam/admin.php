@@ -2,8 +2,8 @@
 
 session_start();
 
-if (!isset($_SESSION['facultyId'])) {
-    header('location:index.php');
+if (!isset($_SESSION['adminId'])) {
+    header('location:logout.php');
 }
 
 if (isset($_POST['addF'])) {

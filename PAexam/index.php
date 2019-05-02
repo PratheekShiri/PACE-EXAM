@@ -20,7 +20,7 @@ function login()
 
     if ($row['facultyId'] == 'PA100' && $row['password'] == 'admin') {
 
-        $_SESSION['facultyId'] = $facultyId;
+        $_SESSION['adminId'] = $facultyId;
         header('location:admin.php');
 
     }

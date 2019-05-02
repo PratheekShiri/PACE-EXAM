@@ -5,7 +5,7 @@ session_start();
 $facultyId = $_SESSION['facultyId'];
 
 if (!isset($_SESSION['facultyId'])) {
-    header('location:index.php');
+    header('location:logout.php');
 }
 
 if (isset($_POST['change'])) {
