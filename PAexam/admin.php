@@ -128,6 +128,22 @@ if (isset($_POST['addF'])) {
                 </div>
             </div>
         </div>
+        <div class="row">
+           
+            <div class="col-3">
+                <div class="jumbotron">
+                    <h2>Generate DCS </h2>
+                    <a href="generateDCS.php" class="btn btn-primary btn-lg btn1" href="#" role="button">gen <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="jumbotron">
+                    <h2>View DCS allotment</h2>
+                    <a class="btn btn-primary btn-lg btn1" href="viewDCS.php" role="button">view <i class="fas fa-eye"></i></a>
+                </div>
+            </div>
+           
+        </div>
     </div>
 
     <!-- JQuery -->

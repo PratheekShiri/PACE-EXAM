@@ -49,78 +49,6 @@
 
     include('connection.php');
 
-    // Truncate table before use
-    $truncatestudentCountPerDay = mysqli_query($conn,"TRUNCATE TABLE studentCountPerDay");
-    $truncatefacultyAllotment = mysqli_query($conn,"TRUNCATE TABLE facultyAllotment");
-
-    $sql1 = "SELECT * FROM calculateddata";
-    $calculatedDataResult = mysqli_query($conn, $sql1);
-
-    $previousDate = 0;
-    $previousCount = 0;
-    while ($calculatedDataRow = mysqli_fetch_array($calculatedDataResult)) {
-        $date = $calculatedDataRow['date'];
-        $date = substr($date,0,6); //chopping `A` & `M` from date
-        $studentC1 = $calculatedDataRow['student1'];
-        $studentC2 = $calculatedDataRow['student2'];
-        
-        if($date == $previousDate){
-
-            $studentCount = $studentC1 + $studentC2 + $previousCount;
-
-            $sql = mysqli_query($conn,"UPDATE studentCountPerDay SET studentCount = $studentCount WHERE date = $date");
-
-        } else {
-
-            $studentCount = $studentC1 + $studentC2;
-            $previousCount = $studentCount;
-
-            $sql = mysqli_query($conn,"INSERT INTO studentCountPerDay(`date`,`studentCount`)VALUES('$date','$studentCount')");
-        
-        }
-        $previousDate = $date;
-    }
-
-    //reading available faculties and storing it in array `facultyList`
-    $facultyList = array();
-    $sql00 = "SELECT * FROM facultylist WHERE status = '1'";
-    $facultyListResult = mysqli_query($conn, $sql00);
-    
-    while ($facultyListResultRow = mysqli_fetch_array($facultyListResult)) {
-        array_push($facultyList,$facultyListResultRow['id']);
-    }
-
-
-    $sql01 = "SELECT * FROM studentCountPerDay WHERE studentCount != '0'";
-    $studentCountResult = mysqli_query($conn, $sql01);
-    $currentIndex = 0;
-    $totalFacultyCount = count($facultyList);
-    
-    while ($studentCountResultRow = mysqli_fetch_array($studentCountResult)) {
-        $studentCount = $studentCountResultRow['studentCount'];
-        $date = $studentCountResultRow['date'];
-        $requiredFacultyCount = ceil($studentCount/250);
-        $x = 0;
-
-        while($x < $requiredFacultyCount){
-
-            if($currentIndex == $totalFacultyCount){
-                $currentIndex=0;
-            }
-
-            $sql = mysqli_query($conn,"INSERT INTO facultyAllotment(`date`,`facultyCount`,`facultyId`)VALUES('$date','$requiredFacultyCount','$facultyList[$currentIndex]')");
-
-            $currentIndex++;
-            $x++;
-        }
-         
-    }
-
-
-
-
-
-    // $sql2 = "SELECT SC.date, SC.studentCount,FL.name FROM studentCountPerDay as SC,facultyAllotment as FA,facultylist as FL WHERE SC.date = FA.date AND FA.facultyId = FL.id";
     $sql2 = "SELECT * FROM studentCountPerDay WHERE studentCount != 0";
     $studentCountPerDayResult = mysqli_query($conn, $sql2);
 
@@ -172,8 +100,6 @@
     ';
 
     ?>
-
-
 
 
     <!-- JQuery -->
