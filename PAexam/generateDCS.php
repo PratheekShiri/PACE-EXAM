@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION['adminId'])) {
+    header('location:logout.php');
+}
+
+?>
+
 <!doctype html>
 <html>
 
@@ -116,11 +126,6 @@
          
     }
 
-
-
-
-
-    // $sql2 = "SELECT SC.date, SC.studentCount,FL.name FROM studentCountPerDay as SC,facultyAllotment as FA,facultylist as FL WHERE SC.date = FA.date AND FA.facultyId = FL.id";
     $sql2 = "SELECT * FROM studentCountPerDay WHERE studentCount != 0";
     $studentCountPerDayResult = mysqli_query($conn, $sql2);
 
@@ -172,8 +177,6 @@
     ';
 
     ?>
-
-
 
 
     <!-- JQuery -->

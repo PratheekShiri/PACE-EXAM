@@ -1,8 +1,10 @@
 <?php
 
-// if (!isset($_POST['facultyId'])) {
-//     header('location:index.php');
-// }
+session_start();
+
+if (!isset($_SESSION['adminId'])) {
+    header('location:logout.php');
+}
 
 ?>
 

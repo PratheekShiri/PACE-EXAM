@@ -2,9 +2,19 @@
 
 session_start();
 
+if (isset($_SESSION['facultyId'])) {
+    header('location:faculty.php');
+}
+
+if (isset($_SESSION['adminId'])) {
+    header('location:admin.php');
+}
+
 if (isset($_POST['login'])) {
     login();
 }
+
+
 
 function login()
 {
@@ -20,7 +30,7 @@ function login()
 
     if ($row['facultyId'] == 'PA100' && $row['password'] == 'admin') {
 
-        $_SESSION['facultyId'] = $facultyId;
+        $_SESSION['adminId'] = $facultyId;
         header('location:admin.php');
 
     }
