@@ -50,7 +50,7 @@ if (isset($_POST['addF'])) {
         }
 
         .jumbotron:hover {
-            -webkit-transform: translate(5px, 15px);
+            -webkit-transform: translate(1px, 3px);
             -webkit-box-shadow: inset 0 0 10px #000000;
             cursor: pointer;
         }

@@ -88,7 +88,7 @@ if (isset($_POST['change'])) {
     while ($sql0ResultRow = mysqli_fetch_array($sql0Result)) {  
         echo '
         <div class="alert alert-success" role="alert">
-            <strong>Logged in as:</strong> '.$sql0ResultRow['name'].' ['.$facultyId.'] '.md5('admin').'
+            <strong>Logged in as:</strong> '.$sql0ResultRow['name'].' ['.$facultyId.']
             </div>
         ';
         if($sql0ResultRow['status'] == '1'){
