@@ -23,12 +23,13 @@ function login()
 
     $facultyId = mysqli_real_escape_string($conn, $_POST['facultyId']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $password = md5($password);
 
-    $exe = mysqli_query($conn, "SELECT * FROM users WHERE facultyId = '$facultyId' AND password = '$password' ");
+    $exe = mysqli_query($conn, "SELECT * FROM facultylist WHERE facultyId = '$facultyId' AND password = '$password' ");
 
     $row = mysqli_fetch_array($exe);
 
-    if ($row['facultyId'] == 'PA100' && $row['password'] == 'admin') {
+    if ($row['facultyId'] == 'PA100' && $row['password'] == '21232f297a57a5a743894a0e4a801fc3') {
 
         $_SESSION['adminId'] = $facultyId;
         header('location:admin.php');
@@ -41,7 +42,7 @@ function login()
 
     } else {
         echo '<script type="text/javascript">';
-        echo 'setTimeout(function () { sweetAlert("<b>Oops...","Wrong username or Password!...</b>","error");';
+        echo 'setTimeout(function () { sweetAlert("<b>Oops...","Incorrect username or password!...</b>");';
         echo '}, 500);</script>';
     }
 }
