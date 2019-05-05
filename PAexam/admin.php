@@ -118,13 +118,13 @@ if (isset($_POST['addF'])) {
             <div class="col-3">
                 <div class="jumbotron">
                     <h2>Generate Seating arrangement</h2>
-                    <a class="btn btn-primary btn-lg btn1" href="#" role="button">gen <i class="fas fa-external-link-alt"></i></a>
+                    <a class="btn btn-primary btn-lg btn1" href="generateSeatingArrangement.php" role="button">gen <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
             <div class="col-3">
                 <div class="jumbotron">
                     <h2>View Seating arrangement</h2>
-                    <a class="btn btn-primary btn-lg btn1" href="#" role="button">view <i class="fas fa-eye"></i></a>
+                    <a class="btn btn-primary btn-lg btn1" href="viewGeneratedSeats.php" role="button">view <i class="fas fa-eye"></i></a>
                 </div>
             </div>
         </div>
