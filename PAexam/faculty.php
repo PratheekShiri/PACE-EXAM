@@ -86,15 +86,17 @@ if (isset($_POST['change'])) {
     $sql0Result = mysqli_query($conn, $sql0);
 
     while ($sql0ResultRow = mysqli_fetch_array($sql0Result)) {  
+        echo '
+        <div class="alert alert-success" role="alert">
+            <strong>Logged in as:</strong> '.$sql0ResultRow['name'].' ['.$facultyId.']
+            </div>
+        ';
         if($sql0ResultRow['status'] == '1'){
             
             $sql2 = "SELECT * FROM studentCountPerDay WHERE studentCount != 0";
             $studentCountPerDayResult = mysqli_query($conn, $sql2);
 
             echo '
-            <div class="alert alert-success" role="alert">
-            <strong>Logged in as:</strong> '.$sql0ResultRow['name'].' ['.$facultyId.']
-            </div>
                 <h3 style="text-align:center">DCS Allocation Table</h3>
                 <table class="table table-bordered" style="text-align:center;font-weight:bold;">
                     <thead class="black white-text">
@@ -139,124 +141,117 @@ if (isset($_POST['change'])) {
                 <br><br>
             ';
         }
+        else if($sql0ResultRow['status'] == '0'){
+            echo '
+                    <h3 style="text-align:center">Generate Duty allotment</h3>
+                    <table class="table table-bordered" style="text-align:center;font-weight:bold;">
+                        <thead class="black white-text">
+                            <tr>
+                                <th scope="col"> Date </th>
+                                <th scope="col"> Subject1 </th>
+                                <th scope="col"> No of students </th>
+                                <th scope="col"> Subject2 </th>
+                                <th scope="col"> No of students </th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+
+            $query = mysqli_query($conn, "SELECT * FROM calculateddata");
+
+            $roomQuery = mysqli_query($conn, "SELECT * FROM room");
+            $roomArray = array();
+
+            while ($roomRow = mysqli_fetch_array($roomQuery)) {
+                array_push($roomArray, $roomRow['room_num']);
+            }
+
+            $totalDutyForSub1 = 0;
+            $totalDutyForSub2 = 0;
+
+            while ($row = mysqli_fetch_array($query)) {
+
+                $i = 0;
+
+                $date = $row['date'];
+                $sub1 = $row['sub1'];
+                $sub1Count = $row['student1'];
+                $sub2 = $row['sub2'];
+                $sub2Count = $row['student2'];
+
+                echo '
+                    <tr>
+                    <td style="font-weight:bold;">' . substr($date,0,2).'-'.substr($date,2,2).'-'.substr($date,4,2).' ['.substr($date,6).']</td>
+                        <td style="font-weight:bold;">' . $sub1 . '</td>';
+
+                if ($sub1Count > 0) {
+                    $roomsToBeAlloted1 = ceil($sub1Count / 30);
+
+                    echo '<form method="post" action="generateDuty.php" class="form-check-inline">';
+                    echo '<td style="font-weight:bold;">';
+
+                    while ($roomsToBeAlloted1 != 0) {
+                        $totalDutyForSub1++;
+                        echo '<input type="radio" name="" value="" style="width:25px;height:25px;margin-left:15px;" >' . $roomArray[$i++];
+                        $roomsToBeAlloted1--;
+                    }
+
+                    echo '</td>';
+                    echo '</form>';
+                } else {
+                    echo '<td></td>';
+                }
+
+                echo '<td style="font-weight:bold ; ">' . $sub2 . ' </ td>';
+
+                if ($sub2Count > 0) {
+                    $roomsToBeAlloted2 = ceil($sub2Count / 30);
+
+                    echo '<form method="post" action="generateDuty.php" class="form-check-inline">';
+                    echo '<td style="font-weight:bold;">';
+
+                    while ($roomsToBeAlloted2 != 0) {
+                        $totalDutyForSub2++;
+                        echo '<input type="radio" name="" value="" style="width:25px;height:25px;margin-left:15px;" >' . $roomArray[$i++];
+                        $roomsToBeAlloted2--;
+                    }
+
+                    echo '</td>';
+                    echo '</form>';
+                } else {
+                    echo '<td></td>';
+                }
+            }
+
+            echo '      
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td style="font-weight:bold;">Total Duty = ' . $totalDutyForSub1 . ' </td>
+                        <td></td>
+                        <td style="font-weight:bold;"> Total Duty = ' . $totalDutyForSub2 . '</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="font-weight:bold;">
+                        <div class="custom-control custom-switch">
+                            <form method="post" action="chooseDutyfaculty.php">
+                                <input type="checkbox" name="enable" class="custom-control-input" id="customSwitch1">
+                            </form>
+                            <label class="custom-control-label" for="customSwitch1">Enable/Disable</label>
+                        </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                  </table>';
+        }
+        else {
+            echo 'You are neither DCS nor Non-DCS';
+        }
     }
 
-    
-
-    // if (isset($_POST['enable'])) {
-    //     chooseDutyFaculty();
-    // }
-
-    // function chooseDutyFaculty()
-    // {
-
-        
-
-        echo '
-                <h3 style="text-align:center">Generate Duty allotment</h3>
-                <table class="table table-bordered" style="text-align:center;font-weight:bold;">
-                    <thead class="black white-text">
-                        <tr>
-                            <th scope="col"> Date </th>
-                            <th scope="col"> Subject1 </th>
-                            <th scope="col"> No of students </th>
-                            <th scope="col"> Subject2 </th>
-                            <th scope="col"> No of students </th>
-                        </tr>
-                    </thead>
-                    <tbody>';
-
-        $query = mysqli_query($conn, "SELECT * FROM calculateddata");
-
-        $roomQuery = mysqli_query($conn, "SELECT * FROM room");
-        $roomArray = array();
-
-        while ($roomRow = mysqli_fetch_array($roomQuery)) {
-            array_push($roomArray, $roomRow['room_num']);
-        }
-
-        $totalDutyForSub1 = 0;
-        $totalDutyForSub2 = 0;
-
-        while ($row = mysqli_fetch_array($query)) {
-
-            $i = 0;
-
-            $date = $row['date'];
-            $sub1 = $row['sub1'];
-            $sub1Count = $row['student1'];
-            $sub2 = $row['sub2'];
-            $sub2Count = $row['student2'];
-
-            echo '
-                <tr>
-                <td style="font-weight:bold;">' . substr($date,0,2).'-'.substr($date,2,2).'-'.substr($date,4,2).' ['.substr($date,6).']</td>
-                    <td style="font-weight:bold;">' . $sub1 . '</td>';
-
-            if ($sub1Count > 0) {
-                $roomsToBeAlloted1 = ceil($sub1Count / 30);
-
-                echo '<form method="post" action="generateDuty.php" class="form-check-inline">';
-                echo '<td style="font-weight:bold;">';
-
-                while ($roomsToBeAlloted1 != 0) {
-                    $totalDutyForSub1++;
-                    echo '<input type="radio" name="" value="" style="width:25px;height:25px;margin-left:15px;" >' . $roomArray[$i++];
-                    $roomsToBeAlloted1--;
-                }
-
-                echo '</td>';
-                echo '</form>';
-            } else {
-                echo '<td></td>';
-            }
-
-            echo '<td style="font-weight:bold ; ">' . $sub2 . ' </ td>';
-
-            if ($sub2Count > 0) {
-                $roomsToBeAlloted2 = ceil($sub2Count / 30);
-
-                echo '<form method="post" action="generateDuty.php" class="form-check-inline">';
-                echo '<td style="font-weight:bold;">';
-
-                while ($roomsToBeAlloted2 != 0) {
-                    $totalDutyForSub2++;
-                    echo '<input type="radio" name="" value="" style="width:25px;height:25px;margin-left:15px;" >' . $roomArray[$i++];
-                    $roomsToBeAlloted2--;
-                }
-
-                echo '</td>';
-                echo '</form>';
-            } else {
-                echo '<td></td>';
-            }
-        }
-
-        echo '      
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td style="font-weight:bold;">Total Duty = ' . $totalDutyForSub1 . ' </td>
-                    <td></td>
-                    <td style="font-weight:bold;"> Total Duty = ' . $totalDutyForSub2 . '</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td style="font-weight:bold;">
-                    <div class="custom-control custom-switch">
-                        <form method="post" action="chooseDutyfaculty.php">
-                            <input type="checkbox" name="enable" class="custom-control-input" id="customSwitch1">
-                        </form>
-                        <label class="custom-control-label" for="customSwitch1">Enable/Disable</label>
-                    </div>
-                    </td>
-                </tr>
-                </tbody>
-              </table>';
-    // }
 
     ?>
 
