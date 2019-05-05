@@ -135,6 +135,106 @@ function generateSeatingArrangement() {
             echo 'setTimeout(function () { sweetAlert("<b>Invalid Subject Code! "," Please check and try again.</b>");';
             echo '}, 500);</script>';
         }
+    } else {
+        $exeSub1 = mysqli_query($conn, "SELECT EXISTS(SELECT * from sub_code WHERE sub_code=$sub1)");
+        $rowSub1 = mysqli_fetch_array($exeSub1);
+
+        $sub1 = 'S'.$sub1;
+
+        if($rowSub1[0] == 1){
+            $sub3 = "SELECT SUSN FROM studentlist WHERE $sub1 = '1'";
+            $sub3Result = mysqli_query($conn, $sub3);
+            $UsnList = array();
+            while ($sub3ResultRow = mysqli_fetch_array($sub3Result)) {
+                array_push($UsnList,$sub3ResultRow['SUSN']);           
+            }
+
+            $room = "SELECT room_num FROM room";
+            $roomResult = mysqli_query($conn, $room);
+            $RoomList = array();
+            while ($roomResultRow = mysqli_fetch_array($roomResult)) {
+                array_push($RoomList,$roomResultRow['room_num']);           
+            }
+
+            $odd = array(1,3,5,7,9,11,13,15,17,19,21,23,25,27,29);
+            $even = array(2,4,6,8,10,12,14,16,18,20,22,24,26,28,30);
+
+            $currentUsnListIndex = 0;
+            $currentRoomListIndex = 0;
+            
+            $currentRoomListIndex_ODD = 0;
+            $currentRoomListIndex_EVEN = 0;
+
+            $currentOddIndex = 0;
+            $currentEvenIndex = 0;
+
+            $seatNumber = 0;
+            $previousBranch = 'NONE';
+            $previousBranchState = 'ODD';  // ODD || EVEN
+
+            while(($currentRoomListIndex_ODD < count($RoomList)) || ($currentRoomListIndex_EVEN < count($RoomList))){
+                if($currentUsnListIndex < count($UsnList)){
+                    $currentBranch = substr($UsnList[$currentUsnListIndex],5,2);
+
+                    if($currentOddIndex > 14){
+                        $currentOddIndex = 0;
+                        $currentRoomListIndex_ODD++;
+                    }
+                    if($currentEvenIndex > 14){
+                        $currentEvenIndex = 0;
+                        $currentRoomListIndex_EVEN++;
+                    }          
+
+                    if(($currentBranch != $previousBranch) && ($previousBranch == 'NONE') && ($previousBranchState == 'ODD')){
+                        $seatNumber = $odd[$currentOddIndex];
+                        $currentOddIndex++;
+                        $currentRoomListIndex = $currentRoomListIndex_ODD;
+
+                    } else if(($currentBranch != $previousBranch) && ($previousBranch != 'NONE') && ($previousBranchState == 'ODD')){
+                        $seatNumber = $even[$currentEvenIndex];
+                        $currentEvenIndex++;
+                        $currentRoomListIndex = $currentRoomListIndex_EVEN;
+                        $previousBranchState = 'EVEN';
+                        
+                    } else if(($currentBranch != $previousBranch) && ($previousBranchState == 'EVEN')) {
+                        $seatNumber = $odd[$currentOddIndex];
+                        $currentOddIndex++;
+                        $currentRoomListIndex = $currentRoomListIndex_ODD;
+                        $previousBranchState = 'ODD';
+
+                    } else if (($currentBranch == $previousBranch) && ($previousBranchState == 'EVEN') && ($previousBranch != 'NONE')) {
+                        $seatNumber = $even[$currentEvenIndex];
+                        $currentEvenIndex++;
+                        $currentRoomListIndex = $currentRoomListIndex_EVEN;
+                    } else if (($currentBranch == $previousBranch) && ($previousBranchState == 'ODD') && ($previousBranch != 'NONE')) {
+                        $seatNumber = $odd[$currentOddIndex];
+                        $currentOddIndex++;
+                        $currentRoomListIndex = $currentRoomListIndex_ODD;
+                    }
+
+                    $sql = mysqli_query($conn,"INSERT INTO generatedSeats(`SUSN`,`room_num`,`seat_number`)VALUES('$UsnList[$currentUsnListIndex]','$RoomList[$currentRoomListIndex]','$seatNumber')");
+
+                    $currentUsnListIndex++;
+                    $previousBranch = $currentBranch;
+
+                }else{
+                    echo '<script type="text/javascript">';
+                    echo 'setTimeout(function () { sweetAlert("<b>Oops...! "," No Rooms Available.</b>");';
+                    echo '}, 500);</script>';
+                }
+
+                if($currentUsnListIndex >= count($UsnList)){
+                    // echo("All students are alloted");
+                    break;
+                }
+            }
+
+        } else {
+            echo '<script type="text/javascript">';
+            echo 'setTimeout(function () { sweetAlert("<b>Invalid Subject Code! "," Please check and try again.</b>");';
+            echo '}, 500);</script>';
+        }
+
     }
 
 

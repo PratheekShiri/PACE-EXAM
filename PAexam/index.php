@@ -78,7 +78,7 @@ function login()
         <a class="navbar-brand" href="#">
             <img src="assets/images/logo.jpg" height="60" width="60" style="border-radius:50%;" class="d-inline-block align-top" alt="mdb logo"> P.A. College of Engineering Mangaluru
         </a>
-        <button type="button" class="btn btn-light">find my seat <i class="fas fa-chair"></i></button>
+        <button type="button" class="btn btn-light">Find my seat <i class="fas fa-chair"></i></button>
     </nav>
 
     <!--Modal: Login / Register Form-->
