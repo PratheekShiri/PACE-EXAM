@@ -169,7 +169,7 @@ function findSeat() {
                 <form method="post" action="index.php">
                     <div class="modal-body mx-3">
                         <div class="md-form mb-5">
-                            <i class="fas fa-lock prefix grey-text"></i>
+                            <i class="fas fa-user prefix grey-text"></i>
                             <input type="text" name="usn" id="defaultForm-usn" class="form-control validate">
                             <label data-error="wrong" data-success="right" for="defaultForm-usn">Enter USN</label>
                         </div>
