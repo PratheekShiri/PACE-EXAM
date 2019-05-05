@@ -14,6 +14,10 @@ if (isset($_POST['login'])) {
     login();
 }
 
+if (isset($_POST['findSeat'])) {
+    findSeat();
+}
+
 
 
 function login()
@@ -43,6 +47,24 @@ function login()
     } else {
         echo '<script type="text/javascript">';
         echo 'setTimeout(function () { sweetAlert("<b>Oops...","Incorrect username or password!...</b>");';
+        echo '}, 500);</script>';
+    }
+}
+
+function findSeat() {
+    include('connection.php');
+    $usn = mysqli_real_escape_string($conn, $_POST['usn']);
+
+    $query = mysqli_query($conn, "SELECT * FROM generatedSeats WHERE SUSN = '$usn'");
+    $queryResult = mysqli_fetch_array($query);
+
+    if(empty($queryResult)){
+        echo '<script type="text/javascript">';
+        echo 'setTimeout(function () { sweetAlert("'.$usn.'","Room is not yet generated.","success");';
+        echo '}, 500);</script>';
+    }else{
+        echo '<script type="text/javascript">';
+        echo 'setTimeout(function () { sweetAlert("'.$queryResult['SUSN'].'","Room Number: '.$queryResult['room_num'].' <br>Seat Number: '.$queryResult['seat_number'].'","success");';
         echo '}, 500);</script>';
     }
 }
@@ -78,7 +100,10 @@ function login()
         <a class="navbar-brand" href="#">
             <img src="assets/images/logo.jpg" height="60" width="60" style="border-radius:50%;" class="d-inline-block align-top" alt="mdb logo"> P.A. College of Engineering Mangaluru
         </a>
-        <button type="button" class="btn btn-light">Find my seat <i class="fas fa-chair"></i></button>
+        <!-- <form method="post" action="index.php" enctype="multipart/form-data">
+            <button type="submit" class="btn btn-light" name="findSeat">Find My Seat <i class="fas fa-chair"></i></button>
+        </form> -->
+        <a data-toggle="modal" data-target="#findMySeatModal" class="btn btn-light" style="color:black;">Find My Seat <i class="fas fa-chair"></i></a>
     </nav>
 
     <!--Modal: Login / Register Form-->
@@ -134,6 +159,29 @@ function login()
         </div>
     </div>
     <!--Modal: Login / Register Form-->
+
+    <div class="modal fade" id="findMySeatModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">FIND MY SEAT</h4>
+                </div>
+                <form method="post" action="index.php">
+                    <div class="modal-body mx-3">
+                        <div class="md-form mb-5">
+                            <i class="fas fa-lock prefix grey-text"></i>
+                            <input type="text" name="usn" id="defaultForm-usn" class="form-control validate">
+                            <label data-error="wrong" data-success="right" for="defaultForm-usn">Enter USN</label>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" name="findSeat" class="btn btn-primary">SEARCH <i class="fas fa-search"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
