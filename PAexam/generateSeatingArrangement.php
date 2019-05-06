@@ -29,11 +29,20 @@ function generateSeatingArrangement() {
         $sub2 = 'S'.$sub2;      
         
         if($rowSub1[0] == 1 && $rowSub2[0] == 1){
-            $sub3 = "SELECT SUSN FROM studentlist WHERE $sub1 = '1' OR $sub2 = '1'";
-            $sub3Result = mysqli_query($conn, $sub3);
             $UsnList = array();
+
+            $sub3 = "SELECT SUSN FROM studentlist WHERE $sub1 = '1'";
+            $sub3Result = mysqli_query($conn, $sub3);
             while ($sub3ResultRow = mysqli_fetch_array($sub3Result)) {
                 array_push($UsnList,$sub3ResultRow['SUSN']);           
+            }
+
+            array_push($UsnList,'MIDDLE'); 
+
+            $sub4 = "SELECT SUSN FROM studentlist WHERE $sub2 = '1'";
+            $sub4Result = mysqli_query($conn, $sub4);
+            while ($sub4ResultRow = mysqli_fetch_array($sub4Result)) {
+                array_push($UsnList,$sub4ResultRow['SUSN']);           
             }
 
             $room = "SELECT room_num FROM room";
@@ -64,6 +73,26 @@ function generateSeatingArrangement() {
 
             while(($currentRoomListIndex_ODD < count($RoomList)) || ($currentRoomListIndex_EVEN < count($RoomList))){
                 if($currentUsnListIndex < count($UsnList)){
+
+                    if($UsnList[$currentUsnListIndex] == 'MIDDLE') {
+                        $currentOddIndex = 0;
+                        $currentEvenIndex = 0;
+
+                        if($currentRoomListIndex_ODD >= $currentRoomListIndex_EVEN){
+                            $currentRoomListIndex_ODD++;
+                            $currentRoomListIndex_ODD = $currentRoomListIndex_ODD;
+                            $currentRoomListIndex_EVEN = $currentRoomListIndex_ODD;
+                        } else {
+                            $currentRoomListIndex_EVEN++;
+                            $currentRoomListIndex_ODD = $currentRoomListIndex_EVEN;
+                            $currentRoomListIndex_EVEN = $currentRoomListIndex_EVEN;
+                        } 
+
+                        $currentUsnListIndex++;
+                        $previousBranchState = 'ODD';
+                        $previousBranch = 'NONE';
+                    }
+
                     $currentBranch = substr($UsnList[$currentUsnListIndex],5,2);
 
                     if($currentOddIndex > 14){
@@ -117,6 +146,8 @@ function generateSeatingArrangement() {
 
                     $currentUsnListIndex++;
                     $previousBranch = $currentBranch;
+
+
 
                 }else{
                     echo '<script type="text/javascript">';
