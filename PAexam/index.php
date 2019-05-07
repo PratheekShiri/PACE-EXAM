@@ -18,6 +18,9 @@ if (isset($_POST['findSeat'])) {
     findSeat();
 }
 
+if (isset($_POST['findSubject'])) {
+    findSubject();
+}
 
 
 function login()
@@ -62,9 +65,40 @@ function findSeat() {
         echo '<script type="text/javascript">';
         echo 'setTimeout(function () { sweetAlert("'.$usn.'","Room is not yet generated.","success");';
         echo '}, 500);</script>';
-    }else{
+    } else {
         echo '<script type="text/javascript">';
         echo 'setTimeout(function () { sweetAlert("'.$queryResult['SUSN'].'","Room Number: '.$queryResult['room_num'].' <br>Seat Number: '.$queryResult['seat_number'].'","success");';
+        echo '}, 500);</script>';
+    }
+}
+
+function findSubject() {
+    include('connection.php');
+    $usn = mysqli_real_escape_string($conn, $_POST['usn']);
+
+    $query = mysqli_query($conn, "SELECT * FROM studentlist WHERE SUSN = '$usn'");
+    $queryResult = mysqli_fetch_assoc($query);
+
+    // print_r(array_keys($queryResult,"1"));
+
+    // $subjects = array();
+
+    // array_push($subjects,$roomResultRow['room_num']);
+
+
+
+    if(!empty($queryResult)){
+        echo '<script type="text/javascript">';
+        echo 'setTimeout(function () { sweetAlert("'.$usn.'","has applied for the following subjects<br><ul>';
+                foreach(array_keys($queryResult,"1") as $value){
+                    echo '<li>'.$value.'</li>';
+                }
+
+        echo '</ul>","success");';
+        echo '}, 500);</script>';
+    } else {
+        echo '<script type="text/javascript">';
+        echo 'setTimeout(function () { sweetAlert("'.$usn.'","has not applied for any subject!.","success");';
         echo '}, 500);</script>';
     }
 }
@@ -100,9 +134,7 @@ function findSeat() {
         <a class="navbar-brand" href="#">
             <img src="assets/images/logo.jpg" height="60" width="60" style="border-radius:50%;" class="d-inline-block align-top" alt="mdb logo"> P.A. College of Engineering Mangaluru
         </a>
-        <!-- <form method="post" action="index.php" enctype="multipart/form-data">
-            <button type="submit" class="btn btn-light" name="findSeat">Find My Seat <i class="fas fa-chair"></i></button>
-        </form> -->
+        <a data-toggle="modal" data-target="#findMySubjectModal" class="btn btn-light" style="color:black;">My Applied Subjects <i class="fas fa-book"></i></a>
         <a data-toggle="modal" data-target="#findMySeatModal" class="btn btn-light" style="color:black;">Find My Seat <i class="fas fa-chair"></i></a>
     </nav>
 
@@ -177,6 +209,29 @@ function findSeat() {
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
                         <button type="submit" name="findSeat" class="btn btn-primary">SEARCH <i class="fas fa-search"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="findMySubjectModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">MY APPLIED SUBJECTS</h4>
+                </div>
+                <form method="post" action="index.php">
+                    <div class="modal-body mx-3">
+                        <div class="md-form mb-5">
+                            <i class="fas fa-user prefix grey-text"></i>
+                            <input type="text" name="usn" id="defaultForm-usn" class="form-control validate">
+                            <label data-error="wrong" data-success="right" for="defaultForm-usn">Enter USN</label>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" name="findSubject" class="btn btn-primary">SEARCH <i class="fas fa-search"></i></button>
                     </div>
                 </form>
             </div>
