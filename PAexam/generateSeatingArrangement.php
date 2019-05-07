@@ -52,8 +52,8 @@ function generateSeatingArrangement() {
                 array_push($RoomList,$roomResultRow['room_num']);           
             }
 
-            $odd = array(1,3,5,7,9,11,13,15,17,19,21,23,25,27,29);
-            $even = array(2,4,6,8,10,12,14,16,18,20,22,24,26,28,30);
+            $odd = array('01','03','05','07','09','11','13','15','17','19','21','23','25','27','29');
+            $even = array('02','04','06','08','10','12','14','16','18','20','22','24','26','28','30');
 
             // print_r($even);
             // print_r($odd);
@@ -131,23 +131,10 @@ function generateSeatingArrangement() {
                         $currentRoomListIndex = $currentRoomListIndex_ODD;
                     }
 
-
-                    // echo('<br>Room Number: '.$RoomList[$currentRoomListIndex]);
-                    // echo('<br>Seat Number: '.$seatNumber);
-                    // echo('<br>USN: '.$UsnList[$currentUsnListIndex]);
-                    // echo('<br>currentOddIndex: '.$currentOddIndex);
-                    // echo('<br>currentEvenIndex: '.$currentEvenIndex);
-                    // echo('<br>currentRoomListIndex_ODD: '.$currentRoomListIndex_ODD);
-                    // echo('<br>currentRoomListIndex_EVEN: '.$currentRoomListIndex_EVEN);
-                    // echo('<br>currentUsnListIndex: '.$currentUsnListIndex);
-                    // echo('<hr>');
-
                     $sql = mysqli_query($conn,"INSERT INTO generatedSeats(`SUSN`,`room_num`,`seat_number`)VALUES('$UsnList[$currentUsnListIndex]','$RoomList[$currentRoomListIndex]','$seatNumber')");
 
                     $currentUsnListIndex++;
                     $previousBranch = $currentBranch;
-
-
 
                 }else{
                     echo '<script type="text/javascript">';
@@ -160,12 +147,17 @@ function generateSeatingArrangement() {
                     break;
                 }
             }
+            echo '<script type="text/javascript">';
+        echo 'setTimeout(function () { sweetAlert("<b>Success","Seating Arrangement is Generated!</b>");';
+        echo '}, 500);</script>';
 
         } else {
             echo '<script type="text/javascript">';
             echo 'setTimeout(function () { sweetAlert("<b>Invalid Subject Code! "," Please check and try again.</b>");';
             echo '}, 500);</script>';
         }
+
+        
     } else {
         $exeSub1 = mysqli_query($conn, "SELECT EXISTS(SELECT * from sub_code WHERE sub_code=$sub1)");
         $rowSub1 = mysqli_fetch_array($exeSub1);
@@ -259,6 +251,9 @@ function generateSeatingArrangement() {
                     break;
                 }
             }
+            echo '<script type="text/javascript">';
+            echo 'setTimeout(function () { sweetAlert("<b>Success","Seating Arrangement is Generated!</b>");';
+            echo '}, 500);</script>';
 
         } else {
             echo '<script type="text/javascript">';
@@ -269,9 +264,9 @@ function generateSeatingArrangement() {
     }
 
 
-    echo '<script type="text/javascript">';
-    echo 'setTimeout(function () { sweetAlert("<b>Success","Seating Arrangement is Generated!</b>");';
-    echo '}, 500);</script>';
+    // echo '<script type="text/javascript">';
+    // echo 'setTimeout(function () { sweetAlert("<b>Success","Seating Arrangement is Generated!</b>");';
+    // echo '}, 500);</script>';
 }
 
 ?>

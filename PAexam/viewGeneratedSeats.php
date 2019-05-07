@@ -59,9 +59,9 @@ if (!isset($_SESSION['adminId'])) {
     <table class="table table-bordered" style="text-align:center;">
         <thead class="black white-text">
             <tr>
-                <th scope="col">USN</th>
                 <th scope="col">Room Number</th>
                 <th scope="col">Seat Number</th>
+                <th scope="col">USN</th>     
             </tr>
         </thead>
         <tbody>
@@ -70,7 +70,7 @@ if (!isset($_SESSION['adminId'])) {
 
             include('connection.php');
 
-            $query = "SELECT * FROM generatedSeats";
+            $query = "SELECT * FROM `generatedseats` ORDER BY room_num, seat_number";
             $result = mysqli_query($conn, $query);
 
             while ($row = mysqli_fetch_array($result)) {
@@ -80,10 +80,10 @@ if (!isset($_SESSION['adminId'])) {
                 $seat_num = $row['seat_number'];
 
                 echo '
-                        <tr>
-                            <td>' . $SUSN . '</td>
+                        <tr>               
                             <td>' . $room_num . '</td>
                             <td>' . $seat_num . '</td>
+                            <td>' . $SUSN . '</td>
                         </tr>
             
                 ';
