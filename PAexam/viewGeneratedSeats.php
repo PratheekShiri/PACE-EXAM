@@ -70,7 +70,7 @@ if (!isset($_SESSION['adminId'])) {
 
             include('connection.php');
 
-            $query = "SELECT * FROM `generatedseats` ORDER BY room_num, seat_number";
+            $query = "SELECT * FROM `generatedSeats` ORDER BY room_num, seat_number";
             $result = mysqli_query($conn, $query);
 
             while ($row = mysqli_fetch_array($result)) {
