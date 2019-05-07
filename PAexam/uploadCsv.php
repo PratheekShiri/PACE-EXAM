@@ -355,8 +355,9 @@ function upload_subject_code()
 
             $id = $row[0];
             $sub_code = $row[1];
+            $year = $row[2];
 
-            $query = "CREATE TABLE IF NOT EXISTS $table ($id int primary key ,$sub_code varchar(255))";
+            $query = "CREATE TABLE IF NOT EXISTS $table ($id int primary key ,$sub_code varchar(255), $year varchar(20))";
             mysqli_query($conn, $query);
 
             if ($query) {
@@ -365,7 +366,7 @@ function upload_subject_code()
                 echo '}, 500);</script>';
             }
         } else {
-            $sql = "INSERT INTO $table ($id,$sub_code)VALUES('$row[0]','$row[1]')";
+            $sql = "INSERT INTO $table ($id,$sub_code,$year)VALUES('$row[0]','$row[1]','$row[2]')";
             mysqli_query($conn, $sql);
         }
         $i++;

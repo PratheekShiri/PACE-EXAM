@@ -22,6 +22,15 @@ if (isset($_POST['findSubject'])) {
     findSubject();
 }
 
+if (isset($_POST['timeTable'])) {
+    include('connection.php');
+    $scheme = mysqli_real_escape_string($conn, $_POST['scheme']);
+    $year = mysqli_real_escape_string($conn, $_POST['year']);
+
+    header("location:displayTimeTable.php?scheme='$scheme'&year='$year'");
+}
+
+
 
 function login()
 {
@@ -79,21 +88,12 @@ function findSubject() {
     $query = mysqli_query($conn, "SELECT * FROM studentlist WHERE SUSN = '$usn'");
     $queryResult = mysqli_fetch_assoc($query);
 
-    // print_r(array_keys($queryResult,"1"));
-
-    // $subjects = array();
-
-    // array_push($subjects,$roomResultRow['room_num']);
-
-
-
     if(!empty($queryResult)){
         echo '<script type="text/javascript">';
-        echo 'setTimeout(function () { sweetAlert("'.$usn.'","has applied for the following subjects<br><ul>';
+        echo 'setTimeout(function () { sweetAlert("'.$usn.'","has applied for the following subjects:<br><ul>';
                 foreach(array_keys($queryResult,"1") as $value){
-                    echo '<li>'.$value.'</li>';
+                    echo '<li>'.substr($value,1).'</li>';
                 }
-
         echo '</ul>","success");';
         echo '}, 500);</script>';
     } else {
@@ -134,6 +134,7 @@ function findSubject() {
         <a class="navbar-brand" href="#">
             <img src="assets/images/logo.jpg" height="60" width="60" style="border-radius:50%;" class="d-inline-block align-top" alt="mdb logo"> P.A. College of Engineering Mangaluru
         </a>
+        <a data-toggle="modal" data-target="#timeTableModal" class="btn btn-light" style="color:black;">Time Table <i class="fas fa-calendar"></i></a>
         <a data-toggle="modal" data-target="#findMySubjectModal" class="btn btn-light" style="color:black;">My Applied Subjects <i class="fas fa-book"></i></a>
         <a data-toggle="modal" data-target="#findMySeatModal" class="btn btn-light" style="color:black;">Find My Seat <i class="fas fa-chair"></i></a>
     </nav>
@@ -232,6 +233,52 @@ function findSubject() {
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
                         <button type="submit" name="findSubject" class="btn btn-primary">SEARCH <i class="fas fa-search"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="timeTableModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">TIME TABLE</h4>
+                </div>
+                <form method="POST" action="index.php">
+                    <div class="modal-body mx-5">
+                        <div class="md-form mb-5">
+                            <h4>Select Scheme: </h4>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="scheme" id="scheme1" value="15" checked>15 &nbsp;
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="scheme" id="scheme2" value="17">17 &nbsp;
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="scheme" id="scheme3" value="18">18 &nbsp;
+                            </div>
+                        </div>
+
+                        <div class="md-form mb-5">
+                            <h4>Select Year: </h4>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="year" id="year1" value="1" checked>1<sup>st</sup> &nbsp;
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="year" id="year2" value="2">2<sup>nd</sup> &nbsp;
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="year" id="year3" value="3">3<sup>rd</sup> &nbsp;
+                            </div> 
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="year" id="year4" value="4">4<sup>th</sup> &nbsp;
+                            </div>
+                        </div>             
+                    </div>
+
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" name="timeTable" class="btn btn-primary">Go <i class="fas fa-search"></i></button>
                     </div>
                 </form>
             </div>
