@@ -12,7 +12,7 @@ if (!isset($_SESSION['adminId'])) {
 <html>
 
 <head>
-    <title>Exam Seat Allotment | Admin</title>
+    <title>Exam Seat Allotment</title>
     <!-- <link href="css/style.css" rel="stylesheet" type="text/css"> -->
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
@@ -22,26 +22,11 @@ if (!isset($_SESSION['adminId'])) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/css/mdb.min.css" rel="stylesheet">
     <!-- sweetalert css cdn -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.11/dist/sweetalert2.min.css">
+
     <style>
-        h2 {
-            font-size: 22px;
-            margin-top: -15%;
-        }
-
-        .jumbotron {
-            border-radius: 2.125rem;
-        }
-
-        .jumbotron:hover {
-            -webkit-transform: translate(5px, 15px);
-            -webkit-box-shadow: inset 0 0 10px #000000;
-            cursor: pointer;
-        }
-
-
-        .btn1 {
-            margin-top: 25%;
-            margin-left: 5%;
+        body {
+            font-weight: bold;
+            font-family: sans-serif;
         }
     </style>
 </head>
@@ -50,18 +35,18 @@ if (!isset($_SESSION['adminId'])) {
     <!-- Image and text -->
     <nav class="navbar navbar-dark primary-color">
         <a class="navbar-brand" href="#">
-            <img src="assets/images/logo.jpg" height="60" width="60" style="border-radius:50%;" class="d-inline-block align-top" alt="mdb logo"> P.A. College of Engineering Mangaluru | Admin
+            <img src="assets/images/logo.jpg" height="60" width="60" style="border-radius:50%;" class="d-inline-block align-top" alt="mdb logo"> P.A. College of Engineering Mangaluru
         </a>
-        <a class="btn btn-light" href="admin.php"> back <i class="fas fa-arrow-circle-left"></i></a>
+        <a class="btn btn-light" href="viewCSv.php"> back <i class="fas fa-arrow-circle-left"></i></a>
     </nav><br>
 
-    <h3 style="text-align:center">Generated Seats</h3>
+    <h3 style="text-align:center">Subject Name Details</h3>
     <table class="table table-bordered" style="text-align:center;">
         <thead class="black white-text">
             <tr>
-                <th scope="col">Room Number</th>
-                <th scope="col">Seat Number</th>
-                <th scope="col">USN</th>     
+                <th scope="col">Branch</th>
+                <th scope="col">Subject Code</th>
+                <th scope="col">Subject Names</th>
             </tr>
         </thead>
         <tbody>
@@ -70,20 +55,20 @@ if (!isset($_SESSION['adminId'])) {
 
             include('connection.php');
 
-            $query = "SELECT * FROM `generatedSeats` ORDER BY room_num, seat_number";
+            $query = "SELECT * FROM subjectname";
             $result = mysqli_query($conn, $query);
 
             while ($row = mysqli_fetch_array($result)) {
 
-                $SUSN = $row['SUSN'];
-                $room_num = $row['room_num'];
-                $seat_num = $row['seat_number'];
+                $branch = $row['branch'];
+                $sub_code = $row['sub_code'];
+                $sub_name = $row['sub_name'];
 
                 echo '
-                        <tr>               
-                            <td>' . $room_num . '</td>
-                            <td>' . $seat_num . '</td>
-                            <td>' . $SUSN . '</td>
+                        <tr>
+                            <td>' . $branch . '</td>
+                            <td>' . $sub_code . '</td>
+                            <td>' . $sub_name . '</td>
                         </tr>
             
                 ';
@@ -91,15 +76,8 @@ if (!isset($_SESSION['adminId'])) {
 
             ?>
 
-        </tbody><div style="text-align: center;">
-        <button style="background-color: skyblue"    onclick="myFunction()">Print</button></div>
+        </tbody>
     </table>
-    <script> function myFunction(){
-        window.print();
-        }
-        </script>
-
-        
 
 
     <!-- JQuery -->
@@ -112,8 +90,6 @@ if (!isset($_SESSION['adminId'])) {
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/js/mdb.min.js"></script>
     <!-- sweetalert js cdn -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.11/dist/sweetalert2.min.js"></script>
-    
 </body>
-
 
 </html>

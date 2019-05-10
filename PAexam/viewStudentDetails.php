@@ -41,6 +41,7 @@ if (!isset($_SESSION['adminId'])) {
     </nav><br>
 
     <h3 style="text-align:center">Student Details</h3>
+    
     <table class="table table-bordered" style="text-align:center;">
         <thead class="black white-text">
             <tr>

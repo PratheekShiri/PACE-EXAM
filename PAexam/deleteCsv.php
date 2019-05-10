@@ -25,6 +25,9 @@ if (isset($_POST['fd'])) {
 if (isset($_POST['sc'])) {
     delete_subject_code();
 }
+if (isset($_POST['sd'])) {
+    delete_subject_details();
+}
 
 function delete_time_table()
 {
@@ -102,6 +105,23 @@ function delete_subject_code()
 
     include('connection.php');
     $query = "DROP TABLE sub_code";
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        echo '<script type="text/javascript">';
+        echo 'setTimeout(function () { sweetAlert("<b>Deleted","Subject Code Table Deleted successfully</b>","success");';
+        echo '}, 500);</script>';
+    } else {
+        echo '<script type="text/javascript">';
+        echo 'setTimeout(function () { sweetAlert("<b>Warning","Table already deleted..!!!</b>","warning");';
+        echo '}, 500);</script>';
+    }
+}
+function delete_subject_details()
+{
+
+    include('connection.php');
+    $query = "DROP TABLE subjectname";
     $result = mysqli_query($conn, $query);
 
     if ($result) {
@@ -204,6 +224,14 @@ function delete_subject_code()
                     <h2>Delete Subject code </h2>
                     <form method="post" action="deleteCsv.php" enctype="multipart/form-data">
                         <button type="submit" class="btn btn-primary btn-lg btn1" name="sc">delete <i class="far fa-trash-alt"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="jumbotron">
+                    <h2>Delete Subject Names </h2>
+                    <form method="post" action="deleteCsv.php" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary btn-lg btn1" name="sd">delete <i class="far fa-trash-alt"></i></button>
                     </form>
                 </div>
             </div>

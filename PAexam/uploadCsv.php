@@ -25,6 +25,9 @@ if (isset($_POST['fd'])) {
 if (isset($_POST['sc'])) {
     upload_subject_code();
 }
+if (isset($_POST['sd'])) {
+    upload_subject_details();
+}
 
 function upload_time_table()
 {
@@ -61,6 +64,8 @@ function upload_time_table()
         $i++;
     }
 }
+
+
 
 function upload_student_list()
 {
@@ -373,6 +378,43 @@ function upload_subject_code()
     }
 }
 
+function upload_subject_details()
+{
+
+    include('connection.php');
+
+    if (isset($_FILES['subjectDetails'])) {
+        $file_name = $_FILES['subjectDetails']['name'];
+    }
+
+    $handle = fopen('csv/' . $file_name, "r");
+    $i = 0;
+    while (($row = fgetcsv($handle, 1000, ",")) != false) {
+        $table = rtrim($_FILES['subjectDetails']['name'], ".csv");
+        if ($i == 0) {
+
+            $branch = $row[0];
+            $sub_code = $row[1];
+            $sub_name = $row[2];
+
+            $query = "CREATE TABLE IF NOT EXISTS $table ($branch varchar(10) ,$sub_code varchar(10), $sub_name varchar(100))";
+            mysqli_query($conn, $query);
+
+            if ($query) {
+                echo '<script type="text/javascript">';
+                echo 'setTimeout(function () { sweetAlert("<b>Uploaded","Subject details uploaded successfully</b>","success");';
+                echo '}, 500);</script>';
+            }
+        } else {
+            $sql = "INSERT INTO $table ($branch,$sub_code,$sub_name)VALUES('$row[0]','$row[1]','$row[2]')";
+            mysqli_query($conn, $sql);
+        }
+        $i++;
+    }
+}
+
+
+
 ?>
 
 <!doctype html>
@@ -467,6 +509,15 @@ function upload_subject_code()
                     <form method="post" action="uploadCsv.php" enctype="multipart/form-data">
                         <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" name="subjectCode" required>
                         <button type="submit" class="btn btn-primary btn-lg btn1" name="sc">upload <i class="fas fa-file-upload"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="jumbotron">
+                    <h2>Upload Subject Names </h2>
+                    <form method="post" action="uploadCsv.php" enctype="multipart/form-data">
+                        <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" name="subjectDetails" required>
+                        <button type="submit" class="btn btn-primary btn-lg btn1" name="sd">upload <i class="fas fa-file-upload"></i></button>
                     </form>
                 </div>
             </div>

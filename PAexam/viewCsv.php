@@ -86,6 +86,12 @@ if (!isset($_SESSION['adminId'])) {
                     <a href="viewSubjectCode.php" class="btn btn-primary btn-lg btn1" role="button">view <i class="fas fa-file-upload"></i></a>
                 </div>
             </div>
+            <div class="col-3">
+                <div class="jumbotron">
+                    <h2>View Subject Names </h2>
+                    <a href="viewSubjectNames.php" class="btn btn-primary btn-lg btn1" role="button">view <i class="fas fa-file-upload"></i></a>
+                </div>
+            </div>
         </div>
 
         <!-- JQuery -->

@@ -63,7 +63,14 @@ if (!isset($_SESSION['adminId'])) {
     $studentCountPerDayResult = mysqli_query($conn, $sql2);
 
     echo '
-        <h3 style="text-align:center">Student Count Per Day</h3>
+        <h3 style="text-align:center">Deputy Chief Superintendent</h3><div style="text-align: center;">
+        <button style="background-color: skyblue"    onclick="myFunction()">Print</button></div>
+    
+    <script> function myFunction(){
+        window.print();
+        }
+        </script>
+
         <table class="table table-bordered" style="text-align:center;font-weight:bold;">
             <thead class="black white-text">
                 <tr>
@@ -109,6 +116,7 @@ if (!isset($_SESSION['adminId'])) {
         </table>
     ';
 
+
     ?>
 
 
@@ -122,6 +130,9 @@ if (!isset($_SESSION['adminId'])) {
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/js/mdb.min.js"></script>
     <!-- sweetalert js cdn -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.11/dist/sweetalert2.min.js"></script>
+    
+
+
 </body>
 
 </html>

@@ -23,7 +23,7 @@ if (isset($_POST['change'])) {
         echo '}, 500);</script>';
     } else {
         echo '<script type="text/javascript">';
-        echo 'setTimeout(function () { sweetAlert("<b>Oops...","The two password does not matched!...</b>","error");';
+        echo 'setTimeout(function () { sweetAlert("<b>Oops...","The password did not match!...</b>","error");';
         echo '}, 500);</script>';
     }
 }
