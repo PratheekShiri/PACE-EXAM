@@ -1,5 +1,5 @@
 <?php
-
+include('connection.php');
 session_start();
 
 $facultyId = $_SESSION['facultyId'];
@@ -10,7 +10,7 @@ if (!isset($_SESSION['facultyId'])) {
 
 if (isset($_POST['change'])) {
 
-    include('connection.php');
+    
 
     $pass = $_POST['pass'];
     $cpass = $_POST['cpass'];
@@ -28,6 +28,23 @@ if (isset($_POST['change'])) {
     }
 }
 
+if (isset($_POST['SLOT1'])) {
+    $sqlSlot1 = mysqli_query($conn,"INSERT INTO facultySlots(`facultyId`, `slotNumber`)VALUES('$facultyId','SLOT1')");
+    // if($sqlSlot1){
+    //     echo '<script type="text/javascript">';
+    //     echo 'setTimeout(function () { sweetAlert("<b>Changed","Password updated successfully</b>","success");';
+    //     echo '}, 500);</script>';
+    // }
+}
+
+if (isset($_POST['SLOT2'])) {
+    $sql = mysqli_query($conn,"INSERT INTO facultySlots(`facultyId`, `slotNumber`)VALUES('$facultyId','SLOT2')");
+    // if($sql){
+    //     echo '<script type="text/javascript">';
+    //     echo 'setTimeout(function () { sweetAlert("<b>Changed","Password updated successfully</b>","success");';
+    //     echo '}, 500);</script>';
+    // }
+}
 
 ?>
 
@@ -142,110 +159,82 @@ if (isset($_POST['change'])) {
             ';
         }
         else if($sql0ResultRow['status'] == '0'){
-            echo '
-                    <h3 style="text-align:center">Generate Duty allotment</h3>
-                    <table class="table table-bordered" style="text-align:center;font-weight:bold;">
-                        <thead class="black white-text">
-                            <tr>
-                                <th scope="col"> Date </th>
-                                <th scope="col"> Subject1 </th>
-                                <th scope="col"> No of students </th>
-                                <th scope="col"> Subject2 </th>
-                                <th scope="col"> No of students </th>
-                            </tr>
-                        </thead>
-                        <tbody>';
+            $exeSql1 = mysqli_query($conn, "SELECT EXISTS(SELECT * from facultySlots WHERE facultyId='$facultyId')");
+            $rowSql1 = mysqli_fetch_array($exeSql1);
 
-            $query = mysqli_query($conn, "SELECT * FROM calculateddata");
+            $MaxSlot1Count = "SELECT * FROM generatedSlots WHERE slotNumber = 'SLOT1'";
+            $MaxSlot1CountResult = mysqli_query($conn, $MaxSlot1Count);
+            $CurrentSlot1Count = "SELECT * FROM facultySlots WHERE slotNumber = 'SLOT1'";
+            $CurrentSlot1CountResult = mysqli_query($conn, $CurrentSlot1Count);
 
-            $roomQuery = mysqli_query($conn, "SELECT * FROM room");
-            $roomArray = array();
+            $MaxSlot2Count = "SELECT * FROM generatedSlots WHERE slotNumber = 'SLOT2'";
+            $MaxSlot2CountResult = mysqli_query($conn, $MaxSlot2Count);
+            $CurrentSlot2Count = "SELECT * FROM facultySlots WHERE slotNumber = 'SLOT2'";
+            $CurrentSlot2CountResult = mysqli_query($conn, $CurrentSlot2Count);
 
-            while ($roomRow = mysqli_fetch_array($roomQuery)) {
-                array_push($roomArray, $roomRow['room_num']);
-            }
+            $maxSlot1 = mysqli_num_rows($MaxSlot1CountResult);
+            $currentSlot1 = mysqli_num_rows($CurrentSlot1CountResult);
+            $maxSlot2 = mysqli_num_rows($MaxSlot2CountResult);
+            $currentSlot2 = mysqli_num_rows($CurrentSlot2CountResult);
 
-            $totalDutyForSub1 = 0;
-            $totalDutyForSub2 = 0;
-
-            while ($row = mysqli_fetch_array($query)) {
-
-                $i = 0;
-
-                $date = $row['date'];
-                $sub1 = $row['sub1'];
-                $sub1Count = $row['student1'];
-                $sub2 = $row['sub2'];
-                $sub2Count = $row['student2'];
-
+            if($rowSql1[0] == 1){
                 echo '
-                    <tr>
-                    <td style="font-weight:bold;">' . substr($date,0,2).'-'.substr($date,2,2).'-'.substr($date,4,2).' ['.substr($date,6).']</td>
-                        <td style="font-weight:bold;">' . $sub1 . '</td>';
-
-                if ($sub1Count > 0) {
-                    $roomsToBeAlloted1 = ceil($sub1Count / 30);
-
-                    echo '<form method="post" action="generateDuty.php" class="form-check-inline">';
-                    echo '<td style="font-weight:bold;">';
-
-                    while ($roomsToBeAlloted1 != 0) {
-                        $totalDutyForSub1++;
-                        echo '<input type="radio" name="" value="" style="width:25px;height:25px;margin-left:15px;" >' . $roomArray[$i++];
-                        $roomsToBeAlloted1--;
-                    }
-
-                    echo '</td>';
-                    echo '</form>';
-                } else {
-                    echo '<td></td>';
-                }
-
-                echo '<td style="font-weight:bold ; ">' . $sub2 . ' </ td>';
-
-                if ($sub2Count > 0) {
-                    $roomsToBeAlloted2 = ceil($sub2Count / 30);
-
-                    echo '<form method="post" action="generateDuty.php" class="form-check-inline">';
-                    echo '<td style="font-weight:bold;">';
-
-                    while ($roomsToBeAlloted2 != 0) {
-                        $totalDutyForSub2++;
-                        echo '<input type="radio" name="" value="" style="width:25px;height:25px;margin-left:15px;" >' . $roomArray[$i++];
-                        $roomsToBeAlloted2--;
-                    }
-
-                    echo '</td>';
-                    echo '</form>';
-                } else {
-                    echo '<td></td>';
-                }
-            }
-
-            echo '      
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td style="font-weight:bold;">Total Duty = ' . $totalDutyForSub1 . ' </td>
-                        <td></td>
-                        <td style="font-weight:bold;"> Total Duty = ' . $totalDutyForSub2 . '</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td style="font-weight:bold;">
-                        <div class="custom-control custom-switch">
-                            <form method="post" action="chooseDutyfaculty.php">
-                                <input type="checkbox" name="enable" class="custom-control-input" id="customSwitch1">
-                            </form>
-                            <label class="custom-control-label" for="customSwitch1">Enable/Disable</label>
-                        </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                  </table>';
+                <div style="text-align:center;">
+                <h3>Select Any One Slot For Your Exam Duty</h3> 
+                <form method="POST" action="faculty.php">
+                    <button type="submit" name="SLOT1" class="btn btn-warning btn-lg " disabled>Slot - 01</button>
+                    <a data-toggle="modal" data-target="#Slot1Details" style="color:black;"><i class="fas fa-info-circle"style="font-size:25px;color:gray"></i></a>
+                </form>
+                <form method="POST" action="faculty.php">
+                    <button type="submit" name="SLOT2" class="btn btn-warning btn-lg " disabled>Slot - 02</button>
+                    <a data-toggle="modal" data-target="#Slot2Details" style="color:black;"><i class="fas fa-info-circle"style="font-size:25px;color:gray"></i></a>
+                </form>
+                </div>
+                ';
+            } else if($currentSlot1 >= $maxSlot1){
+                echo '
+                <div style="text-align:center;">
+                <h3>Select Any One Slot For Your Exam Duty</h3> 
+                <form method="POST" action="faculty.php">
+                    <button type="submit" name="SLOT1" class="btn btn-warning btn-lg " disabled>Slot - 01</button>
+                    <a data-toggle="modal" data-target="#Slot1Details" style="color:black;"><i class="fas fa-info-circle"style="font-size:25px;color:gray"></i></a>
+                </form>
+                <form method="POST" action="faculty.php">
+                    <button type="submit" name="SLOT2" class="btn btn-warning btn-lg " >Slot - 02</button>
+                    <a data-toggle="modal" data-target="#Slot2Details" style="color:black;"><i class="fas fa-info-circle"style="font-size:25px;color:gray"></i></a>
+                </form>
+                </div>
+                ';
+            } else if($currentSlot2 >= $maxSlot2){
+                echo '
+                <div style="text-align:center;">
+                <h3>Select Any One Slot For Your Exam Duty</h3> 
+                <form method="POST" action="faculty.php">
+                    <button type="submit" name="SLOT1" class="btn btn-warning btn-lg " >Slot - 01</button>
+                    <a data-toggle="modal" data-target="#Slot1Details" style="color:black;"><i class="fas fa-info-circle"style="font-size:25px;color:gray"></i></a>
+                </form>
+                <form method="POST" action="faculty.php">
+                    <button type="submit" name="SLOT2" class="btn btn-warning btn-lg " disabled>Slot - 02</button>
+                    <a data-toggle="modal" data-target="#Slot2Details" style="color:black;"><i class="fas fa-info-circle"style="font-size:25px;color:gray"></i></a>
+                </form>
+                </div>
+                ';
+            } 
+            else {
+                echo '
+                <div style="text-align:center;">
+                <h3>Select Any One Slot For Your Exam Duty</h3> 
+                <form method="POST" action="faculty.php">
+                    <button type="submit" name="SLOT1" class="btn btn-warning btn-lg ">Slot - 01</button>
+                    <a data-toggle="modal" data-target="#Slot1Details" style="color:black;"><i class="fas fa-info-circle"style="font-size:25px;color:gray"></i></a>
+                </form>
+                <form method="POST" action="faculty.php">
+                    <button type="submit" name="SLOT2" class="btn btn-warning btn-lg ">Slot - 02</button>
+                    <a data-toggle="modal" data-target="#Slot2Details" style="color:black;"><i class="fas fa-info-circle"style="font-size:25px;color:gray"></i></a>
+                </form>
+                </div>
+                ';
+            }            
         }
         else {
             echo 'You are neither DCS nor Non-DCS';
@@ -280,6 +269,62 @@ if (isset($_POST['change'])) {
                         <button type="submit" name="change" class="btn btn-primary">Change <i class="fas fa-exchange-alt"></i></button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Slot1Details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <table class="table table-bordered" style="text-align:center;font-weight:bold;">
+                    <thead class="black white-text">
+                        <tr>
+                            <th scope="col"> {SLOT - 01} EXAM DUTY DATES </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                <?php
+                $sqlSlot1 = "SELECT * FROM generatedSlots WHERE slotNumber = 'SLOT1'";
+                $sqlSlot1Result = mysqli_query($conn, $sqlSlot1);
+                while ($sqlSlot1ResultRow = mysqli_fetch_array($sqlSlot1Result)) {
+                    $date = $sqlSlot1ResultRow['date'];
+                    echo '
+                    <tr>
+                    <td style="font-weight:bold;">' . substr($date,0,2).'-'.substr($date,2,2).'-'.substr($date,4,2).' ['.substr($date,6).']</td>
+                    </tr>
+                    ';
+                }
+                ?>
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Slot2Details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <table class="table table-bordered" style="text-align:center;font-weight:bold;">
+                    <thead class="black white-text">
+                        <tr>
+                            <th scope="col"> {SLOT - 02} EXAM DUTY DATES </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                <?php
+                $sqlSlot1 = "SELECT * FROM generatedSlots WHERE slotNumber = 'SLOT2'";
+                $sqlSlot1Result = mysqli_query($conn, $sqlSlot1);
+                while ($sqlSlot1ResultRow = mysqli_fetch_array($sqlSlot1Result)) {
+                    $date = $sqlSlot1ResultRow['date'];
+                    echo '
+                    <tr>
+                    <td style="font-weight:bold;">' . substr($date,0,2).'-'.substr($date,2,2).'-'.substr($date,4,2).' ['.substr($date,6).']</td>
+                    </tr>
+                    ';
+                }
+                ?>
+                </tbody>
+                </table>
             </div>
         </div>
     </div>

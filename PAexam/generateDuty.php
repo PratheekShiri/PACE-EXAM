@@ -99,7 +99,7 @@ if (!isset($_SESSION['adminId'])) {
     $generatedSlotsResult = mysqli_query($conn, $sql2);
 
     echo '
-    <h3 style="text-align:center">Subject Name Details</h3>
+    <h3 style="text-align:center">Generated Slots</h3>
     <table class="table table-bordered" style="text-align:center;">
         <thead class="black white-text">
             <tr>
