@@ -161,21 +161,24 @@ if (isset($_POST['SLOT2'])) {
         else if($sql0ResultRow['status'] == '0'){
             $exeSql1 = mysqli_query($conn, "SELECT EXISTS(SELECT * from facultySlots WHERE facultyId='$facultyId')");
             $rowSql1 = mysqli_fetch_array($exeSql1);
-
-            $MaxSlot1Count = "SELECT * FROM generatedSlots WHERE slotNumber = 'SLOT1'";
-            $MaxSlot1CountResult = mysqli_query($conn, $MaxSlot1Count);
+            
             $CurrentSlot1Count = "SELECT * FROM facultySlots WHERE slotNumber = 'SLOT1'";
             $CurrentSlot1CountResult = mysqli_query($conn, $CurrentSlot1Count);
 
-            $MaxSlot2Count = "SELECT * FROM generatedSlots WHERE slotNumber = 'SLOT2'";
-            $MaxSlot2CountResult = mysqli_query($conn, $MaxSlot2Count);
             $CurrentSlot2Count = "SELECT * FROM facultySlots WHERE slotNumber = 'SLOT2'";
             $CurrentSlot2CountResult = mysqli_query($conn, $CurrentSlot2Count);
 
-            $maxSlot1 = mysqli_num_rows($MaxSlot1CountResult);
+            $MaxFaculty = "SELECT * FROM facultylist AS FL WHERE FL.status = '0'";
+            $MaxFacultyResult = mysqli_query($conn, $MaxFaculty);
+            $MaxFacultyByTwo = ceil(mysqli_num_rows($MaxFacultyResult)/2);
+
+            $maxSlot1 = $MaxFacultyByTwo;
             $currentSlot1 = mysqli_num_rows($CurrentSlot1CountResult);
-            $maxSlot2 = mysqli_num_rows($MaxSlot2CountResult);
+            $maxSlot2 = mysqli_num_rows($MaxFacultyResult) - $MaxFacultyByTwo;
             $currentSlot2 = mysqli_num_rows($CurrentSlot2CountResult);
+
+            // echo($maxSlot1); echo(' >= '); echo($currentSlot1); echo(' <br> ');
+            // echo($maxSlot2); echo(' >= '); echo($currentSlot2);
 
             if($rowSql1[0] == 1){
                 echo '

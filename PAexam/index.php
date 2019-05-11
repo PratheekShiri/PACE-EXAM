@@ -86,10 +86,9 @@ function findSubject() {
     $usn = mysqli_real_escape_string($conn, $_POST['usn']);
 
     $query = mysqli_query($conn, "SELECT * FROM studentlist WHERE SUSN = '$usn'");
-    $queryN = mysqli_query($conn, " SELECT * FROM subjectname WHERE branch = 'CS' ");
     $queryResult = mysqli_fetch_assoc($query);
-    $queryName = mysqli_fetch_assoc($queryN); 
-    if(!empty($queryResult) AND ($queryName)){
+
+    if(!empty($queryResult)){
 
         echo '<script type="text/javascript">';
         echo 'setTimeout(function () { sweetAlert("'.$usn.'","has applied for the following subjects:<br><ul>'; 
@@ -97,11 +96,9 @@ function findSubject() {
                 foreach(array_keys($queryResult,"1") as $value){
 
                     echo '<li>'.substr($value,1).'</li>'; 
-                foreach (array_keys($queryName,"1") as $val ) {
-                    echo '<li>'.substr($val,0).'</li>'; 
                 }
                     
-    }
+    
         echo '</ul>","success");';
         echo '}, 500);</script>';
     } else {

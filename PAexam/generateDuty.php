@@ -61,6 +61,44 @@ if (!isset($_SESSION['adminId'])) {
 
     // Truncate table before use
     $truncategeneratedSlots = mysqli_query($conn,"TRUNCATE TABLE generatedSlots");
+
+    $sql3 = "SELECT * FROM facultylist AS FL WHERE FL.status = '0'";
+    $sql3Result = mysqli_query($conn, $sql3);
+
+    $sql2 = "SELECT * FROM facultySlots AS FS, facultylist AS FL WHERE FS.facultyId = FL.facultyId ORDER BY FS.slotNumber";
+    $sql2Result = mysqli_query($conn, $sql2);
+
+    echo '
+    <h3 style="text-align:center">Current Status of Slots</h3>
+    <table class="table table-bordered" style="text-align:center;">
+        <thead class="black white-text">
+            <tr>
+                <th scope="col">Faculty ID</th>
+                <th scope="col">Faculty Name</th>
+                <th scope="col">Slot Number</th>
+            </tr>
+        </thead>
+        <tbody>
+    ';
+
+    while ($sql2ResultRow = mysqli_fetch_array($sql2Result)) {
+        $facultyId = $sql2ResultRow['facultyId'];
+        $facultyName = $sql2ResultRow['name'];
+        $slotNumber = $sql2ResultRow['slotNumber'];
+        echo '
+            <tr>
+            <td style="font-weight:bold;">' . $facultyId . '</td>
+            <td style="font-weight:bold;">' . $facultyName . '</td>
+            <td style="font-weight:bold;">' . $slotNumber . '</td>
+    
+        ';
+    }
+
+
+    echo '
+    </tbody> </table><br><br><br><br>
+    ';
+
     
     $sql1 = "SELECT * FROM calculateddata WHERE student1 != 0 OR student2 != 0";
     $calculatedDataResult = mysqli_query($conn, $sql1);
@@ -110,11 +148,13 @@ if (!isset($_SESSION['adminId'])) {
         </thead>
         <tbody>
     ';
-
+    $totalSlotsGenerated = 0;
     while ($generatedSlotsResultRow = mysqli_fetch_array($generatedSlotsResult)) {
         $date = $generatedSlotsResultRow['date'];
         $slotCount = $generatedSlotsResultRow['slotCount'];
         $slotNumber = $generatedSlotsResultRow['slotNumber'];
+
+        $totalSlotsGenerated = $totalSlotsGenerated + $slotCount;
         echo '
             <tr>
             <td style="font-weight:bold;">' . substr($date,0,2).'-'.substr($date,2,2).'-'.substr($date,4,2).' ['.substr($date,6).']</td>
@@ -123,6 +163,17 @@ if (!isset($_SESSION['adminId'])) {
     
         ';
     }
+    echo '
+    </tbody> </table>
+    ';
+
+
+    $facultiesSelected = mysqli_num_rows($sql2Result);
+    $dutyCount = mysqli_num_rows($calculatedDataResult);
+    $pendingFaculty = mysqli_num_rows($sql3Result) - $facultiesSelected;
+    echo '<script type="text/javascript">';
+    echo 'setTimeout(function () { sweetAlert("<b>Summary","'.$dutyCount.' duties and '.$totalSlotsGenerated.' slots are generated.<br> '.$facultiesSelected.' faculties chose their slot.<br> '.$pendingFaculty.' faculties pending to select slot</b>");';
+    echo '}, 500);</script>';
 
     ?>
 
