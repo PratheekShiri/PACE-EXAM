@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 10, 2019 at 04:40 PM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 7.2.7
+-- Host: localhost
+-- Generation Time: May 12, 2019 at 09:33 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -245,10 +245,10 @@ INSERT INTO `countofstudents` (`id`, `sub_code`, `count`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `facultyallotment`
+-- Table structure for table `facultyAllotment`
 --
 
-CREATE TABLE `facultyallotment` (
+CREATE TABLE `facultyAllotment` (
   `id` int(11) NOT NULL,
   `date` int(255) NOT NULL,
   `facultyCount` int(255) NOT NULL,
@@ -256,10 +256,10 @@ CREATE TABLE `facultyallotment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `facultyallotment`
+-- Dumping data for table `facultyAllotment`
 --
 
-INSERT INTO `facultyallotment` (`id`, `date`, `facultyCount`, `facultyId`) VALUES
+INSERT INTO `facultyAllotment` (`id`, `date`, `facultyCount`, `facultyId`) VALUES
 (1, 191218, 1, 4),
 (2, 221218, 2, 27),
 (3, 221218, 2, 36),
@@ -285,6 +285,19 @@ INSERT INTO `facultyallotment` (`id`, `date`, `facultyCount`, `facultyId`) VALUE
 (23, 120219, 1, 85),
 (24, 130219, 1, 87),
 (25, 150219, 1, 89);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `facultyDuty`
+--
+
+CREATE TABLE `facultyDuty` (
+  `id` int(255) NOT NULL,
+  `date` varchar(255) NOT NULL,
+  `slotNumber` varchar(255) NOT NULL,
+  `facultyId` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -404,10 +417,45 @@ INSERT INTO `facultylist` (`id`, `name`, `facultyId`, `password`, `status`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `generatedseats`
+-- Table structure for table `facultySlots`
 --
 
-CREATE TABLE `generatedseats` (
+CREATE TABLE `facultySlots` (
+  `id` int(255) NOT NULL,
+  `facultyId` varchar(255) NOT NULL,
+  `slotNumber` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `facultySlots`
+--
+
+INSERT INTO `facultySlots` (`id`, `facultyId`, `slotNumber`) VALUES
+(30, 'PA110', 'SLOT1'),
+(31, 'PA173', 'SLOT2'),
+(33, 'PA167', 'SLOT1'),
+(36, 'PA170', 'SLOT1'),
+(37, 'PA171', 'SLOT2'),
+(38, 'PA172', 'SLOT1'),
+(39, 'PA174', 'SLOT1'),
+(40, 'PA175', 'SLOT2'),
+(41, 'PA176', 'SLOT1'),
+(42, 'PA111', 'SLOT2'),
+(43, 'PA112', 'SLOT2'),
+(44, 'PA113', 'SLOT1'),
+(45, 'PA114', 'SLOT1'),
+(46, 'PA116', 'SLOT1'),
+(47, 'PA117', 'SLOT2'),
+(48, 'PA194', 'SLOT1'),
+(49, 'PA106', 'SLOT1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `generatedSeats`
+--
+
+CREATE TABLE `generatedSeats` (
   `id` int(255) NOT NULL,
   `SUSN` varchar(255) NOT NULL,
   `room_num` varchar(50) NOT NULL,
@@ -415,145 +463,254 @@ CREATE TABLE `generatedseats` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `generatedseats`
+-- Dumping data for table `generatedSeats`
 --
 
-INSERT INTO `generatedseats` (`id`, `SUSN`, `room_num`, `seat_number`) VALUES
-(1, '4PA14BT009', 'G03', '01'),
-(2, '4PA15BT001', 'G03', '03'),
-(3, '4PA15BT002', 'G03', '05'),
-(4, '4PA15BT003', 'G03', '07'),
-(5, '4PA15BT005', 'G03', '09'),
-(6, '4PA15BT006', 'G03', '11'),
-(7, '4PA15BT007', 'G03', '13'),
-(8, '4PA15BT009', 'G03', '15'),
-(9, '4PA15BT010', 'G03', '17'),
-(10, '4PA15BT011', 'G03', '19'),
-(11, '4PA14CS103', 'G03', '02'),
-(12, '4PA15CS002', 'G03', '04'),
-(13, '4PA15CS007', 'G03', '06'),
-(14, '4PA15CS008', 'G03', '08'),
-(15, '4PA15CS009', 'G03', '10'),
-(16, '4PA15CS010', 'G03', '12'),
-(17, '4PA15CS011', 'G03', '14'),
-(18, '4PA15CS013', 'G03', '16'),
-(19, '4PA15CS014', 'G03', '18'),
-(20, '4PA15CS015', 'G03', '20'),
-(21, '4PA15CS016', 'G03', '22'),
-(22, '4PA15CS018', 'G03', '24'),
-(23, '4PA15CS019', 'G03', '26'),
-(24, '4PA15CS020', 'G03', '28'),
-(25, '4PA15CS022', 'G03', '30'),
-(26, '4PA15CS023', 'G15', '02'),
-(27, '4PA15CS024', 'G15', '04'),
-(28, '4PA15CS025', 'G15', '06'),
-(29, '4PA15CS026', 'G15', '08'),
-(30, '4PA15CS029', 'G15', '10'),
-(31, '4PA15CS033', 'G15', '12'),
-(32, '4PA15CS036', 'G15', '14'),
-(33, '4PA15CS037', 'G15', '16'),
-(34, '4PA15CS038', 'G15', '18'),
-(35, '4PA15CS039', 'G15', '20'),
-(36, '4PA15CS040', 'G15', '22'),
-(37, '4PA15CS042', 'G15', '24'),
-(38, '4PA15CS043', 'G15', '26'),
-(39, '4PA15CS044', 'G15', '28'),
-(40, '4PA15CS045', 'G15', '30'),
-(41, '4PA15CS046', 'G18', '02'),
-(42, '4PA15CS047', 'G18', '04'),
-(43, '4PA15CS049', 'G18', '06'),
-(44, '4PA15CS050', 'G18', '08'),
-(45, '4PA15CS051', 'G18', '10'),
-(46, '4PA14CV020', 'G03', '21'),
-(47, '4PA14CV061', 'G03', '23'),
-(48, '4PA14CV065', 'G03', '25'),
-(49, '4PA14CV089', 'G03', '27'),
-(50, '4PA14CV101', 'G03', '29'),
-(51, '4PA15CV002', 'G15', '01'),
-(52, '4PA15CV008', 'G15', '03'),
-(53, '4PA15CV009', 'G15', '05'),
-(54, '4PA15CV010', 'G15', '07'),
-(55, '4PA15CV011', 'G15', '09'),
-(56, '4PA15CV013', 'G15', '11'),
-(57, '4PA15CV014', 'G15', '13'),
-(58, '4PA15CV015', 'G15', '15'),
-(59, '4PA15CV016', 'G15', '17'),
-(60, '4PA15CV018', 'G15', '19'),
-(61, '4PA15CV019', 'G15', '21'),
-(62, '4PA15CV020', 'G15', '23'),
-(63, '4PA15CV022', 'G15', '25'),
-(64, '4PA15CV024', 'G15', '27'),
-(65, '4PA15CV025', 'G15', '29'),
-(66, '4PA15CV026', 'G18', '01'),
-(67, '4PA15EC002', 'G18', '12'),
-(68, '4PA15EC003', 'G18', '14'),
-(69, '4PA15EC004', 'G18', '16'),
-(70, '4PA15EC006', 'G18', '18'),
-(71, '4PA15EC008', 'G18', '20'),
-(72, '4PA15EC009', 'G18', '22'),
-(73, '4PA15EC010', 'G18', '24'),
-(74, '4PA15EC011', 'G18', '26'),
-(75, '4PA15EC012', 'G18', '28'),
-(76, '4PA14EE005', 'G18', '03'),
-(77, '4PA15EE002', 'G18', '05'),
-(78, '4PA15EE004', 'G18', '07'),
-(79, '4PA15EE005', 'G18', '09'),
-(80, '4PA15EE006', 'G18', '11'),
-(81, '4PA09ME003', 'G18', '30'),
-(82, '4PA14ME047', 'G20', '02'),
-(83, '4PA14ME099', 'G20', '04'),
-(84, '4PA14ME126', 'G20', '06'),
-(85, '4PA15ME003', 'G20', '08'),
-(86, '4PA15ME006', 'G20', '10'),
-(87, '4PA15ME007', 'G20', '12'),
-(88, '4PA15ME014', 'G20', '14'),
-(89, '4PA15ME015', 'G20', '16'),
-(90, '4PA15ME023', 'G20', '18'),
-(91, '4PA15ME025', 'G20', '20'),
-(92, '4PA15ME026', 'G20', '22'),
-(93, '4PA15ME032', 'G20', '24'),
-(94, '4PA15ME036', 'G20', '26'),
-(95, '4PA15ME039', 'G20', '28'),
-(96, '4PA15ME041', 'G20', '30'),
-(97, '4PA15ME042', 'G21', '02'),
-(98, '4PA15ME043', 'G21', '04'),
-(99, '4PA15ME045', 'G21', '06'),
-(100, '4PA15ME048', 'G21', '08'),
-(101, '4PA14BT009', 'G23', '01'),
-(102, '4PA15BT001', 'G23', '03'),
-(103, '4PA15BT002', 'G23', '05'),
-(104, '4PA15BT003', 'G23', '07'),
-(105, '4PA15BT005', 'G23', '09'),
-(106, '4PA15BT006', 'G23', '11'),
-(107, '4PA15BT007', 'G23', '13'),
-(108, '4PA15BT009', 'G23', '15'),
-(109, '4PA15BT010', 'G23', '17'),
-(110, '4PA15BT011', 'G23', '19'),
-(111, '4PA14CS103', 'G23', '02'),
-(112, '4PA15CS002', 'G23', '04'),
-(113, '4PA15CS007', 'G23', '06'),
-(114, '4PA15CS008', 'G23', '08'),
-(115, '4PA15CS009', 'G23', '10'),
-(116, '4PA15CS010', 'G23', '12'),
-(117, '4PA15CS011', 'G23', '14'),
-(118, '4PA15CS013', 'G23', '16'),
-(119, '4PA15CS014', 'G23', '18'),
-(120, '4PA15CS015', 'G23', '20'),
-(121, '4PA15CS016', 'G23', '22'),
-(122, '4PA15CS018', 'G23', '24'),
-(123, '4PA15CS019', 'G23', '26'),
-(124, '4PA15CS020', 'G23', '28'),
-(125, '4PA15CS022', 'G23', '30'),
-(126, '4PA15CS023', 'G26', '02'),
-(127, '4PA15CS024', 'G26', '04'),
-(128, '4PA15CS025', 'G26', '06'),
-(129, '4PA15CS026', 'G26', '08'),
-(130, '4PA15CS029', 'G26', '10'),
-(131, '4PA15CS033', 'G26', '12'),
-(132, '4PA15CS036', 'G26', '14'),
-(133, '4PA15CS037', 'G26', '16'),
-(134, '4PA15CS038', 'G26', '18'),
-(135, '4PA15CS039', 'G26', '20');
+INSERT INTO `generatedSeats` (`id`, `SUSN`, `room_num`, `seat_number`) VALUES
+(1, '4PA15BT009', 'G03', '01'),
+(2, '4PA15BT010', 'G03', '03'),
+(3, '4PA15BT011', 'G03', '05'),
+(4, '4PA14CS103', 'G03', '02'),
+(5, '4PA15CS002', 'G03', '04'),
+(6, '4PA15CS007', 'G03', '06'),
+(7, '4PA15CS008', 'G03', '08'),
+(8, '4PA15CS009', 'G03', '10'),
+(9, '4PA15CS010', 'G03', '12'),
+(10, '4PA15CS011', 'G03', '14'),
+(11, '4PA15CS013', 'G03', '16'),
+(12, '4PA15CS014', 'G03', '18'),
+(13, '4PA15CS015', 'G03', '20'),
+(14, '4PA15CS016', 'G03', '22'),
+(15, '4PA15CS018', 'G03', '24'),
+(16, '4PA15CS019', 'G03', '26'),
+(17, '4PA15CS020', 'G03', '28'),
+(18, '4PA15CS022', 'G03', '30'),
+(19, '4PA15CS023', 'G15', '02'),
+(20, '4PA15CS024', 'G15', '04'),
+(21, '4PA15CS025', 'G15', '06'),
+(22, '4PA15CS026', 'G15', '08'),
+(23, '4PA15CS029', 'G15', '10'),
+(24, '4PA15CS033', 'G15', '12'),
+(25, '4PA15CS036', 'G15', '14'),
+(26, '4PA15CS037', 'G15', '16'),
+(27, '4PA15CS038', 'G15', '18'),
+(28, '4PA15CS039', 'G15', '20'),
+(29, '4PA14BT009', 'G18', '01'),
+(30, '4PA15BT001', 'G18', '03'),
+(31, '4PA15BT002', 'G18', '05'),
+(32, '4PA15BT003', 'G18', '07'),
+(33, '4PA15BT005', 'G18', '09'),
+(34, '4PA15BT006', 'G18', '11'),
+(35, '4PA15BT007', 'G18', '13'),
+(36, '4PA15BT009', 'G18', '15'),
+(37, '4PA15BT010', 'G18', '17'),
+(38, '4PA15BT011', 'G18', '19'),
+(39, '4PA14CS103', 'G18', '02'),
+(40, '4PA15CS002', 'G18', '04'),
+(41, '4PA15CS007', 'G18', '06'),
+(42, '4PA15CS008', 'G18', '08'),
+(43, '4PA15CS009', 'G18', '10'),
+(44, '4PA15CS010', 'G18', '12'),
+(45, '4PA15CS011', 'G18', '14'),
+(46, '4PA15CS013', 'G18', '16'),
+(47, '4PA15CS014', 'G18', '18'),
+(48, '4PA15CS015', 'G18', '20'),
+(49, '4PA15CS016', 'G18', '22'),
+(50, '4PA15CS018', 'G18', '24'),
+(51, '4PA15CS019', 'G18', '26'),
+(52, '4PA15CS020', 'G18', '28'),
+(53, '4PA15CS022', 'G18', '30'),
+(54, '4PA15CS023', 'G20', '02'),
+(55, '4PA15CS024', 'G20', '04'),
+(56, '4PA15CS025', 'G20', '06'),
+(57, '4PA15CS026', 'G20', '08'),
+(58, '4PA15CS029', 'G20', '10'),
+(59, '4PA15CS033', 'G20', '12'),
+(60, '4PA15CS036', 'G20', '14'),
+(61, '4PA15CS037', 'G20', '16'),
+(62, '4PA15CS038', 'G20', '18'),
+(63, '4PA15CS039', 'G20', '20'),
+(64, '4PA15CS040', 'G20', '22'),
+(65, '4PA15CS042', 'G20', '24'),
+(66, '4PA15CS043', 'G20', '26'),
+(67, '4PA15CS044', 'G20', '28'),
+(68, '4PA15CS045', 'G20', '30'),
+(69, '4PA15CS046', 'G21', '02'),
+(70, '4PA15CS047', 'G21', '04'),
+(71, '4PA15CS049', 'G21', '06'),
+(72, '4PA15CS050', 'G21', '08'),
+(73, '4PA15CS051', 'G21', '10'),
+(74, '4PA14CV020', 'G18', '21'),
+(75, '4PA14CV061', 'G18', '23'),
+(76, '4PA14CV065', 'G18', '25'),
+(77, '4PA14CV089', 'G18', '27'),
+(78, '4PA14CV101', 'G18', '29'),
+(79, '4PA15CV002', 'G20', '01'),
+(80, '4PA15CV008', 'G20', '03'),
+(81, '4PA15CV009', 'G20', '05'),
+(82, '4PA15CV010', 'G20', '07'),
+(83, '4PA15CV011', 'G20', '09'),
+(84, '4PA15CV013', 'G20', '11'),
+(85, '4PA15CV014', 'G20', '13'),
+(86, '4PA15CV015', 'G20', '15'),
+(87, '4PA15CV016', 'G20', '17'),
+(88, '4PA15CV018', 'G20', '19'),
+(89, '4PA15CV019', 'G20', '21'),
+(90, '4PA15CV020', 'G20', '23'),
+(91, '4PA15CV022', 'G20', '25'),
+(92, '4PA15CV024', 'G20', '27'),
+(93, '4PA15CV025', 'G20', '29'),
+(94, '4PA15CV026', 'G21', '01'),
+(95, '4PA15EC002', 'G21', '12'),
+(96, '4PA15EC003', 'G21', '14'),
+(97, '4PA15EC004', 'G21', '16'),
+(98, '4PA15EC006', 'G21', '18'),
+(99, '4PA15EC008', 'G21', '20'),
+(100, '4PA15EC009', 'G21', '22'),
+(101, '4PA15EC010', 'G21', '24'),
+(102, '4PA15EC011', 'G21', '26'),
+(103, '4PA15EC012', 'G21', '28'),
+(104, '4PA14EE005', 'G21', '03'),
+(105, '4PA15EE002', 'G21', '05'),
+(106, '4PA15EE004', 'G21', '07'),
+(107, '4PA15EE005', 'G21', '09'),
+(108, '4PA15EE006', 'G21', '11'),
+(109, '4PA09ME003', 'G21', '30'),
+(110, '4PA14ME047', 'G23', '02'),
+(111, '4PA14ME099', 'G23', '04'),
+(112, '4PA14ME126', 'G23', '06'),
+(113, '4PA15ME003', 'G23', '08'),
+(114, '4PA15ME006', 'G23', '10'),
+(115, '4PA15ME007', 'G23', '12'),
+(116, '4PA15ME014', 'G23', '14'),
+(117, '4PA15ME015', 'G23', '16'),
+(118, '4PA15ME023', 'G23', '18'),
+(119, '4PA15ME025', 'G23', '20'),
+(120, '4PA15ME026', 'G23', '22'),
+(121, '4PA15ME032', 'G23', '24'),
+(122, '4PA15ME036', 'G23', '26'),
+(123, '4PA15ME039', 'G23', '28'),
+(124, '4PA15ME041', 'G23', '30'),
+(125, '4PA15ME042', 'G26', '02'),
+(126, '4PA15ME043', 'G26', '04'),
+(127, '4PA15ME045', 'G26', '06'),
+(128, '4PA15ME048', 'G26', '08'),
+(129, '4PA15BT004', 'G21', '13'),
+(130, '4PA15BT012', 'G21', '15'),
+(131, '4PA16BT001', 'G21', '17'),
+(132, '4PA16BT004', 'G21', '19'),
+(133, '4PA16BT005', 'G21', '21'),
+(134, '4PA16BT006', 'G21', '23'),
+(135, '4PA16BT008', 'G21', '25'),
+(136, '4PA16BT009', 'G21', '27'),
+(137, '4PA16BT010', 'G21', '29'),
+(138, '4PA16BT011', 'G23', '01'),
+(139, '4PA14CS012', 'G26', '10'),
+(140, '4PA15CS001', 'G26', '12'),
+(141, '4PA15CS027', 'G26', '14'),
+(142, '4PA15CS028', 'G26', '16'),
+(143, '4PA15CS030', 'G26', '18'),
+(144, '4PA15CS031', 'G26', '20'),
+(145, '4PA15CS035', 'G26', '22'),
+(146, '4PA15CS041', 'G26', '24'),
+(147, '4PA15CS054', 'G26', '26'),
+(148, '4PA15CS059', 'G26', '28'),
+(149, '4PA15CS065', 'G26', '30'),
+(150, '4PA15CS088', 'G28', '02'),
+(151, '4PA15CS094', 'G28', '04'),
+(152, '4PA15CS109', 'G28', '06'),
+(153, '4PA16CS002', 'G28', '08'),
+(154, '4PA16CS003', 'G28', '10'),
+(155, '4PA16CS004', 'G28', '12'),
+(156, '4PA16CS005', 'G28', '14'),
+(157, '4PA16CS006', 'G28', '16'),
+(158, '4PA16CS007', 'G28', '18'),
+(159, '4PA16CS008', 'G28', '20'),
+(160, '4PA16CS012', 'G28', '22'),
+(161, '4PA16CS013', 'G28', '24'),
+(162, '4PA16CS014', 'G28', '26'),
+(163, '4PA16CS016', 'G28', '28'),
+(164, '4PA16CS017', 'G28', '30'),
+(165, '4PA16CS018', 'G29', '02'),
+(166, '4PA16CS019', 'G29', '04'),
+(167, '4PA16CS020', 'G29', '06'),
+(168, '4PA16CS022', 'G29', '08'),
+(169, '4PA16CS023', 'G29', '10'),
+(170, '4PA16CS025', 'G29', '12'),
+(171, '4PA16CS026', 'G29', '14'),
+(172, '4PA16CS027', 'G29', '16'),
+(173, '4PA16CS029', 'G29', '18'),
+(174, '4PA15CV033', 'G23', '03'),
+(175, '4PA15CV035', 'G23', '05'),
+(176, '4PA15CV041', 'G23', '07'),
+(177, '4PA15CV042', 'G23', '09'),
+(178, '4PA15CV043', 'G23', '11'),
+(179, '4PA15CV047', 'G23', '13'),
+(180, '4PA15CV051', 'G23', '15'),
+(181, '4PA15CV059', 'G23', '17'),
+(182, '4PA15CV076', 'G23', '19'),
+(183, '4PA15CV077', 'G23', '21'),
+(184, '4PA15CV082', 'G23', '23'),
+(185, '4PA15CV083', 'G23', '25'),
+(186, '4PA16CV001', 'G23', '27'),
+(187, '4PA16CV003', 'G23', '29'),
+(188, '4PA16CV004', 'G26', '01'),
+(189, '4PA16CV006', 'G26', '03'),
+(190, '4PA16CV007', 'G26', '05'),
+(191, '4PA16CV008', 'G26', '07'),
+(192, '4PA16CV009', 'G26', '09'),
+(193, '4PA16CV011', 'G26', '11'),
+(194, '4PA16CV014', 'G26', '13'),
+(195, '4PA14EC001', 'G29', '20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `generatedSlots`
+--
+
+CREATE TABLE `generatedSlots` (
+  `id` int(255) NOT NULL,
+  `date` varchar(255) NOT NULL,
+  `slotCount` varchar(255) NOT NULL,
+  `slotNumber` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `generatedSlots`
+--
+
+INSERT INTO `generatedSlots` (`id`, `date`, `slotCount`, `slotNumber`) VALUES
+(1, '191218A', '5', 'SLOT1'),
+(2, '221218M', '8', 'SLOT1'),
+(3, '221218A', '5', 'SLOT1'),
+(4, '241218M', '2', 'SLOT1'),
+(5, '261218M', '5', 'SLOT1'),
+(6, '261218A', '5', 'SLOT1'),
+(7, '271218A', '5', 'SLOT1'),
+(8, '291218M', '5', 'SLOT1'),
+(9, '291218A', '5', 'SLOT1'),
+(10, '311218A', '5', 'SLOT1'),
+(11, '020119M', '5', 'SLOT1'),
+(12, '020119A', '5', 'SLOT1'),
+(13, '030119A', '5', 'SLOT1'),
+(14, '050119M', '3', 'SLOT1'),
+(15, '050119A', '5', 'SLOT1'),
+(16, '070119A', '5', 'SLOT2'),
+(17, '080119M', '2', 'SLOT2'),
+(18, '080119A', '5', 'SLOT2'),
+(19, '100119A', '5', 'SLOT2'),
+(20, '110119M', '3', 'SLOT2'),
+(21, '140119A', '5', 'SLOT2'),
+(22, '040219A', '5', 'SLOT2'),
+(23, '060219A', '3', 'SLOT2'),
+(24, '070219A', '4', 'SLOT2'),
+(25, '080219A', '3', 'SLOT2'),
+(26, '090219A', '4', 'SLOT2'),
+(27, '110219A', '3', 'SLOT2'),
+(28, '120219A', '4', 'SLOT2'),
+(29, '130219A', '3', 'SLOT2'),
+(30, '150219A', '5', 'SLOT2');
 
 -- --------------------------------------------------------
 
@@ -604,20 +761,20 @@ INSERT INTO `room` (`id`, `room_num`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `studentcountperday`
+-- Table structure for table `studentCountPerDay`
 --
 
-CREATE TABLE `studentcountperday` (
+CREATE TABLE `studentCountPerDay` (
   `id` int(11) NOT NULL,
   `date` varchar(255) NOT NULL,
   `studentCount` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `studentcountperday`
+-- Dumping data for table `studentCountPerDay`
 --
 
-INSERT INTO `studentcountperday` (`id`, `date`, `studentCount`) VALUES
+INSERT INTO `studentCountPerDay` (`id`, `date`, `studentCount`) VALUES
 (1, '171218', 0),
 (2, '181218', 0),
 (3, '191218', 100),
@@ -1575,11 +1732,17 @@ ALTER TABLE `countofstudents`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `facultyallotment`
+-- Indexes for table `facultyAllotment`
 --
-ALTER TABLE `facultyallotment`
+ALTER TABLE `facultyAllotment`
   ADD PRIMARY KEY (`id`),
   ADD KEY `facultyId` (`facultyId`);
+
+--
+-- Indexes for table `facultyDuty`
+--
+ALTER TABLE `facultyDuty`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `facultylist`
@@ -1588,9 +1751,22 @@ ALTER TABLE `facultylist`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `generatedseats`
+-- Indexes for table `facultySlots`
 --
-ALTER TABLE `generatedseats`
+ALTER TABLE `facultySlots`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `facultyId` (`facultyId`);
+
+--
+-- Indexes for table `generatedSeats`
+--
+ALTER TABLE `generatedSeats`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `generatedSlots`
+--
+ALTER TABLE `generatedSlots`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1600,9 +1776,9 @@ ALTER TABLE `room`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `studentcountperday`
+-- Indexes for table `studentCountPerDay`
 --
-ALTER TABLE `studentcountperday`
+ALTER TABLE `studentCountPerDay`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1646,21 +1822,39 @@ ALTER TABLE `countofstudents`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 
 --
--- AUTO_INCREMENT for table `facultyallotment`
+-- AUTO_INCREMENT for table `facultyAllotment`
 --
-ALTER TABLE `facultyallotment`
+ALTER TABLE `facultyAllotment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT for table `generatedseats`
+-- AUTO_INCREMENT for table `facultyDuty`
 --
-ALTER TABLE `generatedseats`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+ALTER TABLE `facultyDuty`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `studentcountperday`
+-- AUTO_INCREMENT for table `facultySlots`
 --
-ALTER TABLE `studentcountperday`
+ALTER TABLE `facultySlots`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
+-- AUTO_INCREMENT for table `generatedSeats`
+--
+ALTER TABLE `generatedSeats`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=196;
+
+--
+-- AUTO_INCREMENT for table `generatedSlots`
+--
+ALTER TABLE `generatedSlots`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `studentCountPerDay`
+--
+ALTER TABLE `studentCountPerDay`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
@@ -1668,9 +1862,9 @@ ALTER TABLE `studentcountperday`
 --
 
 --
--- Constraints for table `facultyallotment`
+-- Constraints for table `facultyAllotment`
 --
-ALTER TABLE `facultyallotment`
+ALTER TABLE `facultyAllotment`
   ADD CONSTRAINT `facultyAllotment_ibfk_1` FOREIGN KEY (`facultyId`) REFERENCES `facultylist` (`id`);
 COMMIT;
 

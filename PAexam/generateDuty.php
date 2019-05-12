@@ -133,7 +133,12 @@ if (!isset($_SESSION['adminId'])) {
                         $index_facultySlot1 = 0;
                     }
                     $sql = mysqli_query($conn,"INSERT INTO facultyDuty(`date`,`slotNumber`,`facultyId`)VALUES('$date','$slotNumber','$array_facultySlot1[$index_facultySlot1]')");
-                    echo('<li>'.$array_facultySlot1[$index_facultySlot1].'</li>');
+
+                    $sqlName = "SELECT * FROM facultylist WHERE facultyId = '$array_facultySlot1[$index_facultySlot1]'";
+                    $sqlNameResult = mysqli_query($conn, $sqlName);
+                    $sqlNameResultRow = mysqli_fetch_array($sqlNameResult);
+
+                    echo('<li>'.$sqlNameResultRow["name"].'&nbsp; ['.$array_facultySlot1[$index_facultySlot1].']</li>');
                     $index_facultySlot1++;
                 }
                 if($slotNumber == 'SLOT2'){
@@ -141,7 +146,12 @@ if (!isset($_SESSION['adminId'])) {
                         $index_facultySlot2 = 0;
                     }
                     $sql = mysqli_query($conn,"INSERT INTO facultyDuty(`date`,`slotNumber`,`facultyId`)VALUES('$date','$slotNumber','$array_facultySlot2[$index_facultySlot2]')");
-                    echo('<li>'.$array_facultySlot2[$index_facultySlot2].'</li>');
+
+                    $sqlName = "SELECT * FROM facultylist WHERE facultyId = '$array_facultySlot2[$index_facultySlot2]'";
+                    $sqlNameResult = mysqli_query($conn, $sqlName);
+                    $sqlNameResultRow = mysqli_fetch_array($sqlNameResult);
+
+                    echo('<li>'.$sqlNameResultRow["name"].'&nbsp; ['.$array_facultySlot2[$index_facultySlot2].']</li>');
                     $index_facultySlot2++;
                 }
   
@@ -284,11 +294,9 @@ if (!isset($_SESSION['adminId'])) {
     ';
 
 
-    $facultiesSelected = mysqli_num_rows($sql2Result);
     $dutyCount = mysqli_num_rows($calculatedDataResult);
-    $pendingFaculty = mysqli_num_rows($sql3Result) - $facultiesSelected;
     echo '<script type="text/javascript">';
-    echo 'setTimeout(function () { sweetAlert("<b>Summary","'.$dutyCount.' duties and '.$totalSlotsGenerated.' slots are generated.<br> '.$facultiesSelected.' faculties chose their slot.<br> '.$pendingFaculty.' faculties pending to select slot</b>");';
+    echo 'setTimeout(function () { sweetAlert("<b>Summary","'.$dutyCount.' duties and '.$totalSlotsGenerated.' slots are generated.<br> '.$currentFacultyCount.' faculties chose their slot.<br> '.$pendingFaculty.' faculties pending to select slot</b>");';
     echo '}, 500);</script>';
 
     ?>

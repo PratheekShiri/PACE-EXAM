@@ -108,6 +108,7 @@ if (isset($_POST['SLOT2'])) {
             <strong>Logged in as:</strong> '.$sql0ResultRow['name'].' ['.$facultyId.']
             </div>
         ';
+
         if($sql0ResultRow['status'] == '1'){
             
             $sql2 = "SELECT * FROM studentCountPerDay WHERE studentCount != 0";
@@ -192,8 +193,34 @@ if (isset($_POST['SLOT2'])) {
                     <button type="submit" name="SLOT2" class="btn btn-warning btn-lg " disabled>Slot - 02</button>
                     <a data-toggle="modal" data-target="#Slot2Details" style="color:black;"><i class="fas fa-info-circle"style="font-size:25px;color:gray"></i></a>
                 </form>
-                </div>
-                ';
+                <div style="padding:1% 15% 2% 15%">
+                <small><strong>NOTE:</strong> Once all the faculties choose their slots of interest, you will see your duty dates on this screen. </small style="padding:20% 0% 20% 0%">
+                </div>';
+
+                    $sqlDuty = "SELECT * FROM facultyDuty WHERE facultyId = '$facultyId'";
+                    $sqlDutyResult = mysqli_query($conn, $sqlDuty);
+
+                    if(mysqli_num_rows($sqlDutyResult) > 0) {
+
+                    echo '<div class="alert alert-success" style="width:50%; margin: 0 auto;">
+                        <strong>Your duty dates are as follows:</strong><br>
+                        <ul type="square"> ';
+                    
+                    
+                        while ($sqlDutyResultRow = mysqli_fetch_array($sqlDutyResult)) { 
+                            $date = $sqlDutyResultRow['date'];
+                            echo('<li>'. substr($date,0,2).'-'.substr($date,2,2).'-'.substr($date,4,2).' ['.substr($date,6).'] </li>');
+                        }
+                        echo'    </ul>
+                                </div>
+
+                                </div>
+                            ';
+                
+                    }
+
+                    
+                
             } else if($currentSlot1 >= $maxSlot1){
                 echo '
                 <div style="text-align:center;">
@@ -206,6 +233,9 @@ if (isset($_POST['SLOT2'])) {
                     <button type="submit" name="SLOT2" class="btn btn-warning btn-lg " >Slot - 02</button>
                     <a data-toggle="modal" data-target="#Slot2Details" style="color:black;"><i class="fas fa-info-circle"style="font-size:25px;color:gray"></i></a>
                 </form>
+                <div style="padding:1% 15% 1% 15%">
+                <small><strong>NOTE:</strong> Slot selection for duty is in FCFS fashion.<br>Slot-01 is already full. Kindly click on Slot-02 button. </small>
+                </div>
                 </div>
                 ';
             } else if($currentSlot2 >= $maxSlot2){
@@ -220,6 +250,9 @@ if (isset($_POST['SLOT2'])) {
                     <button type="submit" name="SLOT2" class="btn btn-warning btn-lg " disabled>Slot - 02</button>
                     <a data-toggle="modal" data-target="#Slot2Details" style="color:black;"><i class="fas fa-info-circle"style="font-size:25px;color:gray"></i></a>
                 </form>
+                <div style="padding:1% 15% 1% 15%">
+                <small><strong>NOTE:</strong> Slot selection for duty is in FCFS fashion.<br>Slot-02 is already full. Kindly click on Slot-01 button. </small>
+                </div>
                 </div>
                 ';
             } 
@@ -235,9 +268,12 @@ if (isset($_POST['SLOT2'])) {
                     <button type="submit" name="SLOT2" class="btn btn-warning btn-lg ">Slot - 02</button>
                     <a data-toggle="modal" data-target="#Slot2Details" style="color:black;"><i class="fas fa-info-circle"style="font-size:25px;color:gray"></i></a>
                 </form>
+                <div style="padding:1% 15% 1% 15%">
+                <small><strong>NOTE:</strong> Slot selection for duty is in FCFS fashion.<br> Click on <i class="fas fa-info-circle"style="font-size:15px;color:gray"></i> to know about slot date range</small>
+                </div>
                 </div>
                 ';
-            }            
+            } 
         }
         else {
             echo 'You are neither DCS nor Non-DCS';
