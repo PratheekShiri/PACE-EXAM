@@ -37,7 +37,7 @@ if (!isset($_SESSION['adminId'])) {
         <a class="navbar-brand" href="#">
             <img src="assets/images/logo.jpg" height="60" width="60" style="border-radius:50%;" class="d-inline-block align-top" alt="mdb logo"> P.A. College of Engineering Mangaluru
         </a>
-        <a class="btn btn-light" href="viewCSv.php"> back <i class="fas fa-arrow-circle-left"></i></a>
+        <a class="btn btn-light" href="viewCsv.php"> back <i class="fas fa-arrow-circle-left"></i></a>
     </nav><br>
 
     <h3 style="text-align:center">Subject Name Details</h3>
