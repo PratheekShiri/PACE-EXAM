@@ -61,7 +61,7 @@ if (!isset($_SESSION['adminId'])) {
 
     // Truncate table before use
     $truncatestudentCountPerDay = mysqli_query($conn,"TRUNCATE TABLE studentCountPerDay");
-    $truncatefacultyAllotment = mysqli_query($conn,"TRUNCATE TABLE facultyAllotment");
+    $truncatefacultyAllotment = mysqli_query($conn,"TRUNCATE TABLE facultyallotment");
 
     $sql1 = "SELECT * FROM calculateddata";
     $calculatedDataResult = mysqli_query($conn, $sql1);
@@ -118,7 +118,7 @@ if (!isset($_SESSION['adminId'])) {
                 $currentIndex=0;
             }
 
-            $sql = mysqli_query($conn,"INSERT INTO facultyAllotment(`date`,`facultyCount`,`facultyId`)VALUES('$date','$requiredFacultyCount','$facultyList[$currentIndex]')");
+            $sql = mysqli_query($conn,"INSERT INTO facultyallotment(`date`,`facultyCount`,`facultyId`)VALUES('$date','$requiredFacultyCount','$facultyList[$currentIndex]')");
 
             $currentIndex++;
             $x++;
@@ -154,7 +154,7 @@ if (!isset($_SESSION['adminId'])) {
                     <ul >
                     
         ';
-        $sql3 = "SELECT FL.name FROM facultylist AS FL, facultyAllotment AS FA WHERE FA.date = $date AND FA.facultyId = FL.id";
+        $sql3 = "SELECT FL.name FROM facultylist AS FL, facultyallotment AS FA WHERE FA.date = $date AND FA.facultyId = FL.id";
         $Result = mysqli_query($conn, $sql3);
         while ($ResultRow = mysqli_fetch_array($Result)) {
             $facultyName = $ResultRow['name'];

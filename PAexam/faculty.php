@@ -138,7 +138,7 @@ if (isset($_POST['SLOT2'])) {
                             <ul >
 
                 ';
-                $sql3 = "SELECT FL.name FROM facultylist AS FL, facultyAllotment AS FA WHERE FA.date = $date AND FA.facultyId = FL.id";
+                $sql3 = "SELECT FL.name FROM facultylist AS FL, facultyallotment AS FA WHERE FA.date = $date AND FA.facultyId = FL.id";
                 $Result = mysqli_query($conn, $sql3);
                 while ($ResultRow = mysqli_fetch_array($Result)) {
                     $facultyName = $ResultRow['name'];
@@ -197,7 +197,7 @@ if (isset($_POST['SLOT2'])) {
                 <small><strong>NOTE:</strong> Once all the faculties choose their slots of interest, you will see your duty dates on this screen. </small style="padding:20% 0% 20% 0%">
                 </div>';
 
-                    $sqlDuty = "SELECT * FROM facultyDuty WHERE facultyId = '$facultyId'";
+                    $sqlDuty = "SELECT * FROM facultyduty WHERE facultyId = '$facultyId'";
                     $sqlDutyResult = mysqli_query($conn, $sqlDuty);
 
                     if(mysqli_num_rows($sqlDutyResult) > 0) {

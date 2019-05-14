@@ -24,7 +24,7 @@ function generateSeatingArrangement() {
         $rowSub1 = mysqli_fetch_array($exeSub1);
         $exeSub2 = mysqli_query($conn, "SELECT EXISTS(SELECT * from sub_code WHERE sub_code=$sub2)");
         $rowSub2 = mysqli_fetch_array($exeSub2);
-
+        // echo($rowSub1[0]); echo('==');echo($rowSub2[0]);
         $sub1 = 'S'.$sub1;
         $sub2 = 'S'.$sub2;      
         
@@ -48,6 +48,7 @@ function generateSeatingArrangement() {
             $room = "SELECT room_num FROM room";
             $roomResult = mysqli_query($conn, $room);
             $RoomList = array();
+
             while ($roomResultRow = mysqli_fetch_array($roomResult)) {
                 array_push($RoomList,$roomResultRow['room_num']);           
             }
@@ -157,11 +158,15 @@ function generateSeatingArrangement() {
 
                 if($currentUsnListIndex >= count($UsnList)){
                     // echo("All students are alloted");
+                    echo '<script type="text/javascript">';
+                    echo 'setTimeout(function () { sweetAlert("<b>Success","Seating Arrangement is Generated!</b>");';
+                    echo '}, 500);</script>';
                     break;
                 }
             }
 
         } else {
+            // echo($rowSub1[0]); echo('==');echo($rowSub2[0]);
             echo '<script type="text/javascript">';
             echo 'setTimeout(function () { sweetAlert("<b>Invalid Subject Code! "," Please check and try again.</b>");';
             echo '}, 500);</script>';
@@ -255,7 +260,9 @@ function generateSeatingArrangement() {
                 }
 
                 if($currentUsnListIndex >= count($UsnList)){
-                    // echo("All students are alloted");
+                    echo '<script type="text/javascript">';
+                    echo 'setTimeout(function () { sweetAlert("<b>Success","Seating Arrangement is Generated!</b>");';
+                    echo '}, 500);</script>';
                     break;
                 }
             }
@@ -268,9 +275,9 @@ function generateSeatingArrangement() {
 
     }
 
-    echo '<script type="text/javascript">';
-    echo 'setTimeout(function () { sweetAlert("<b>Success","Seating Arrangement is Generated!</b>");';
-    echo '}, 500);</script>';
+    // echo '<script type="text/javascript">';
+    // echo 'setTimeout(function () { sweetAlert("<b>Success","Seating Arrangement is Generated!</b>");';
+    // echo '}, 500);</script>';
 }
 
 ?>

@@ -63,6 +63,10 @@ if (!isset($_SESSION['adminId'])) {
     // Truncate tables before use
     $truncateCountOfStudents = mysqli_query($conn,"TRUNCATE TABLE countofstudents");
     $truncateCalculateddata = mysqli_query($conn,"TRUNCATE TABLE calculateddata");
+    $truncatefacultyDuty = mysqli_query($conn,"TRUNCATE TABLE facultyDuty");
+    $truncategeneratedslots = mysqli_query($conn,"TRUNCATE TABLE generatedslots");
+    $truncatefacultyslots = mysqli_query($conn,"TRUNCATE TABLE facultyslots");
+    
     
 
     $sub1C = 0;

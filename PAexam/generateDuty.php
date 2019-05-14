@@ -296,7 +296,7 @@ if (!isset($_SESSION['adminId'])) {
 
     $dutyCount = mysqli_num_rows($calculatedDataResult);
     echo '<script type="text/javascript">';
-    echo 'setTimeout(function () { sweetAlert("<b>Summary","'.$dutyCount.' duties and '.$totalSlotsGenerated.' slots are generated.<br> '.$currentFacultyCount.' faculties chose their slot.<br> '.$pendingFaculty.' faculties pending to select slot</b>");';
+    echo 'setTimeout(function () { sweetAlert("<b>Summary","'.$dutyCount.' sessions and '.$totalSlotsGenerated.' slots are generated.<br> '.$currentFacultyCount.' faculties chose their slot.<br> '.$pendingFaculty.' faculties pending to select slot</b>");';
     echo '}, 500);</script>';
 
     ?>

@@ -49,6 +49,9 @@ function upload_time_table()
             $sub1 = $row[2];
             $sub2 = $row[3];
 
+            $query1 = "TRUNCATE TABLE timetable";
+            mysqli_query($conn, $query1);
+
             $query = "CREATE TABLE IF NOT EXISTS $table ($id int primary key ,$date varchar(255),$sub1 varchar(255),$sub2 varchar(255))";
             $result = mysqli_query($conn, $query);
 
@@ -216,6 +219,9 @@ function upload_student_list()
             $sub131 = "S".$row[132];
             $sub132 = "S".$row[133];
 
+            $query1 = "TRUNCATE TABLE studentlist";
+            mysqli_query($conn, $query1);
+
             $query = "CREATE TABLE IF NOT EXISTS $table ($id int primary key,$usn varchar(255),$sub1 varchar(10),$sub2 varchar(10),$sub3 varchar(10),$sub4 varchar(10),$sub5 varchar(10),$sub6 varchar(10),$sub7 varchar(10),$sub8 varchar(10),$sub9 varchar(10),$sub10 varchar(10),
                         $sub11 varchar(10),$sub12 varchar(10),$sub13 varchar(10),$sub14 varchar(10),$sub15 varchar(10),$sub16 varchar(10),$sub17 varchar(10),$sub18 varchar(10),$sub19 varchar(10),$sub20 varchar(10),
                         $sub21 varchar(10),$sub22 varchar(10),$sub23 varchar(10),$sub24 varchar(10),$sub25 varchar(10),$sub26 varchar(10),$sub27 varchar(10),$sub28 varchar(10),$sub29 varchar(10),$sub30 varchar(10),
@@ -290,6 +296,9 @@ function upload_room_details()
             $id = $row[0];
             $room_num = $row[1];
 
+            $query1 = "TRUNCATE TABLE room";
+            mysqli_query($conn, $query1);
+
             $query = "CREATE TABLE IF NOT EXISTS $table ($id int primary key ,$room_num varchar(10))";
             mysqli_query($conn, $query);
 
@@ -327,6 +336,9 @@ function upload_faculty_details()
             $password = $row[3];
             $status = $row[4];
 
+            $query1 = "TRUNCATE TABLE facultylist";
+            mysqli_query($conn, $query1);
+
             $query = "CREATE TABLE IF NOT EXISTS $table ($id int primary key ,$name varchar(255),$facultyId varchar(20),$password varchar(20),$status int)";
             mysqli_query($conn, $query);
 
@@ -362,6 +374,9 @@ function upload_subject_code()
             $sub_code = $row[1];
             $year = $row[2];
 
+            $query1 = "TRUNCATE TABLE sub_code";
+            mysqli_query($conn, $query1);
+
             $query = "CREATE TABLE IF NOT EXISTS $table ($id int primary key ,$sub_code varchar(255), $year varchar(20))";
             mysqli_query($conn, $query);
 
@@ -396,6 +411,9 @@ function upload_subject_details()
             $branch = $row[0];
             $sub_code = $row[1];
             $sub_name = $row[2];
+
+            $query1 = "TRUNCATE TABLE subjectname";
+            mysqli_query($conn, $query1);
 
             $query = "CREATE TABLE IF NOT EXISTS $table ($branch varchar(10) ,$sub_code varchar(10), $sub_name varchar(100))";
             mysqli_query($conn, $query);

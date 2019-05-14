@@ -44,7 +44,7 @@
     <!-- Image and text -->
     <nav class="navbar navbar-dark primary-color">
         <a class="navbar-brand" href="#">
-            <img src="assets/images/logo.jpg" height="60" width="60" style="border-radius:50%;" class="d-inline-block align-top" alt="mdb logo"> P.A. College of Engineering Mangaluru | Admin
+            <img src="assets/images/logo.jpg" height="60" width="60" style="border-radius:50%;" class="d-inline-block align-top" alt="mdb logo"> P.A. College of Engineering Mangaluru 
         </a>
         <a class="btn btn-light" href="admin.php"> back <i class="fas fa-arrow-circle-left"></i></a>
     </nav><br>

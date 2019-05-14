@@ -81,12 +81,7 @@ if (isset($_POST['addF'])) {
                     <a class="btn btn-primary btn-lg btn1" href="uploadCsv.php" role="button">upload <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="jumbotron">
-                    <h2>Delete Csv files </h2>
-                    <a class="btn btn-primary btn-lg btn1" href="deleteCsv.php" role="button">delete <i class="far fa-trash-alt"></i></a>
-                </div>
-            </div>
+            
             <div class="col-3">
                 <div class="jumbotron">
                     <h2>View csv files</h2>
@@ -109,12 +104,7 @@ if (isset($_POST['addF'])) {
                     <a href="generateDuty.php" class="btn btn-primary btn-lg btn1" href="#" role="button">gen <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="jumbotron">
-                    <h2>View Duty allotment</h2>
-                    <a class="btn btn-primary btn-lg btn1" href="viewDuty.php" role="button">view <i class="fas fa-eye"></i></a>
-                </div>
-            </div>
+            
             <div class="col-3">
                 <div class="jumbotron">
                     <h2>Generate Seating arrangement</h2>
