@@ -482,9 +482,85 @@ function upload_subject_details()
         <a class="btn btn-light" href="admin.php"> back <i class="fas fa-arrow-circle-left"></i></a>
     </nav>
 
-    <div class="container">
+    <div class="padding container">
+        <div class="event-container">
+            <div class="event-card">
+                <div class="event-details">
+                    <img class="event-image" src="./assets/images/upload.png" alt="" />
+                    <div class="event-desc">
+                    <p class="event-title">Time-Table</p>
+                    <form method="post" action="uploadCsv.php" enctype="multipart/form-data">
+                        <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" name="timeTable" required>
+                        <button type="submit" class="btn btn-primary btn-lg btn1" name="tt">upload <i class="fas fa-file-upload"></i></button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-details">
+                    <img class="event-image" src="./assets/images/upload.png" alt="" />
+                    <div class="event-desc">
+                    <p class="event-title">Student Details</p>
+                    <form method="post" action="uploadCsv.php" enctype="multipart/form-data">
+                        <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" name="studentList" required>
+                        <button type="submit" class="btn btn-primary btn-lg btn1" name="sl">upload <i class="fas fa-file-upload"></i></button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-details">
+                    <img class="event-image" src="./assets/images/upload.png" alt="" />
+                    <div class="event-desc">
+                    <p class="event-title">Room Details</p>
+                    <form method="post" action="uploadCsv.php" enctype="multipart/form-data">
+                        <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" name="roomDetails" required>
+                        <button type="submit" class="btn btn-primary btn-lg btn1" name="rd">upload <i class="fas fa-file-upload"></i></button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-details">
+                    <img class="event-image" src="./assets/images/upload.png" alt="" />
+                    <div class="event-desc">
+                    <p class="event-title">Faculty Details</p>
+                    <form method="post" action="uploadCsv.php" enctype="multipart/form-data">
+                        <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" name="faculyDetails" required>
+                        <button type="submit" class="btn btn-primary btn-lg btn1" name="fd">upload <i class="fas fa-file-upload"></i></button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-details">
+                    <img class="event-image" src="./assets/images/upload.png" alt="" />
+                    <div class="event-desc">
+                    <p class="event-title">Subject Codes</p>
+                    <form method="post" action="uploadCsv.php" enctype="multipart/form-data">
+                        <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" name="subjectCode" required>
+                        <button type="submit" class="btn btn-primary btn-lg btn1" name="sc">upload <i class="fas fa-file-upload"></i></button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-details">
+                    <img class="event-image" src="./assets/images/upload.png" alt="" />
+                    <div class="event-desc">
+                    <p class="event-title">Student Names</p>
+                    <form method="post" action="uploadCsv.php" enctype="multipart/form-data">
+                        <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" name="subjectDetails" required>
+                        <button type="submit" class="btn btn-primary btn-lg btn1" name="sd">upload <i class="fas fa-file-upload"></i></button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <div class="row">
+
+        <!-- <div class="row">
             <div class="col-3">
                 <div class="jumbotron">
                     <h2>Upload time table details</h2>
@@ -539,7 +615,7 @@ function upload_subject_details()
                     </form>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- JQuery -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
