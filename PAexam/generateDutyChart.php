@@ -64,11 +64,11 @@ if (!isset($_SESSION['adminId'])) {
     //for external squad fellas i mean squad people from other colleges
     echo '
      </tbody><div style="text-align: center;">
-        <button style="background-color: skyblue"    onclick="myFunction()">Print</button></div>
+        <button style="background-color: skyblue" id="printPageButton"   onclick="window.print();">Print</button></div>
     </table>
-    <script> function myFunction(){
-        window.print();
-        }
+    <style>@media print{
+        #printPageButton{display: none;}
+    }</style>
         </script>
 
     <h6 style="text-align:center; font-weight:bold" > P.A. COLLEGE OF ENGINEERING, MANGALURU </h6>

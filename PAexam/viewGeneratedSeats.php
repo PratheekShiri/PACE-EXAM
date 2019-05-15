@@ -89,14 +89,14 @@ if (!isset($_SESSION['adminId'])) {
                 ';
             }
 
-            ?>
-
-        </tbody><div style="text-align: center;">
-        <button style="background-color: skyblue"    onclick="myFunction()">Print</button></div>
+            ?></tbody><div style="text-align: center;">
+        <button style="background-color: skyblue" id="printPageButton"   onclick="window.print();">Print</button></div>
     </table>
-    <script> function myFunction(){
-        window.print();
-        }
+    <style>@media print{
+        #printPageButton{display: none;}
+    }</style>
+
+
         </script>
 
         
