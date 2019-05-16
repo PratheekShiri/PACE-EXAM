@@ -62,10 +62,10 @@ if (!isset($_SESSION['adminId'])) {
     $query1 = "SELECT * FROM facultylist AS FL WHERE FL.status = '0'";
     $query1Result = mysqli_query($conn, $query1);
 
-    $query2 = "SELECT * FROM facultySlots WHERE slotNumber = 'SLOT1'";
+    $query2 = "SELECT * FROM facultyslots WHERE slotNumber = 'SLOT1'";
     $query2Result = mysqli_query($conn, $query2);
 
-    $query3 = "SELECT * FROM facultySlots WHERE slotNumber = 'SLOT2'";
+    $query3 = "SELECT * FROM facultyslots WHERE slotNumber = 'SLOT2'";
     $query3Result = mysqli_query($conn, $query3);
     
     $totalFacultyCount = mysqli_num_rows($query1Result);
@@ -105,9 +105,9 @@ if (!isset($_SESSION['adminId'])) {
     //check if all faculties are respectively opted either Slot1 or Slot2
     if(($currentFacultyCount_SLOT1 == $totalFacultyCount_SLOT1) && ($currentFacultyCount_SLOT2 == $totalFacultyCount_SLOT2) && ($pendingFaculty == 0)){
         // Truncate table before use
-        $truncatefacultyDuty = mysqli_query($conn,"TRUNCATE TABLE facultyDuty");
+        $truncatefacultyDuty = mysqli_query($conn,"TRUNCATE TABLE facultyduty");
         
-        $query4 = "SELECT * FROM generatedSlots";
+        $query4 = "SELECT * FROM generatedslots";
         $query4Result = mysqli_query($conn, $query4);
         $index_facultySlot1=0;
         $index_facultySlot2=0;
@@ -132,7 +132,7 @@ if (!isset($_SESSION['adminId'])) {
                     if($index_facultySlot1 == count($array_facultySlot1)){
                         $index_facultySlot1 = 0;
                     }
-                    $sql = mysqli_query($conn,"INSERT INTO facultyDuty(`date`,`slotNumber`,`facultyId`)VALUES('$date','$slotNumber','$array_facultySlot1[$index_facultySlot1]')");
+                    $sql = mysqli_query($conn,"INSERT INTO facultyduty(`date`,`slotNumber`,`facultyId`)VALUES('$date','$slotNumber','$array_facultySlot1[$index_facultySlot1]')");
 
                     $sqlName = "SELECT * FROM facultylist WHERE facultyId = '$array_facultySlot1[$index_facultySlot1]'";
                     $sqlNameResult = mysqli_query($conn, $sqlName);
@@ -145,7 +145,7 @@ if (!isset($_SESSION['adminId'])) {
                     if($index_facultySlot2 == count($array_facultySlot2)){
                         $index_facultySlot2 = 0;
                     }
-                    $sql = mysqli_query($conn,"INSERT INTO facultyDuty(`date`,`slotNumber`,`facultyId`)VALUES('$date','$slotNumber','$array_facultySlot2[$index_facultySlot2]')");
+                    $sql = mysqli_query($conn,"INSERT INTO facultyduty(`date`,`slotNumber`,`facultyId`)VALUES('$date','$slotNumber','$array_facultySlot2[$index_facultySlot2]')");
 
                     $sqlName = "SELECT * FROM facultylist WHERE facultyId = '$array_facultySlot2[$index_facultySlot2]'";
                     $sqlNameResult = mysqli_query($conn, $sqlName);
@@ -189,7 +189,7 @@ if (!isset($_SESSION['adminId'])) {
     $sql3 = "SELECT * FROM facultylist AS FL WHERE FL.status = '0'";
     $sql3Result = mysqli_query($conn, $sql3);
 
-    $sql2 = "SELECT * FROM facultySlots AS FS, facultylist AS FL WHERE FS.facultyId = FL.facultyId ORDER BY FS.slotNumber";
+    $sql2 = "SELECT * FROM facultyslots AS FS, facultylist AS FL WHERE FS.facultyId = FL.facultyId ORDER BY FS.slotNumber";
     $sql2Result = mysqli_query($conn, $sql2);
 
     echo '
@@ -224,7 +224,7 @@ if (!isset($_SESSION['adminId'])) {
     ';
 
     // Truncate table before use
-    $truncategeneratedSlots = mysqli_query($conn,"TRUNCATE TABLE generatedSlots");
+    $truncategeneratedSlots = mysqli_query($conn,"TRUNCATE TABLE generatedslots");
     
     $sql1 = "SELECT * FROM calculateddata WHERE student1 != 0 OR student2 != 0";
     $calculatedDataResult = mysqli_query($conn, $sql1);
@@ -250,16 +250,16 @@ if (!isset($_SESSION['adminId'])) {
         $totalSlots = $slots + $releiving;
 
         if($counter != 0){
-            $sql = mysqli_query($conn,"INSERT INTO generatedSlots(`date`,`slotCount`,`slotNumber`)VALUES('$date','$totalSlots','SLOT1')");
+            $sql = mysqli_query($conn,"INSERT INTO generatedslots(`date`,`slotCount`,`slotNumber`)VALUES('$date','$totalSlots','SLOT1')");
             $counter--;
         } else {
-            $sql = mysqli_query($conn,"INSERT INTO generatedSlots(`date`,`slotCount`,`slotNumber`)VALUES('$date','$totalSlots','SLOT2')");
+            $sql = mysqli_query($conn,"INSERT INTO generatedslots(`date`,`slotCount`,`slotNumber`)VALUES('$date','$totalSlots','SLOT2')");
         }
 
         
     }
 
-    $sql2 = "SELECT * FROM generatedSlots";
+    $sql2 = "SELECT * FROM generatedslots";
     $generatedSlotsResult = mysqli_query($conn, $sql2);
 
     echo '

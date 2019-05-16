@@ -113,7 +113,7 @@ if (!isset($_SESSION['adminId'])) {
             
             $dateDCS = substr($date,1,7);
             
-            $sql1 = "SELECT * FROM facultyAllotment AS FA, facultylist AS FL WHERE FA.date = '$dateDCS' AND FA.facultyId = FL.id";
+            $sql1 = "SELECT * FROM facultyallotment AS FA, facultylist AS FL WHERE FA.date = '$dateDCS' AND FA.facultyId = FL.id";
             $sql1Result = mysqli_query($conn, $sql1);
             // print_r($sql1Result);
             $DcsSrNo=1;
@@ -150,7 +150,7 @@ if (!isset($_SESSION['adminId'])) {
             </thead>
         <tbody>';
             
-            $sql2 = "SELECT * FROM facultyDuty AS FD, facultylist AS FL WHERE FD.date = $date AND FD.facultyId = FL.facultyId";
+            $sql2 = "SELECT * FROM facultyduty AS FD, facultylist AS FL WHERE FD.date = $date AND FD.facultyId = FL.facultyId";
             $sql2Result = mysqli_query($conn, $sql2);
             // print_r($sql2Result);
             $SrNo=1;

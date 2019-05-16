@@ -60,7 +60,7 @@ if (!isset($_SESSION['adminId'])) {
     include('connection.php');
 
     // Truncate table before use
-    $truncatestudentCountPerDay = mysqli_query($conn,"TRUNCATE TABLE studentCountPerDay");
+    $truncatestudentCountPerDay = mysqli_query($conn,"TRUNCATE TABLE studentcountperday");
     $truncatefacultyAllotment = mysqli_query($conn,"TRUNCATE TABLE facultyallotment");
 
     $sql1 = "SELECT * FROM calculateddata";
@@ -78,14 +78,14 @@ if (!isset($_SESSION['adminId'])) {
 
             $studentCount = $studentC1 + $studentC2 + $previousCount;
 
-            $sql = mysqli_query($conn,"UPDATE studentCountPerDay SET studentCount = $studentCount WHERE date = $date");
+            $sql = mysqli_query($conn,"UPDATE studentcountperday SET studentCount = $studentCount WHERE date = $date");
 
         } else {
 
             $studentCount = $studentC1 + $studentC2;
             $previousCount = $studentCount;
 
-            $sql = mysqli_query($conn,"INSERT INTO studentCountPerDay(`date`,`studentCount`)VALUES('$date','$studentCount')");
+            $sql = mysqli_query($conn,"INSERT INTO studentcountperday(`date`,`studentCount`)VALUES('$date','$studentCount')");
         
         }
         $previousDate = $date;
@@ -101,7 +101,7 @@ if (!isset($_SESSION['adminId'])) {
     }
 
 
-    $sql01 = "SELECT * FROM studentCountPerDay WHERE studentCount != '0'";
+    $sql01 = "SELECT * FROM studentcountperday WHERE studentCount != '0'";
     $studentCountResult = mysqli_query($conn, $sql01);
     $currentIndex = 0;
     $totalFacultyCount = count($facultyList);
@@ -126,7 +126,7 @@ if (!isset($_SESSION['adminId'])) {
          
     }
 
-    $sql2 = "SELECT * FROM studentCountPerDay WHERE studentCount != 0";
+    $sql2 = "SELECT * FROM studentcountperday WHERE studentCount != 0";
     $studentCountPerDayResult = mysqli_query($conn, $sql2);
 
     echo '

@@ -63,9 +63,12 @@ if (!isset($_SESSION['adminId'])) {
     // Truncate tables before use
     $truncateCountOfStudents = mysqli_query($conn,"TRUNCATE TABLE countofstudents");
     $truncateCalculateddata = mysqli_query($conn,"TRUNCATE TABLE calculateddata");
-    $truncatefacultyDuty = mysqli_query($conn,"TRUNCATE TABLE facultyDuty");
+    $truncatefacultyDuty = mysqli_query($conn,"TRUNCATE TABLE facultyduty");
     $truncategeneratedslots = mysqli_query($conn,"TRUNCATE TABLE generatedslots");
     $truncatefacultyslots = mysqli_query($conn,"TRUNCATE TABLE facultyslots");
+    $truncatefacultyallotment = mysqli_query($conn,"TRUNCATE TABLE facultyallotment");
+    $truncategeneratedseats = mysqli_query($conn,"TRUNCATE TABLE generatedseats");
+    $truncatestudentcountperday = mysqli_query($conn,"TRUNCATE TABLE studentcountperday");
     
     
 

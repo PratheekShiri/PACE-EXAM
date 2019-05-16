@@ -67,7 +67,7 @@ function findSeat() {
     include('connection.php');
     $usn = mysqli_real_escape_string($conn, $_POST['usn']);
 
-    $query = mysqli_query($conn, "SELECT * FROM generatedSeats WHERE SUSN = '$usn'");
+    $query = mysqli_query($conn, "SELECT * FROM generatedseats WHERE SUSN = '$usn'");
     $queryResult = mysqli_fetch_array($query);
 
     if(empty($queryResult)){
