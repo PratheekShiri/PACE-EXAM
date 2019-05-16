@@ -85,14 +85,17 @@ if (!isset($_SESSION['adminId'])) {
                 <th scope="col" style="font-weight:bold">ALTERNATIVE</th>
                 <th scope="col" style="font-weight:bold">SIGNATURE</th>
             </tr>
+            </thead>
+            <tbody>
             <tr>
                 <th scope="col">  </th>
                 <th scope="col">  </th>
                 <th scope="col">  </th>
                 <th scope="col">  </th>
             </tr>
-        </thead>
-        <tbody>
+       
+        </tbody>
+        </table>
     ';
 
     // for dcs fellas
@@ -104,30 +107,32 @@ if (!isset($_SESSION['adminId'])) {
                 <th scope="col" style="font-weight:bold">NAME OF THE STAFF (DEPUTY CHIEF SUPDT.) [INTERNAL]</th>
                 <th scope="col" style="font-weight:bold">ALTERNATIVE</th>
                 <th scope="col" style="font-weight:bold">SIGNATURE</th>
-            </tr>';
-
+            </tr>
+            </thead>
+        <tbody>';
+            
             $dateDCS = substr($date,1,7);
-            echo "$dateDCS";
-
-            $sql1 = "SELECT * FROM facultyallotment AS FA, facultylist AS FL WHERE FA.date = '$dateDCS' AND FA.facultyId = FL.id";
+            
+            $sql1 = "SELECT * FROM facultyAllotment AS FA, facultylist AS FL WHERE FA.date = '$dateDCS' AND FA.facultyId = FL.id";
             $sql1Result = mysqli_query($conn, $sql1);
+            // print_r($sql1Result);
             $DcsSrNo=1;
-             while ($sql1ResultRow = mysqli_fetch_array($sql1Result)) {
+            while ($sql1ResultRow = mysqli_fetch_array($sql1Result)) {
                 $DcsName = $sql1ResultRow['name'];
 
-            echo '
-            <tr>
-                <th scope="col"> '.$DcsSrNo.' </th>
-                <th scope="col"> '.$DcsName.' </th>                
-                <th scope="col">  </th>
-                <th scope="col">  </th>
-            </tr>
-            ';
-            $DcsSrNo++;
+                echo '
+                <tr>
+                    <td scope="col"> '.$DcsSrNo.' </td>
+                    <td scope="col"> '.$DcsName.' </td>                
+                    <td scope="col">  </td>
+                    <td scope="col">  </td>
+                </tr>
+                ';
+                $DcsSrNo++;
             }
             echo '
-        </thead>
-        <tbody>
+        </tbody>
+        </table>
         ';
 
          //for non dcs fellas
@@ -142,16 +147,32 @@ if (!isset($_SESSION['adminId'])) {
                 <th scope="col" style="font-weight:bold">EXAM HALL No.</th>
                 <th scope="col" style="font-weight:bold">SIGNATURE</th>
             </tr>
+            </thead>
+        <tbody>';
+            
+            $sql2 = "SELECT * FROM facultyDuty AS FD, facultylist AS FL WHERE FD.date = $date AND FD.facultyId = FL.facultyId";
+            $sql2Result = mysqli_query($conn, $sql2);
+            // print_r($sql2Result);
+            $SrNo=1;
+             while ($sql2ResultRow = mysqli_fetch_array($sql2Result)) {
+                $NonDcsName = $sql2ResultRow['name'];
+
+            echo '
             <tr>
-                <th scope="col">  </th>
-                <th scope="col">  </th>
-                <th scope="col">  </th>
-                <th scope="col">  </th>
-                <th scope="col">  </th>
-                <th scope="col">  </th>
+                <td scope="col"> '.$SrNo.' </td>
+                <td scope="col"> '.$NonDcsName.' </td>                
+                <td scope="col">  </td>
+                <td scope="col">  </td>
+                <td scope="col">  </td>
+                <td scope="col">  </td>
             </tr>
-        </thead>
-        <tbody>
+            ';
+            $SrNo++;
+            }
+            echo '
+        
+        </tbody>
+        </table>
         ';
 
          //for principal or vice principal fellas
@@ -164,13 +185,15 @@ if (!isset($_SESSION['adminId'])) {
                 
                 <th scope="col" style="font-weight:bold">SIGNATURE</th>
             </tr>
+            </thead>
+        <tbody>
             <tr>
                 <th scope="col">  </th>
                 <th scope="col">  </th>
                 
             </tr>
-        </thead>
-        <tbody>
+            <tbody>
+            </table>
         ';
 
 
