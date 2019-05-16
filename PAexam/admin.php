@@ -72,7 +72,105 @@ if (isset($_POST['addF'])) {
         <a class="btn btn-light" href="logout.php"> logout <i class="fas fa-sign-out-alt"></i></a>
     </nav>
 
-    <div class="container">
+
+    <div class="padding container">
+        <div class="event-container">
+            <div class="event-card">
+                <div class="event-details">
+                    <a href="uploadCsv.php"><img class="event-image" src="./assets/images/click.jpg" alt="" /></a>
+                    <div class="event-desc">
+                        <p class="event-title"><a href="uploadCsv.php/">Upload CSV</a></p>
+                        <p class="event-date"><i class="fas fa-upload"></i></p>
+                    </div>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-details">
+                    <a href="viewCsv.php"><img class="event-image" src="./assets/images/click.jpg" alt="" /></a>
+                    <div class="event-desc">
+                        <p class="event-title"><a href="viewCsv.php">View CSV</a></p>
+                        <p class="event-date"><i class="fas fa-eye"></i></p>
+                    </div>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-details">
+                    <a href="calculate.php"><img class="event-image" src="./assets/images/click.jpg" alt="" /></a>
+                    <div class="event-desc">
+                        <p class="event-title"><a href="calculate.php">Calculate</a></p>
+                        <p class="event-date"><i class="fas fa-calculator"></i></p>
+                    </div>
+                </div>
+            </div>
+           <div class="event-card">
+                <div class="event-details">
+                    <a href="generateDuty.php"><img class="event-image" src="./assets/images/click.jpg" alt="" /></a>
+                    <div class="event-desc">
+                        <p class="event-title"><a href="generateDuty.php">Generate Duty</a></p>
+                        <p class="event-date"><i class="fas fa-external-link-alt"></i></p>
+                    </div>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-details">
+                    <a href="generateDCS.php"><img class="event-image" src="./assets/images/click.jpg" alt="" /></a>
+                    <div class="event-desc">
+                        <p class="event-title"><a href="generateDCS.php">Generate DCS</a></p>
+                        <p class="event-date"><i class="fas fa-external-link-alt"></i></p>
+                    </div>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-details">
+                    <a href="generateSeatingArrangement.php"><img class="event-image" src="./assets/images/click.jpg" alt="" /></a>
+                    <div class="event-desc">
+                        <p class="event-title"><a href="generateSeatingArrangement.php">Generate Seating Arrangement</a></p>
+                        <p class="event-date"><i class="fas fa-external-link-alt"></i></p>
+                    </div>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-details">
+                    <a href="viewGeneratedSeats.php"><img class="event-image" src="./assets/images/click.jpg" alt="" /></a>
+                    <div class="event-desc">
+                        <p class="event-title"><a href="viewGeneratedSeats.php">View Generated seats</a></p>
+                        <p class="event-date"><i class="fas fa-eye"></i></p>
+                    </div>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-details">
+                    <a href="generateDutyChart.php"><img class="event-image" src="./assets/images/click.jpg" alt="" /></a>
+                    <div class="event-desc">
+                        <p class="event-title"><a href="generateDutyChart.php">Generate Duty Chart</a></p>
+                        <p class="event-date"><i class="fas fa-external-link-alt"></i></p>
+                    </div>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-details">
+                    <a href="generateFormA.php"><img class="event-image" src="./assets/images/click.jpg" alt="" /></a>
+                    <div class="event-desc">
+                        <p class="event-title"><a href="generateFormA.php">Generate Form-A</a></p>
+                        <p class="event-date"><i class="fas fa-print"></i></p>
+                    </div>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-details">
+                    <a href="generateFormB.php"><img class="event-image" src="./assets/images/click.jpg" alt="" /></a>
+                    <div class="event-desc">
+                        <p class="event-title"><a href="generateFormB.php">Generate Form-B</a></p>
+                        <p class="event-date"><i class="fas fa-print"></i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- <div class="container">
 
         <div class="row">
             <div class="col-3">
@@ -150,7 +248,7 @@ if (isset($_POST['addF'])) {
             </div>
            
         </div>
-    </div>
+    </div> -->
 
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
