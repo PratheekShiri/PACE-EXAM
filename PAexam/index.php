@@ -87,16 +87,19 @@ function findSubject() {
 
     $query = mysqli_query($conn, "SELECT * FROM studentlist WHERE SUSN = '$usn'");
     $queryResult = mysqli_fetch_assoc($query);
+    $branch = substr($usn,5,2);
 
     if(!empty($queryResult)){
 
         echo '<script type="text/javascript">';
-        echo 'setTimeout(function () { sweetAlert("'.$usn.'","has applied for the following subjects:<br><ul>'; 
+        echo 'setTimeout(function () { sweetAlert("'.$usn.'","has applied for the following subjects:<br><hr><ul>'; 
 
-                foreach(array_keys($queryResult,"1") as $value){
-
-                    echo '<li>'.substr($value,1).'</li>'; 
-                }
+            foreach(array_keys($queryResult,"1") as $value){
+                $sub_code = substr($value,1);
+                $query1 = mysqli_query($conn, "SELECT * FROM subjectname WHERE branch = '$branch' AND sub_code = $sub_code");
+                $query1Result = mysqli_fetch_assoc($query1);
+                echo '<li>'.$query1Result['sub_name'].' ['.$query1Result['sub_code'].']</li>'; 
+            }
                     
     
         echo '</ul>","success");';
