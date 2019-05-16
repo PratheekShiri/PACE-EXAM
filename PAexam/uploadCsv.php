@@ -548,7 +548,7 @@ function upload_subject_details()
                 <div class="event-details">
                     <img class="event-image" src="./assets/images/upload.png" alt="" />
                     <div class="event-desc">
-                    <p class="event-title">Student Names</p>
+                    <p class="event-title">Subject Names</p>
                     <form method="post" action="uploadCsv.php" enctype="multipart/form-data">
                         <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" name="subjectDetails" required>
                         <button type="submit" class="btn btn-primary btn-lg btn1" name="sd">upload <i class="fas fa-file-upload"></i></button>

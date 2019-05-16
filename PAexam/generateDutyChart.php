@@ -60,6 +60,8 @@ if (!isset($_SESSION['adminId'])) {
 
     include('connection.php');
 
+    $date = $_GET['date'];
+
 
     //for external squad fellas i mean squad people from other colleges
     echo '
@@ -102,13 +104,28 @@ if (!isset($_SESSION['adminId'])) {
                 <th scope="col" style="font-weight:bold">NAME OF THE STAFF (DEPUTY CHIEF SUPDT.) [INTERNAL]</th>
                 <th scope="col" style="font-weight:bold">ALTERNATIVE</th>
                 <th scope="col" style="font-weight:bold">SIGNATURE</th>
-            </tr>
+            </tr>';
+
+            $dateDCS = substr($date,1,7);
+            echo "$dateDCS";
+
+            $sql1 = "SELECT * FROM facultyallotment AS FA, facultylist AS FL WHERE FA.date = '$dateDCS' AND FA.facultyId = FL.id";
+            $sql1Result = mysqli_query($conn, $sql1);
+            $DcsSrNo=1;
+             while ($sql1ResultRow = mysqli_fetch_array($sql1Result)) {
+                $DcsName = $sql1ResultRow['name'];
+
+            echo '
             <tr>
-                <th scope="col">  </th>
-                <th scope="col">  </th>
+                <th scope="col"> '.$DcsSrNo.' </th>
+                <th scope="col"> '.$DcsName.' </th>                
                 <th scope="col">  </th>
                 <th scope="col">  </th>
             </tr>
+            ';
+            $DcsSrNo++;
+            }
+            echo '
         </thead>
         <tbody>
         ';

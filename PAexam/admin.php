@@ -1,5 +1,5 @@
 <?php
-
+include('connection.php');
 session_start();
 
 if (!isset($_SESSION['adminId'])) {
@@ -7,8 +7,6 @@ if (!isset($_SESSION['adminId'])) {
 }
 
 if (isset($_POST['addF'])) {
-
-    include('connection.php');
 
     $fname = $_POST['fname'];
     $fid = $_POST['fid'];
@@ -21,6 +19,18 @@ if (isset($_POST['addF'])) {
         echo 'setTimeout(function () { sweetAlert("<b>Added","New Faculty added successfully</b>","success");';
         echo '}, 500);</script>';
     }
+}
+
+if (isset($_POST['GDC'])) {
+    generateDutyChart();
+}
+
+function generateDutyChart() {
+
+    $date = $_POST['date_from_dropdown'];
+
+    header("location:generateDutyChart.php?date='$date'");
+
 }
 
 ?>
@@ -140,9 +150,9 @@ if (isset($_POST['addF'])) {
             </div>
             <div class="event-card">
                 <div class="event-details">
-                    <a href="generateDutyChart.php"><img class="event-image" src="./assets/images/click.jpg" alt="" /></a>
+                    <a data-toggle="modal" data-target="#generateDutyChart"><img class="event-image" src="./assets/images/click.jpg" alt="" /></a>
                     <div class="event-desc">
-                        <p class="event-title"><a href="generateDutyChart.php">Generate Duty Chart</a></p>
+                        <p class="event-title"><a data-toggle="modal" data-target="#generateDutyChart">Generate Duty Chart</a></p>
                         <p class="event-date"><i class="fas fa-external-link-alt"></i></p>
                     </div>
                 </div>
@@ -169,86 +179,40 @@ if (isset($_POST['addF'])) {
     </div>
 
 
+     <div class="modal fade" id="generateDutyChart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Duty Chart</h4>
+                </div>
+                <form method="post" action="admin.php">
 
-    <!-- <div class="container">
+                    <h3>Select Exam Date: &nbsp; </h3>
+                     <select name="date_from_dropdown">
+                        <?php
+                        $sql2 = "SELECT * FROM timetable";
+                        $result2 = mysqli_query($conn, $sql2);
+                        if(mysqli_num_rows($result2) > 0){
+                            while($row2 = mysqli_fetch_assoc($result2)){
+                                $date = $row2["date"];
+                    ?>
+  
 
-        <div class="row">
-            <div class="col-3">
-                <div class="jumbotron">
-                    <h2>Upload csv files</h2>
-                    <a class="btn btn-primary btn-lg btn1" href="uploadCsv.php" role="button">upload <i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-            
-            <div class="col-3">
-                <div class="jumbotron">
-                    <h2>View csv files</h2>
-                    <a class="btn btn-primary btn-lg btn1" href="viewCsv.php" role="button">view <i class="fas fa-eye"></i></a>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="jumbotron">
-                    <h2> Calculate </h2>
-                    <a href="calculate.php" class="btn btn-primary btn-lg btn1" href="#" role="button">cal <i class="fas fa-external-link-alt"></i></a>
-                </div>
+                    <option value="<?php echo($date); ?>"><?php echo(substr($date,0,2).'-'.substr($date,2,2).'-'.substr($date,4,2).' ['.substr($date,6).']'); ?>
+                   
+
+                    <?php }} 
+                    ?>
+                </select>
+
+                <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" name="GDC" class="btn btn-primary">Go <i class="fas fa-search"></i></button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 
-        <div class="row">
-           
-            <div class="col-3">
-                <div class="jumbotron">
-                    <h2>Generate Duty </h2>
-                    <a href="generateDuty.php" class="btn btn-primary btn-lg btn1" href="#" role="button">gen <i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-            
-            <div class="col-3">
-                <div class="jumbotron">
-                    <h2>Generate Seating arrangement</h2>
-                    <a class="btn btn-primary btn-lg btn1" href="generateSeatingArrangement.php" role="button">gen <i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="jumbotron">
-                    <h2>View Seating arrangement</h2>
-                    <a class="btn btn-primary btn-lg btn1" href="viewGeneratedSeats.php" role="button">view <i class="fas fa-eye"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-           
-            <div class="col-3">
-                <div class="jumbotron">
-                    <h2>Generate DCS </h2>
-                    <a href="generateDCS.php" class="btn btn-primary btn-lg btn1" href="#" role="button">gen <i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="jumbotron">
-                    <h2>Generate Duty Chart</h2>
-                    <a class="btn btn-primary btn-lg btn1" href="generateDutyChart.php" role="button">Gen <i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-            
-            
-                
-            <div class="col-3">
-                <div class="jumbotron">
-                    <h2>Generate FORM-A</h2>
-                    <a class="btn btn-primary btn-lg btn1" href="generateFormA.php" role="button">Gen <i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-           
-           <div class="col-3">
-                <div class="jumbotron">
-                    <h2>Generate FORM-B</h2>
-                    <a class="btn btn-primary btn-lg btn1" href="generateFormB.php" role="button">Gen <i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-           
-        </div>
-    </div> -->
 
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

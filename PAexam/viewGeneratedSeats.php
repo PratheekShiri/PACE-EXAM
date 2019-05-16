@@ -57,7 +57,7 @@ if (!isset($_SESSION['adminId'])) {
 
     <h3 style="text-align:center">Generated Seats</h3>
     <table class="table table-bordered" style="text-align:center;">
-        <thead class="black white-text">
+        <thead class=" grey black-text">
             <tr>
                 <th scope="col">Room Number</th>
                 <th scope="col">Seat Number</th>
