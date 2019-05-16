@@ -76,30 +76,202 @@ if (!isset($_SESSION['adminId'])) {
         ctx.stroke();
         </script>
 
-    <h6 style="text-align:center; font-weight:bold; font-size:25px" > VISVESVARAYA TECHNOLOGICAL UNIVERSITY, BELAGAVI </h6>
+    <img src="assets/images/vtulogo.jpg" height="80" width="80" style="border-radius:50%;  class="d-inline-block align-top" alt="mdb logo"> <h6 style="text-align:center; font-weight:bold; font-size:25px" > VISVESVARAYA TECHNOLOGICAL UNIVERSITY, BELAGAVI </h6>
     <h6 style="text-align:center; font-weight:bold">ATTENDANCE & ROOM SUPERINTENDENT S/ PRACTICAL EXAMINER S REPORT (In Triplicate) [FORM-B]</h6>
-    <h6 style="text-align:center">B.E./ B.Arch./ M.B.A./ M.C.A./ M.Tech./ M.Arch/ Ph.D/ M.Sc.(Res)/____________________________________ Semester Examination <u style="color:lightgrey;">M M Y Y Y Y</u></h6>
-    <h6 style="text-align:center">Branch/ Title of the Course : ______________________________________________ </h6>
+    <h6 style="text-align:center">B.E./ B.Arch./ M.B.A./ M.C.A./ M.Tech./ M.Arch/ Ph.D/ M.Sc.(Res) ____________________________________ Semester Examination <u style="color:lightgrey;">M M Y Y Y Y</u></h6>
+    <h6> &nbsp &nbsp &nbsp &nbsp &nbsp &nbspBranch/ Title of the Course : ___________________________________________________________________________________</h6>
 
-    <h6 style="text-align:center;">Subject : _________________________________________________________________________ Subject Code : <canvas id="mycanvas" width="25" height="25" style="border:1px solid black;"></canvas><canvas id="mycanvas" width="25" height="25" style="border:1px solid black;"></canvas><canvas id="mycanvas" width="25" height="25" style="border:1px solid black;"></canvas><canvas id="mycanvas" width="25" height="25" style="border:1px solid black;"></canvas><canvas id="mycanvas" width="25" height="25" style="border:1px solid black;"></canvas><canvas id="mycanvas" width="25" height="25" style="border:1px solid black;"></canvas><canvas id="mycanvas" width="25" height="25" style="border:1px solid black;"></canvas><canvas id="mycanvas" width="25" height="25" style="border:1px solid black;"></canvas></h6>
-    <h6 style="text-align:center;">Centre : ______________________________________________ USNs from ___________________ to ______________________</h6>
-    <h6 style="text-align:center">Date : __________________________ &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspTime : _____________ to ________________<h6> 
+    <h6> &nbsp &nbsp &nbsp &nbsp &nbsp &nbspSubject : ___________________________________________________________________________________ Subject Code : <canvas id="mycanvas" width="25" height="25" style="border:1px solid black;"></canvas><canvas id="mycanvas" width="25" height="25" style="border:1px solid black;"></canvas><canvas id="mycanvas" width="25" height="25" style="border:1px solid black;"></canvas><canvas id="mycanvas" width="25" height="25" style="border:1px solid black;"></canvas><canvas id="mycanvas" width="25" height="25" style="border:1px solid black;"></canvas><canvas id="mycanvas" width="25" height="25" style="border:1px solid black;"></canvas><canvas id="mycanvas" width="25" height="25" style="border:1px solid black;"></canvas><canvas id="mycanvas" width="25" height="25" style="border:1px solid black;"></canvas></h6>
+    <h6> &nbsp &nbsp &nbsp &nbsp &nbsp &nbspCentre : ___________________________________________________________________________ USNs from ___________________ to ______________________</h6>
+    <h6>&nbsp &nbsp &nbsp &nbsp &nbsp &nbspDate : __________________________ &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Time : _____________ to ________________<h6> 
     
-    <h6 style="font-weight:bold;">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <u>Deputy Chief Superintendent</u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp   <u> Chief Superintendent</u></h6>
+    <table class="table table-bordered " style="text-align:center; color:black">
+        <thead class=" black-text">
+            <tr>
+                <th scope="col" style="font-weight:bold">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp USN &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp </th>
+                <th scope="col" style="font-weight:bold">Booklet/Dwg. Sheet Number</th>
+                <th scope="col" style="font-weight:bold">Signature</th>
+                <th scope="col" style="font-weight:bold">Addl. booklet/Drawing/Graph Sheet Number</th>
+                <th scope="col" style="font-weight:bold">Total</th>
+            </tr>
 
-    <p><h6> Signature with date : &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp ____________________________________ &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ____________________________________</h6></p>
-    <p><h6> Name : &nbsp &nbsp  &nbsp  &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp ____________________________________ &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ____________________________________</h6></p>
-    <p><h6> Affiliation : &nbsp &nbsp  &nbsp  &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp ____________________________________ &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ____________________________________</h6></p>
-    <h6 >NOTE: ANSWER PAPER BUNDLES TO BE SENT TO REGIONAL OFFICE ONLY.</h6>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+        </thead>
+        <tbody>
+        </table>
+        <h6> &nbsp &nbsp  &nbsp  &nbsp &nbsp USNs (absentees) :_______________________________________________________________________________
+         </h6>
+        <h6> &nbsp &nbsp  &nbsp  &nbsp &nbsp USNs (candidates b/u malpractice) :_______________________________________________________________________________
+        <h6 style="font-weight:bold;">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp  <u>Room Superintendent / Examiner-i</u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp   <u> Examiner-ii</u> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <u>Chief/Deputy Superintendent</u></h6>
+         <p><h6> Signature: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp ____________________________________ &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp ____________________________________&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp____________________________________</h6></p>
+        <p><h6> Name:&nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp ____________________________________ &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp ____________________________________&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp____________________________________</h6></p>
+        <p><h6> Affiliation: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp ____________________________________ &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp ____________________________________&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp____________________________________</h6></p>
+    
+        <h6 >NOTE: ANSWER PAPER BUNDLES TO BE SENT TO REGIONAL OFFICE ONLY.</h6>
     <h6>1. Seperate sheet to be used for each subject. 2. Statement shall be sent to a)Regional Center, b)Registrar(Evaluation), c)Retained at the college.</h6>
 
-
     
+                 
 
     
         ';
 
-         //for principal or vice principal fellas
+
+         
         ?>
 
 

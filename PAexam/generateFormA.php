@@ -50,7 +50,7 @@ if (!isset($_SESSION['adminId'])) {
     <!-- Image and text -->
     <nav class="navbar navbar-dark primary-color">
         <a class="navbar-brand" href="#">
-            <img src="assets/images/logo.jpg" height="60" width="60" style="border-radius:50%;" class="d-inline-block align-top" alt="mdb logo"> P.A. College of Engineering Mangaluru | Admin
+            <img src="assets/images/logo.jpg" height="50" width="50" style="border-radius:50%;" class="d-inline-block align-top" alt="mdb logo"> P.A. College of Engineering Mangaluru | Admin
         </a>
         <a class="btn btn-light" href="admin.php"> back <i class="fas fa-arrow-circle-left"></i></a>
     </nav><br>
@@ -76,7 +76,7 @@ if (!isset($_SESSION['adminId'])) {
         ctx.stroke();
         </script>
 
-    <h6 style="text-align:center; font-weight:bold; font-size:25px" > VISVESVARAYA TECHNOLOGICAL UNIVERSITY, BELAGAVI </h6>
+    <img src="assets/images/vtulogo.jpg" height="80" width="80" style="border-radius:50%;  class="d-inline-block align-top" alt="mdb logo"> <h6 <h6 style="text-align:center; font-weight:bold; font-size:25px" > VISVESVARAYA TECHNOLOGICAL UNIVERSITY, BELAGAVI </h6>
     <h6 style="text-align:center; font-weight:bold">CONSOLIDATED ATTENDANCE REPORT & DESPATCH MEMO(In Triplicate) [FORM-A]</h6>
     <h6 style="text-align:center">B.E./ B.Arch./ M.B.A./ M.C.A./ M.Tech./ M.Sc.(Res)/ Ph.D____________________________________ Semester Examination <u style="color:lightgrey;">M M Y Y Y Y</u></h6>
     <h6 style="text-align:center">Branch/ Title of the Course : ______________________________________________ Centre : ______________________________________________</h6>

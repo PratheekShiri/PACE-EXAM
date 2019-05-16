@@ -73,8 +73,8 @@ if (!isset($_SESSION['adminId'])) {
 
     <h6 style="text-align:center; font-weight:bold" > P.A. COLLEGE OF ENGINEERING, MANGALURU </h6>
     <h6 style="text-align:center; font-weight:bold">VTU EXAMINATIONS, DUTY CHART</h6>
-    <h6 style="text-align:left">DATE:</h6>
-    <h6>TIME:</h6>
+    <h6 style="text-align:left">DATE: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspTIME :</h6>
+    
     <table class="table table-bordered" style="text-align:center;">
         <thead class=" black-text">
             <tr>
