@@ -59,7 +59,7 @@ if (!isset($_SESSION['adminId'])) {
 
     include('connection.php');
 
-    $sql2 = "SELECT * FROM studentCountPerDay WHERE studentCount != 0";
+    $sql2 = "SELECT * FROM studentcountperday WHERE studentCount != 0";
     $studentCountPerDayResult = mysqli_query($conn, $sql2);
 
     echo '
@@ -94,7 +94,7 @@ if (!isset($_SESSION['adminId'])) {
                     <ul >
                     
         ';
-        $sql3 = "SELECT FL.name FROM facultylist AS FL, facultyAllotment AS FA WHERE FA.date = $date AND FA.facultyId = FL.id";
+        $sql3 = "SELECT FL.name FROM facultylist AS FL, facultyallotment AS FA WHERE FA.date = $date AND FA.facultyId = FL.id";
         $Result = mysqli_query($conn, $sql3);
         while ($ResultRow = mysqli_fetch_array($Result)) {
             $facultyName = $ResultRow['name'];

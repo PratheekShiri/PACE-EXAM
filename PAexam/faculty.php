@@ -29,7 +29,7 @@ if (isset($_POST['change'])) {
 }
 
 if (isset($_POST['SLOT1'])) {
-    $sqlSlot1 = mysqli_query($conn,"INSERT INTO facultySlots(`facultyId`, `slotNumber`)VALUES('$facultyId','SLOT1')");
+    $sqlSlot1 = mysqli_query($conn,"INSERT INTO facultyslots(`facultyId`, `slotNumber`)VALUES('$facultyId','SLOT1')");
     // if($sqlSlot1){
     //     echo '<script type="text/javascript">';
     //     echo 'setTimeout(function () { sweetAlert("<b>Changed","Password updated successfully</b>","success");';
@@ -38,7 +38,7 @@ if (isset($_POST['SLOT1'])) {
 }
 
 if (isset($_POST['SLOT2'])) {
-    $sql = mysqli_query($conn,"INSERT INTO facultySlots(`facultyId`, `slotNumber`)VALUES('$facultyId','SLOT2')");
+    $sql = mysqli_query($conn,"INSERT INTO facultyslots(`facultyId`, `slotNumber`)VALUES('$facultyId','SLOT2')");
     // if($sql){
     //     echo '<script type="text/javascript">';
     //     echo 'setTimeout(function () { sweetAlert("<b>Changed","Password updated successfully</b>","success");';
@@ -111,7 +111,7 @@ if (isset($_POST['SLOT2'])) {
 
         if($sql0ResultRow['status'] == '1'){
             
-            $sql2 = "SELECT * FROM studentCountPerDay WHERE studentCount != 0";
+            $sql2 = "SELECT * FROM studentcountperday WHERE studentCount != 0";
             $studentCountPerDayResult = mysqli_query($conn, $sql2);
 
             echo '
@@ -160,13 +160,13 @@ if (isset($_POST['SLOT2'])) {
             ';
         }
         else if($sql0ResultRow['status'] == '0'){
-            $exeSql1 = mysqli_query($conn, "SELECT EXISTS(SELECT * from facultySlots WHERE facultyId='$facultyId')");
+            $exeSql1 = mysqli_query($conn, "SELECT EXISTS(SELECT * from facultyslots WHERE facultyId='$facultyId')");
             $rowSql1 = mysqli_fetch_array($exeSql1);
             
-            $CurrentSlot1Count = "SELECT * FROM facultySlots WHERE slotNumber = 'SLOT1'";
+            $CurrentSlot1Count = "SELECT * FROM facultyslots WHERE slotNumber = 'SLOT1'";
             $CurrentSlot1CountResult = mysqli_query($conn, $CurrentSlot1Count);
 
-            $CurrentSlot2Count = "SELECT * FROM facultySlots WHERE slotNumber = 'SLOT2'";
+            $CurrentSlot2Count = "SELECT * FROM facultyslots WHERE slotNumber = 'SLOT2'";
             $CurrentSlot2CountResult = mysqli_query($conn, $CurrentSlot2Count);
 
             $MaxFaculty = "SELECT * FROM facultylist AS FL WHERE FL.status = '0'";

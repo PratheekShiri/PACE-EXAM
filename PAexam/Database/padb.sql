@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 12, 2019 at 09:33 PM
+-- Generation Time: May 16, 2019 at 05:46 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -245,10 +245,10 @@ INSERT INTO `countofstudents` (`id`, `sub_code`, `count`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `facultyAllotment`
+-- Table structure for table `facultyallotment`
 --
 
-CREATE TABLE `facultyAllotment` (
+CREATE TABLE `facultyallotment` (
   `id` int(11) NOT NULL,
   `date` int(255) NOT NULL,
   `facultyCount` int(255) NOT NULL,
@@ -256,10 +256,10 @@ CREATE TABLE `facultyAllotment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `facultyAllotment`
+-- Dumping data for table `facultyallotment`
 --
 
-INSERT INTO `facultyAllotment` (`id`, `date`, `facultyCount`, `facultyId`) VALUES
+INSERT INTO `facultyallotment` (`id`, `date`, `facultyCount`, `facultyId`) VALUES
 (1, 191218, 1, 4),
 (2, 221218, 2, 27),
 (3, 221218, 2, 36),
@@ -289,10 +289,10 @@ INSERT INTO `facultyAllotment` (`id`, `date`, `facultyCount`, `facultyId`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `facultyDuty`
+-- Table structure for table `facultyduty`
 --
 
-CREATE TABLE `facultyDuty` (
+CREATE TABLE `facultyduty` (
   `id` int(255) NOT NULL,
   `date` varchar(255) NOT NULL,
   `slotNumber` varchar(255) NOT NULL,
@@ -417,45 +417,29 @@ INSERT INTO `facultylist` (`id`, `name`, `facultyId`, `password`, `status`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `facultySlots`
+-- Table structure for table `facultyslots`
 --
 
-CREATE TABLE `facultySlots` (
+CREATE TABLE `facultyslots` (
   `id` int(255) NOT NULL,
   `facultyId` varchar(255) NOT NULL,
   `slotNumber` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `facultySlots`
+-- Dumping data for table `facultyslots`
 --
 
-INSERT INTO `facultySlots` (`id`, `facultyId`, `slotNumber`) VALUES
-(30, 'PA110', 'SLOT1'),
-(31, 'PA173', 'SLOT2'),
-(33, 'PA167', 'SLOT1'),
-(36, 'PA170', 'SLOT1'),
-(37, 'PA171', 'SLOT2'),
-(38, 'PA172', 'SLOT1'),
-(39, 'PA174', 'SLOT1'),
-(40, 'PA175', 'SLOT2'),
-(41, 'PA176', 'SLOT1'),
-(42, 'PA111', 'SLOT2'),
-(43, 'PA112', 'SLOT2'),
-(44, 'PA113', 'SLOT1'),
-(45, 'PA114', 'SLOT1'),
-(46, 'PA116', 'SLOT1'),
-(47, 'PA117', 'SLOT2'),
-(48, 'PA194', 'SLOT1'),
-(49, 'PA106', 'SLOT1');
+INSERT INTO `facultyslots` (`id`, `facultyId`, `slotNumber`) VALUES
+(1, 'PA104', 'SLOT2');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `generatedSeats`
+-- Table structure for table `generatedseats`
 --
 
-CREATE TABLE `generatedSeats` (
+CREATE TABLE `generatedseats` (
   `id` int(255) NOT NULL,
   `SUSN` varchar(255) NOT NULL,
   `room_num` varchar(50) NOT NULL,
@@ -463,10 +447,10 @@ CREATE TABLE `generatedSeats` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `generatedSeats`
+-- Dumping data for table `generatedseats`
 --
 
-INSERT INTO `generatedSeats` (`id`, `SUSN`, `room_num`, `seat_number`) VALUES
+INSERT INTO `generatedseats` (`id`, `SUSN`, `room_num`, `seat_number`) VALUES
 (1, '4PA15BT009', 'G03', '01'),
 (2, '4PA15BT010', 'G03', '03'),
 (3, '4PA15BT011', 'G03', '05'),
@@ -666,10 +650,10 @@ INSERT INTO `generatedSeats` (`id`, `SUSN`, `room_num`, `seat_number`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `generatedSlots`
+-- Table structure for table `generatedslots`
 --
 
-CREATE TABLE `generatedSlots` (
+CREATE TABLE `generatedslots` (
   `id` int(255) NOT NULL,
   `date` varchar(255) NOT NULL,
   `slotCount` varchar(255) NOT NULL,
@@ -677,10 +661,10 @@ CREATE TABLE `generatedSlots` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `generatedSlots`
+-- Dumping data for table `generatedslots`
 --
 
-INSERT INTO `generatedSlots` (`id`, `date`, `slotCount`, `slotNumber`) VALUES
+INSERT INTO `generatedslots` (`id`, `date`, `slotCount`, `slotNumber`) VALUES
 (1, '191218A', '5', 'SLOT1'),
 (2, '221218M', '8', 'SLOT1'),
 (3, '221218A', '5', 'SLOT1'),
@@ -761,20 +745,20 @@ INSERT INTO `room` (`id`, `room_num`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `studentCountPerDay`
+-- Table structure for table `studentcountperday`
 --
 
-CREATE TABLE `studentCountPerDay` (
+CREATE TABLE `studentcountperday` (
   `id` int(11) NOT NULL,
   `date` varchar(255) NOT NULL,
   `studentCount` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `studentCountPerDay`
+-- Dumping data for table `studentcountperday`
 --
 
-INSERT INTO `studentCountPerDay` (`id`, `date`, `studentCount`) VALUES
+INSERT INTO `studentcountperday` (`id`, `date`, `studentCount`) VALUES
 (1, '171218', 0),
 (2, '181218', 0),
 (3, '191218', 100),
@@ -1379,10 +1363,468 @@ CREATE TABLE `subjectname` (
 --
 
 INSERT INTO `subjectname` (`branch`, `sub_code`, `sub_name`) VALUES
-('CS', '1571', 'bob'),
-('CS', '1572', 'alice'),
-('CS', '1571', 'bob'),
-('CS', '1572', 'alice');
+('BT', '15M1', 'Engineering Mathematics-1'),
+('BT', '15PHY', 'Engineering Physics'),
+('BT', '15CIV', ' Elements of Civil Engineering & Engineering Mechanics'),
+('BT', '15EME', 'Elements of Mechanical Engineering'),
+('BT', '15ELE', 'Basic Electrical Engineering'),
+('BT', '15CPH', 'Constitution of India, Professional Ethics & Human Rights'),
+('BT', '15CHE', 'Engineering Chemistry'),
+('BT', '15PCD', 'Programming in C & Data Structures'),
+('BT', '15ELN', 'Basic Electronics'),
+('BT', '15ENV', 'Environmental Studies'),
+('BT', '15M2', 'Engineering Mathematics-2'),
+('CS', '15M1', 'Engineering Mathematics-1'),
+('CS', '15PHY', 'Engineering Physics'),
+('CS', '15CIV', ' Elements of Civil Engineering & Engineering Mechanics'),
+('CS', '15EME', 'Elements of Mechanical Engineering'),
+('CS', '15ELE', 'Basic Electrical Engineering'),
+('CS', '15CPH', 'Constitution of India, Professional Ethics & Human Rights'),
+('CS', '15CHE', 'Engineering Chemistry'),
+('CS', '15PCD', 'Programming in C & Data Structures'),
+('CS', '15ELN', 'Basic Electronics'),
+('CS', '15ENV', 'Environmental Studies'),
+('CS', '15M2', 'Engineering Mathematics-2'),
+('CIV', '15M1', 'Engineering Mathematics-1'),
+('CIV', '15PHY', 'Engineering Physics'),
+('CIV', '15CIV', ' Elements of Civil Engineering & Engineering Mechanics'),
+('CIV', '15EME', 'Elements of Mechanical Engineering'),
+('CIV', '15ELE', 'Basic Electrical Engineering'),
+('CIV', '15CPH', 'Constitution of India, Professional Ethics & Human Rights'),
+('CIV', '15CHE', 'Engineering Chemistry'),
+('CIV', '15PCD', 'Programming in C & Data Structures'),
+('CIV', '15ELN', 'Basic Electronics'),
+('CIV', '15ENV', 'Environmental Studies'),
+('CIV', '15M2', 'Engineering Mathematics-2'),
+('EC', '15M1', 'Engineering Mathematics-1'),
+('EC', '15PHY', 'Engineering Physics'),
+('EC', '15CIV', ' Elements of Civil Engineering & Engineering Mechanics'),
+('EC', '15EME', 'Elements of Mechanical Engineering'),
+('EC', '15ELE', 'Basic Electrical Engineering'),
+('EC', '15CPH', 'Constitution of India, Professional Ethics & Human Rights'),
+('EC', '15CHE', 'Engineering Chemistry'),
+('EC', '15PCD', 'Programming in C & Data Structures'),
+('EC', '15ELN', 'Basic Electronics'),
+('EC', '15ENV', 'Environmental Studies'),
+('EC', '15M2', 'Engineering Mathematics-2'),
+('EE', '15M1', 'Engineering Mathematics-1'),
+('EE', '15PHY', 'Engineering Physics'),
+('EE', '15CIV', ' Elements of Civil Engineering & Engineering Mechanics'),
+('EE', '15EME', 'Elements of Mechanical Engineering'),
+('EE', '15ELE', 'Basic Electrical Engineering'),
+('EE', '15CPH', 'Constitution of India, Professional Ethics & Human Rights'),
+('EE', '15CHE', 'Engineering Chemistry'),
+('EE', '15PCD', 'Programming in C & Data Structures'),
+('EE', '15ELN', 'Basic Electronics'),
+('EE', '15ENV', 'Environmental Studies'),
+('EE', '15M2', 'Engineering Mathematics-2'),
+('ME', '15M1', 'Engineering Mathematics-1'),
+('ME', '15PHY', 'Engineering Physics'),
+('ME', '15CIV', ' Elements of Civil Engineering & Engineering Mechanics'),
+('ME', '15EME', 'Elements of Mechanical Engineering'),
+('ME', '15ELE', 'Basic Electrical Engineering'),
+('ME', '15CPH', 'Constitution of India, Professional Ethics & Human Rights'),
+('ME', '15CHE', 'Engineering Chemistry'),
+('ME', '15PCD', 'Programming in C & Data Structures'),
+('ME', '15ELN', 'Basic Electronics'),
+('ME', '15ENV', 'Environmental Studies'),
+('ME', '15M2', 'Engineering Mathematics-2'),
+('BT', '1531', 'Engineering Mathematics-3 '),
+('BT', '1532', 'Unit Operations'),
+('BT', '1533', 'Biochemistry'),
+('BT', '1534', 'Microbiology'),
+('BT', '1535', 'Cell Biology & Genetics'),
+('BT', '1536', 'Basics of Computer Applications'),
+('BT', '1541', 'Biostatistics & Bio-modeling'),
+('BT', '1542', 'Biochemical Thermodynamics'),
+('BT', '1543', 'Molecular Biology'),
+('BT', '1544', 'Bioprocess Principles & Calculations'),
+('BT', '1545', 'Structural Biology'),
+('BT', '1546', 'Clinical Biochemistry'),
+('BT', '1551', 'Bio-Kinetics & Bioreaction Engineering'),
+('BT', '1552', 'Genetic Engineering & Applications'),
+('BT', '1553', 'Immunotechnology'),
+('BT', '1554', 'Bioinformatics'),
+('BT', '1555', 'Microbial BT'),
+('BT', '1556', 'Biology or Engineers'),
+('BT', '1561', 'Bio-business & Entrepreneurship'),
+('BT', '1562', 'Bioprocess Control & Automation'),
+('BT', '1563', 'Enzyme Technology & Biotransformation'),
+('BT', '1564', 'Bioprocess Equipment Design & CAED'),
+('BT', '1565', 'Cell Culture Technique'),
+('BT', '1566', 'Good Manufacturing Practice'),
+('BT', '1571', 'Fermentation Technology'),
+('BT', '1572', 'Genomics & Proteomics'),
+('BT', '1573', 'Plant BT'),
+('BT', '1574', 'Food BT'),
+('BT', '1575', 'Forensic Science'),
+('BT', '1581', 'Clinical & Pharmaceutical Biotechnology'),
+('BT', '1582', 'Regulatory Affairs in BT Industry'),
+('BT', '1583', 'Environmental BT'),
+('CS', '1531', 'Engineering Mathematics-3 '),
+('CS', '1532', 'Analog Digital Electronics'),
+('CS', '1533', 'Data Structures & Applications'),
+('CS', '1534', 'Computer Organization'),
+('CS', '1535', 'Unix & Shell Programming'),
+('CS', '1536', 'Discrete Mathematical Structures'),
+('CS', '1541', 'Engineering Mathematics-4'),
+('CS', '1542', 'Sotware Engineering'),
+('CS', '1543', 'Design & Analysis of Algorithms'),
+('CS', '1544', 'Microprocessors & Microcontrollers'),
+('CS', '1545', 'Object Oriented Programming with JAVA'),
+('CS', '1546', 'Data Communication'),
+('CS', '1551', 'Management & Entrepreneurship'),
+('CS', '1552', 'Computer Networks'),
+('CS', '1553', 'Database Management System'),
+('CS', '1554', 'Automata Theory & Computability'),
+('CS', '1555', 'Advanced JAVA & J2EE'),
+('CS', '1556', 'Embedded Computing System'),
+('CS', '1561', 'Cryptography, Network Securtiy & Cyber Law'),
+('CS', '1562', 'Computer Graphics & Visualisation'),
+('CS', '1563', 'System Software & Compiler Design'),
+('CS', '1564', 'Operating Systems'),
+('CS', '1565', 'Data Mining & Data Warehousing'),
+('CS', '1566', 'Python Application Programming'),
+('CS', '1571', 'Web Technology & its Applications'),
+('CS', '1572', 'Advanced Computer Architectures'),
+('CS', '1573', 'Machine Learning & its Applications '),
+('CS', '1574', 'Information & Network Security'),
+('CS', '1575', 'Digital Image Processing'),
+('CS', '1581', 'IOT Technology'),
+('CS', '1582', 'Big Data Analytics'),
+('CS', '1583', 'System Simulation & Modelling'),
+('CV', '1531', 'Engineering Mathematics-3 '),
+('CV', '1532', 'Strength of Materials'),
+('CV', '1533', 'Fluid Mechanics'),
+('CV', '1534', 'Basic Surveying'),
+('CV', '1535', 'Engineering Geology'),
+('CV', '1536', 'Building Materials & Construction'),
+('CV', '1541', 'Engineering Mathematics-4'),
+('CV', '1542', 'Analysis of Determinate Structures'),
+('CV', '1543', 'Applied Hydraulics'),
+('CV', '1544', 'Concrete Technology'),
+('CV', '1545', 'Basic Geo Technical Engineering'),
+('CV', '1546', 'Advanced Surveying'),
+('CV', '1551', 'Design of RC Structural Elements'),
+('CV', '1552', 'Analysis of Indeterminate Structures'),
+('CV', '1553', 'Applied Geo Technical Engineering'),
+('CV', '1554', 'Computer Aided Building, Planning & Drawing'),
+('CV', '1555', 'Railways, Harbours,Tunneling & Airports'),
+('CV', '1556', 'Traffic Engineering'),
+('CV', '1561', 'Consrtuction Management & Professional Ethics'),
+('CV', '1562', 'Design of Steel Structural Elements'),
+('CV', '1563', 'Highway Engineering'),
+('CV', '1564', 'Water Supply & Treatment Engineering'),
+('CV', '1565', 'Solid Waste Management'),
+('CV', '1566', 'Water Resource Management'),
+('CV', '1571', 'Muncipal & Industrial Waste Water Engineering'),
+('CV', '1572', 'Design of RCC & Steel Structures'),
+('CV', '1573', 'Hydrology & Irrigation Engineering'),
+('CV', '1574', 'Ground Water & Hydraulics'),
+('CV', '1575', 'Rehabilitation & Retro Fitting Of Structures'),
+('CV', '1581', 'Quality Surveying & Contracts Management'),
+('CV', '1582', 'Design of Pre-Stressed Concrete Elements'),
+('CV', '1583', 'Pavement Design'),
+('EC', '1531', 'Engineering Mathematics-3 '),
+('EC', '1532', 'Analog Electronics'),
+('EC', '1533', 'Digital Electronics'),
+('EC', '1534', 'Network Analysis'),
+('EC', '1535', 'Electronic Instrumentation'),
+('EC', '1536', 'Engineering Electro Magnetics'),
+('EC', '1541', 'Engineering Mathematics-4'),
+('EC', '1542', 'Microprocessors '),
+('EC', '1543', 'Control Systems'),
+('EC', '1544', 'Signal & Systems'),
+('EC', '1545', 'Principles of Communication Systems'),
+('EC', '1546', 'Linear Integrated Circuits'),
+('EC', '1551', 'Management & Entrepreneurship'),
+('EC', '1552', 'Digital Signal Processing'),
+('EC', '1553', 'Verilog HDL'),
+('EC', '1554', 'Information Theory & Coding'),
+('EC', '1555', 'Operating System'),
+('EC', '1556', '8051 Microcontroller'),
+('EC', '1561', 'Digital Communication'),
+('EC', '1562', 'Embedded Systems & ARM'),
+('EC', '1563', 'VLSI Design'),
+('EC', '1564', 'Computer Communication Networks'),
+('EC', '1565', 'Digital Switching Systems'),
+('EC', '1566', 'Digital System Design using Verilog'),
+('EC', '1571', 'Microwave & Antennas'),
+('EC', '1572', 'Digital Image Processing'),
+('EC', '1573', 'Power Electronics'),
+('EC', '1574', 'Multimedia Communication'),
+('EC', '1575', 'IOT & Wireless Sensors Network'),
+('EC', '1581', 'Wireless Cellular & LTE 4G Boradband'),
+('EC', '1582', 'Fiber Optics & Networks'),
+('EC', '1583', 'Machine Learning'),
+('EE', '1531', 'Engineering Mathematics-3 '),
+('EE', '1532', 'Electrical Circuits Analysis'),
+('EE', '1533', 'Transformers & Generators'),
+('EE', '1534', 'Analog Electronic Circuits'),
+('EE', '1535', 'Digital System Design'),
+('EE', '1536', 'Electrical & Electronic Measurement'),
+('EE', '1541', 'Engineering Mathematics-4'),
+('EE', '1542', 'Power Generation & Economics'),
+('EE', '1543', 'Transmission & Distribution'),
+('EE', '1544', 'Electric Motors'),
+('EE', '1545', 'Electromagnetic Field Theory'),
+('EE', '1546', 'Operational Amplifiers & Linear Ics'),
+('EE', '1551', 'Management & Entrepreneurship'),
+('EE', '1552', 'Microcontrollers'),
+('EE', '1553', 'Power Electronics'),
+('EE', '1554', 'Signal & Systems'),
+('EE', '1555', 'Estimating & Costing'),
+('EE', '1556', 'Renewable Energy Systems'),
+('EE', '1561', 'Control Systems'),
+('EE', '1562', 'Power System Analysis 1'),
+('EE', '1563', 'Digital Signal Processing'),
+('EE', '1564', 'Electrical Machine Design'),
+('EE', '1565', 'Computer Aided Electrical Drawing'),
+('EE', '1566', 'Digital System Design using Verilog'),
+('EE', '1571', 'Power System Analysis 2'),
+('EE', '1572', 'Power System Protection'),
+('EE', '1573', 'High Voltage Engineering'),
+('EE', '1574', 'Utilisation of Electric Power'),
+('EE', '1575', 'Testing & Commissioning of Power System Apparatus'),
+('EE', '1581', 'Power System Operation & Control'),
+('EE', '1582', 'Industrial Drives & Applications'),
+('EE', '1583', 'Operation & Maintenance of Solar Electrical Systems'),
+('ME', '1531', 'Engineering Mathematics-3 '),
+('ME', '1532', 'Material Science'),
+('ME', '1533', 'Basic Thermodynamics'),
+('ME', '1534', 'Mechanics  of Materials'),
+('ME', '1535', 'Metal casting & Welding / Machine Tools & Operations'),
+('ME', '1536', 'Computer Aided Machine Drawing / Mechanical Measurements & Metrology'),
+('ME', '1541', 'Engineering Mathematics-4'),
+('ME', '1542', 'Kinematics of Machinery'),
+('ME', '1543', 'Applied Thermodynamics'),
+('ME', '1544', 'Fluid Mechanics'),
+('ME', '1545', 'Metal casting & Welding / Machine Tools & Operations'),
+('ME', '1546', 'Computer Aided Machine Drawing / Mechanical Measurements & Metrology'),
+('ME', '1551', 'Engineering Management & Economics'),
+('ME', '1552', 'Dynamics of Machinery'),
+('ME', '1553', 'Turbo Machines'),
+('ME', '1554', 'Design of Machine Elements 1'),
+('ME', '1555', 'Non Taditional Machining'),
+('ME', '1556', 'Energy & Environment'),
+('ME', '1561', 'Finite Element Analysis'),
+('ME', '1562', 'Computer Integrated Manufacturing'),
+('ME', '1563', 'Heat Transfer'),
+('ME', '1564', 'Design of Machine Elements 2'),
+('ME', '1565', 'Automotive Engineering'),
+('ME', '1566', 'Total Quality Management'),
+('ME', '1571', 'Energy Engineering'),
+('ME', '1572', 'Fluid Power System'),
+('ME', '1573', 'Control Engineering'),
+('ME', '1574', 'Design of Thermal Equipment'),
+('ME', '1575', 'Mechatronics'),
+('ME', '1581', 'Operation Research'),
+('ME', '1582', 'Additive Mannufacturing'),
+('ME', '1583', 'Product Lifecycle Management'),
+('BT', '17M1', 'Engineering Maths 1'),
+('BT', '17PHY', 'Engineering Physics'),
+('BT', '17CIV', 'Elements of Civil Engineering & Mechanics'),
+('BT', '17EME', 'Elements of Mechanical Engineering'),
+('BT', '17ELE', 'Basic Electrical Engineering'),
+('BT', '17CHE', 'Engineering Chemistry'),
+('BT', '17PCD', 'Programming in C & Data Structures'),
+('BT', '17ELN', 'Basic Electronics'),
+('BT', '17ENV', 'Environment Studies'),
+('BT', '17M2', 'Engineering Maths 2'),
+('CS', '17M1', 'Engineering Maths 1'),
+('CS', '17PHY', 'Engineering Physics'),
+('CS', '17CIV', 'Elements of Civil Engineering & Mechanics'),
+('CS', '17EME', 'Elements of Mechanical Engineering'),
+('CS', '17ELE', 'Basic Electrical Engineering'),
+('CS', '17CHE', 'Engineering Chemistry'),
+('CS', '17PCD', 'Programming in C & Data Structures'),
+('CS', '17ELN', 'Basic Electronics'),
+('CS', '17ENV', 'Environment Studies'),
+('CS', '17M2', 'Engineering Maths 2'),
+('CV', '17M1', 'Engineering Maths 1'),
+('CV', '17PHY', 'Engineering Physics'),
+('CV', '17CIV', 'Elements of Civil Engineering & Mechanics'),
+('CV', '17EME', 'Elements of Mechanical Engineering'),
+('CV', '17ELE', 'Basic Electrical Engineering'),
+('CV', '17CHE', 'Engineering Chemistry'),
+('CV', '17PCD', 'Programming in C & Data Structures'),
+('CV', '17ELN', 'Basic Electronics'),
+('CV', '17ENV', 'Environment Studies'),
+('CV', '17M2', 'Engineering Maths 2'),
+('EC', '17M1', 'Engineering Maths 1'),
+('EC', '17PHY', 'Engineering Physics'),
+('EC', '17CIV', 'Elements of Civil Engineering & Mechanics'),
+('EC', '17EME', 'Elements of Mechanical Engineering'),
+('EC', '17ELE', 'Basic Electrical Engineering'),
+('EC', '17CHE', 'Engineering Chemistry'),
+('EC', '17PCD', 'Programming in C & Data Structures'),
+('EC', '17ELN', 'Basic Electronics'),
+('EC', '17ENV', 'Environment Studies'),
+('EC', '17M2', 'Engineering Maths 2'),
+('EE', '17M1', 'Engineering Maths 1'),
+('EE', '17PHY', 'Engineering Physics'),
+('EE', '17CIV', 'Elements of Civil Engineering & Mechanics'),
+('EE', '17EME', 'Elements of Mechanical Engineering'),
+('EE', '17ELE', 'Basic Electrical Engineering'),
+('EE', '17CHE', 'Engineering Chemistry'),
+('EE', '17PCD', 'Programming in C & Data Structures'),
+('EE', '17ELN', 'Basic Electronics'),
+('EE', '17ENV', 'Environment Studies'),
+('EE', '17M2', 'Engineering Maths 2'),
+('ME', '17M1', 'Engineering Maths 1'),
+('ME', '17PHY', 'Engineering Physics'),
+('ME', '17CIV', 'Elements of Civil Engineering & Mechanics'),
+('ME', '17EME', 'Elements of Mechanical Engineering'),
+('ME', '17ELE', 'Basic Electrical Engineering'),
+('ME', '17CHE', 'Engineering Chemistry'),
+('ME', '17PCD', 'Programming in C & Data Structures'),
+('ME', '17ELN', 'Basic Electronics'),
+('ME', '17ENV', 'Environment Studies'),
+('ME', '17M2', 'Engineering Maths 2'),
+('BT', '1731', 'Engineering Mathematics-3 '),
+('BT', '1732', 'Unit Operations'),
+('BT', '1733', 'Bio Chemistry'),
+('BT', '1734', 'Microbiology'),
+('BT', '1735', 'Cell Biology & Genetics'),
+('BT', '1736', 'Basics of Computer Applications'),
+('BT', '1741', 'Biostatistics & Bio-modeling'),
+('BT', '1742', 'Biochemical Thermodynamics'),
+('BT', '1743', 'Molecular Biology'),
+('BT', '1744', 'Bioprocess & Calculations'),
+('BT', '1745', 'Structural Biology'),
+('BT', '1746', 'Clinical Biochemistry BT'),
+('CS', '1731', 'Engineering Mathematics-3 '),
+('CS', '1732', 'Analog & Digital Electronics'),
+('CS', '1733', 'Data Structures & Applications'),
+('CS', '1734', 'Computer Organization'),
+('CS', '1735', 'Unix & Shell Programming'),
+('CS', '1736', 'Discrete Mathematical Structures'),
+('CS', '1741', 'Engineering Mathematics-4'),
+('CS', '1742', 'Object Oriented Concepts'),
+('CS', '1743', 'Design & Analysis of Algorithms'),
+('CS', '1744', 'Microprocessors & Microcontrollers'),
+('CS', '1745', 'Software Engineering'),
+('CS', '1746', 'Data Communication'),
+('CV', '1731', 'Engineering Mathematics-3 '),
+('CV', '1732', 'Strength of Materials'),
+('CV', '1733', 'Fluid Mechanics'),
+('CV', '1734', 'Basic Surveying'),
+('CV', '1735', 'Engineering Geology'),
+('CV', '1736', 'Building Materials & Construction'),
+('CV', '1741', 'Engineering Mathematics-4'),
+('CV', '1742', 'Analysis of Determinate Structures'),
+('CV', '1743', 'Applied Hydraulics'),
+('CV', '1744', 'Concrete Technology'),
+('CV', '1745', 'Basic Geo Technical Engineering'),
+('CV', '1746', 'Advanced Surveying'),
+('EC', '1731', 'Engineering Mathematics-3 '),
+('EC', '1732', 'Electronic Instrumentation'),
+('EC', '1733', 'Analog Electronics'),
+('EC', '1734', 'Digital Electronics'),
+('EC', '1735', 'Network Analysis'),
+('EC', '1736', 'Engineering Electro Magnetics'),
+('EC', '1741', 'Engineering Mathematics-4'),
+('EC', '1742', 'Signal & Systems'),
+('EC', '1743', 'Control Systems'),
+('EC', '1744', 'Principles of Communication Systems'),
+('EC', '1745', 'Linear Integrated Circuits'),
+('EC', '1746', 'Microprocessors'),
+('EE', '1731', 'Engineering Mathematics-3 '),
+('EE', '1732', 'Electric Circuit Analysis'),
+('EE', '1733', 'Transformers & Generators'),
+('EE', '1734', 'Analog Electronic Circuits'),
+('EE', '1735', 'Digital System Design'),
+('EE', '1736', 'Electrical & Electronic Measurement'),
+('EE', '1741', 'Engineering Mathematics-4'),
+('EE', '1742', 'Power Generation & Economics'),
+('EE', '1743', 'Transmission & Distribution'),
+('EE', '1744', 'Electric Motors'),
+('EE', '1745', 'Electromagnetic Field Theory'),
+('EE', '1746', 'Operational Amplifiers & Linear Ics'),
+('ME', '1731', 'Engineering Mathematics-3 '),
+('ME', '1732', 'Material Science'),
+('ME', '1733', 'Basic Thermodynamics'),
+('ME', '1734', 'Mechanics  of Materials'),
+('ME', '1735', 'Metal casting & Welding / Machine Tools & Operations'),
+('ME', '1736', 'Computer Aided Machine Drawing / Mechanical Measurements & Metrology'),
+('ME', '1741', 'Engineering Mathematics-4'),
+('ME', '1742', 'Kinematics of Machinery'),
+('ME', '1743', 'Applied Thermodynamics'),
+('ME', '1744', 'Fluid Mechanics'),
+('ME', '1745', 'Metal casting & Welding / Machine Tools & Operations'),
+('ME', '1746', 'Computer Aided Machine Drawing / Mechanical Measurements & Metrology'),
+('BT', '18M1', 'Calculus & Linear Algebra'),
+('BT', '18PHY', 'Engineering Physics'),
+('BT', '18ELE', 'Basic Electrical Engineering'),
+('BT', '18CIV', 'Elements of Civil Engineering & Mechanics'),
+('BT', '18EGDL', 'Engineering Graphics'),
+('BT', '18EGHL1', 'Technical English 1'),
+('BT', '18CHE', 'Engineering Chemistry'),
+('BT', '18CPS', 'C Programming for Problem Solving'),
+('BT', '18ELN', 'Basic Electronics'),
+('BT', '18ME', 'Elements of Mechanical Engineering'),
+('BT', '18M2', 'Advanced Calculus & Numerical Methods'),
+('BT', '18EGHL2', 'Technical English 2'),
+('CS', '18M1', 'Calculus & Linear Algebra'),
+('CS', '18PHY', 'Engineering Physics'),
+('CS', '18ELE', 'Basic Electrical Engineering'),
+('CS', '18CIV', 'Elements of Civil Engineering & Mechanics'),
+('CS', '18EGDL', 'Engineering Graphics'),
+('CS', '18EGHL1', 'Technical English 1'),
+('CS', '18CHE', 'Engineering Chemistry'),
+('CS', '18CPS', 'C Programming for Problem Solving'),
+('CS', '18ELN', 'Basic Electronics'),
+('CS', '18ME', 'Elements of Mechanical Engineering'),
+('CS', '18M2', 'Advanced Calculus & Numerical Methods'),
+('CS', '18EGHL2', 'Technical English 2'),
+('CV', '18M1', 'Calculus & Linear Algebra'),
+('CV', '18PHY', 'Engineering Physics'),
+('CV', '18ELE', 'Basic Electrical Engineering'),
+('CV', '18CIV', 'Elements of Civil Engineering & Mechanics'),
+('CV', '18EGDL', 'Engineering Graphics'),
+('CV', '18EGHL1', 'Technical English 1'),
+('CV', '18CHE', 'Engineering Chemistry'),
+('CV', '18CPS', 'C Programming for Problem Solving'),
+('CV', '18ELN', 'Basic Electronics'),
+('CV', '18ME', 'Elements of Mechanical Engineering'),
+('CV', '18M2', 'Advanced Calculus & Numerical Methods'),
+('CV', '18EGHL2', 'Technical English 2'),
+('EC', '18M1', 'Calculus & Linear Algebra'),
+('EC', '18PHY', 'Engineering Physics'),
+('EC', '18ELE', 'Basic Electrical Engineering'),
+('EC', '18CIV', 'Elements of Civil Engineering & Mechanics'),
+('EC', '18EGDL', 'Engineering Graphics'),
+('EC', '18EGHL1', 'Technical English 1'),
+('EC', '18CHE', 'Engineering Chemistry'),
+('EC', '18CPS', 'C Programming for Problem Solving'),
+('EC', '18ELN', 'Basic Electronics'),
+('EC', '18ME', 'Elements of Mechanical Engineering'),
+('EC', '18M2', 'Advanced Calculus & Numerical Methods'),
+('EC', '18EGHL2', 'Technical English 2'),
+('EE', '18M1', 'Calculus & Linear Algebra'),
+('EE', '18PHY', 'Engineering Physics'),
+('EE', '18ELE', 'Basic Electrical Engineering'),
+('EE', '18CIV', 'Elements of Civil Engineering & Mechanics'),
+('EE', '18EGDL', 'Engineering Graphics'),
+('EE', '18EGHL1', 'Technical English 1'),
+('EE', '18CHE', 'Engineering Chemistry'),
+('EE', '18CPS', 'C Programming for Problem Solving'),
+('EE', '18ELN', 'Basic Electronics'),
+('EE', '18ME', 'Elements of Mechanical Engineering'),
+('EE', '18M2', 'Advanced Calculus & Numerical Methods'),
+('EE', '18EGHL2', 'Technical English 2'),
+('ME', '18M1', 'Calculus & Linear Algebra'),
+('ME', '18PHY', 'Engineering Physics'),
+('ME', '18ELE', 'Basic Electrical Engineering'),
+('ME', '18CIV', 'Elements of Civil Engineering & Mechanics'),
+('ME', '18EGDL', 'Engineering Graphics'),
+('ME', '18EGHL1', 'Technical English 1'),
+('ME', '18CHE', 'Engineering Chemistry'),
+('ME', '18CPS', 'C Programming for Problem Solving'),
+('ME', '18ELN', 'Basic Electronics'),
+('ME', '18ME', 'Elements of Mechanical Engineering'),
+('ME', '18M2', 'Advanced Calculus & Numerical Methods'),
+('ME', '18EGHL2', 'Technical English 2');
 
 -- --------------------------------------------------------
 
@@ -1732,16 +2174,16 @@ ALTER TABLE `countofstudents`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `facultyAllotment`
+-- Indexes for table `facultyallotment`
 --
-ALTER TABLE `facultyAllotment`
+ALTER TABLE `facultyallotment`
   ADD PRIMARY KEY (`id`),
   ADD KEY `facultyId` (`facultyId`);
 
 --
--- Indexes for table `facultyDuty`
+-- Indexes for table `facultyduty`
 --
-ALTER TABLE `facultyDuty`
+ALTER TABLE `facultyduty`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1751,22 +2193,22 @@ ALTER TABLE `facultylist`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `facultySlots`
+-- Indexes for table `facultyslots`
 --
-ALTER TABLE `facultySlots`
+ALTER TABLE `facultyslots`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `facultyId` (`facultyId`);
 
 --
--- Indexes for table `generatedSeats`
+-- Indexes for table `generatedseats`
 --
-ALTER TABLE `generatedSeats`
+ALTER TABLE `generatedseats`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `generatedSlots`
+-- Indexes for table `generatedslots`
 --
-ALTER TABLE `generatedSlots`
+ALTER TABLE `generatedslots`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1776,9 +2218,9 @@ ALTER TABLE `room`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `studentCountPerDay`
+-- Indexes for table `studentcountperday`
 --
-ALTER TABLE `studentCountPerDay`
+ALTER TABLE `studentcountperday`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1822,39 +2264,39 @@ ALTER TABLE `countofstudents`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 
 --
--- AUTO_INCREMENT for table `facultyAllotment`
+-- AUTO_INCREMENT for table `facultyallotment`
 --
-ALTER TABLE `facultyAllotment`
+ALTER TABLE `facultyallotment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT for table `facultyDuty`
+-- AUTO_INCREMENT for table `facultyduty`
 --
-ALTER TABLE `facultyDuty`
+ALTER TABLE `facultyduty`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `facultySlots`
+-- AUTO_INCREMENT for table `facultyslots`
 --
-ALTER TABLE `facultySlots`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+ALTER TABLE `facultyslots`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `generatedSeats`
+-- AUTO_INCREMENT for table `generatedseats`
 --
-ALTER TABLE `generatedSeats`
+ALTER TABLE `generatedseats`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=196;
 
 --
--- AUTO_INCREMENT for table `generatedSlots`
+-- AUTO_INCREMENT for table `generatedslots`
 --
-ALTER TABLE `generatedSlots`
+ALTER TABLE `generatedslots`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT for table `studentCountPerDay`
+-- AUTO_INCREMENT for table `studentcountperday`
 --
-ALTER TABLE `studentCountPerDay`
+ALTER TABLE `studentcountperday`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
@@ -1862,10 +2304,10 @@ ALTER TABLE `studentCountPerDay`
 --
 
 --
--- Constraints for table `facultyAllotment`
+-- Constraints for table `facultyallotment`
 --
-ALTER TABLE `facultyAllotment`
-  ADD CONSTRAINT `facultyAllotment_ibfk_1` FOREIGN KEY (`facultyId`) REFERENCES `facultylist` (`id`);
+ALTER TABLE `facultyallotment`
+  ADD CONSTRAINT `facultyallotment_ibfk_1` FOREIGN KEY (`facultyId`) REFERENCES `facultylist` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -14,7 +14,7 @@ function generateSeatingArrangement() {
     include('connection.php');
 
     // Truncate table before use
-    $truncategeneratedSeats = mysqli_query($conn,"TRUNCATE TABLE generatedSeats");
+    $truncategeneratedSeats = mysqli_query($conn,"TRUNCATE TABLE generatedseats");
 
     $sub1 = mysqli_real_escape_string($conn, $_POST['sub1']);
     $sub2 = mysqli_real_escape_string($conn, $_POST['sub2']);
@@ -143,7 +143,7 @@ function generateSeatingArrangement() {
                     // echo('<br>currentUsnListIndex: '.$currentUsnListIndex);
                     // echo('<hr>');
 
-                    $sql = mysqli_query($conn,"INSERT INTO generatedSeats(`SUSN`,`room_num`,`seat_number`)VALUES('$UsnList[$currentUsnListIndex]','$RoomList[$currentRoomListIndex]','$seatNumber')");
+                    $sql = mysqli_query($conn,"INSERT INTO generatedseats(`SUSN`,`room_num`,`seat_number`)VALUES('$UsnList[$currentUsnListIndex]','$RoomList[$currentRoomListIndex]','$seatNumber')");
 
                     $currentUsnListIndex++;
                     $previousBranch = $currentBranch;
@@ -248,7 +248,7 @@ function generateSeatingArrangement() {
                         $currentRoomListIndex = $currentRoomListIndex_ODD;
                     }
 
-                    $sql = mysqli_query($conn,"INSERT INTO generatedSeats(`SUSN`,`room_num`,`seat_number`)VALUES('$UsnList[$currentUsnListIndex]','$RoomList[$currentRoomListIndex]','$seatNumber')");
+                    $sql = mysqli_query($conn,"INSERT INTO generatedseats(`SUSN`,`room_num`,`seat_number`)VALUES('$UsnList[$currentUsnListIndex]','$RoomList[$currentRoomListIndex]','$seatNumber')");
 
                     $currentUsnListIndex++;
                     $previousBranch = $currentBranch;
