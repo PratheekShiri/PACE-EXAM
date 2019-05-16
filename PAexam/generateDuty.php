@@ -103,7 +103,7 @@ if (!isset($_SESSION['adminId'])) {
     
 
     //check if all faculties are respectively opted either Slot1 or Slot2
-    if(($currentFacultyCount_SLOT1 != $totalFacultyCount_SLOT1) && ($currentFacultyCount_SLOT2 != $totalFacultyCount_SLOT2) && ($pendingFaculty != 0)){
+    if(($currentFacultyCount_SLOT1 == $totalFacultyCount_SLOT1) && ($currentFacultyCount_SLOT2 == $totalFacultyCount_SLOT2) && ($pendingFaculty == 0)){
         // Truncate table before use
         $truncatefacultyDuty = mysqli_query($conn,"TRUNCATE TABLE facultyDuty");
         
