@@ -76,7 +76,7 @@ if (!isset($_SESSION['adminId'])) {
         ctx.stroke();
         </script>
 
-    <img src="assets/images/vtulogo.jpg" height="80" width="80" style="border-radius:50%;  class="d-inline-block align-top" alt="mdb logo"> <h6 style="text-align:center; font-weight:bold; font-size:25px" > VISVESVARAYA TECHNOLOGICAL UNIVERSITY, BELAGAVI </h6>
+    <img src="assets/images/vtulogo.jpg" height="100" width="100" style="border-radius:50%;  class="d-inline-block align-top" alt="mdb logo"> <h6 style="text-align:center; font-weight:bold; font-size:25px" > VISVESVARAYA TECHNOLOGICAL UNIVERSITY, BELAGAVI </h6>
     <h6 style="text-align:center; font-weight:bold">ATTENDANCE & ROOM SUPERINTENDENT S/ PRACTICAL EXAMINER S REPORT (In Triplicate) [FORM-B]</h6>
     <h6 style="text-align:center">B.E./ B.Arch./ M.B.A./ M.C.A./ M.Tech./ M.Arch/ Ph.D/ M.Sc.(Res) ____________________________________ Semester Examination <u style="color:lightgrey;">M M Y Y Y Y</u></h6>
     <h6> &nbsp &nbsp &nbsp &nbsp &nbsp &nbspBranch/ Title of the Course : ___________________________________________________________________________________</h6>
@@ -103,6 +103,27 @@ if (!isset($_SESSION['adminId'])) {
                 <th scope="col">  </th>
             </tr>
 
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
+            <tr>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
+            </tr>
             <tr>
                 <th scope="col">  </th>
                 <th scope="col">  </th>

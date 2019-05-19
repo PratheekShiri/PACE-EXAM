@@ -318,7 +318,7 @@ if (isset($_POST['SLOT2'])) {
                 <table class="table table-bordered" style="text-align:center;font-weight:bold;">
                     <thead class="black white-text">
                         <tr>
-                            <th scope="col"> {SLOT - 01} EXAM DUTY DATES </th>
+                            <th scope="col"> [ SLOT - 01 ] EXAM DUTY DATES </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -346,7 +346,7 @@ if (isset($_POST['SLOT2'])) {
                 <table class="table table-bordered" style="text-align:center;font-weight:bold;">
                     <thead class="black white-text">
                         <tr>
-                            <th scope="col"> {SLOT - 02} EXAM DUTY DATES </th>
+                            <th scope="col"> [ SLOT - 02 ] EXAM DUTY DATES </th>
                         </tr>
                     </thead>
                     <tbody>

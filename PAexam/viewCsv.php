@@ -53,47 +53,134 @@ if (!isset($_SESSION['adminId'])) {
         <a class="btn btn-light" href="admin.php"> back <i class="fas fa-arrow-circle-left"></i></a>
     </nav>
 
-    <div class="container">
 
-        <div class="row">
-            <div class="col-3">
-                <div class="jumbotron">
-                    <h2>View time table details</h2>
-                    <a href="viewTimeTable.php" class="btn btn-primary btn-lg btn1" role="button">view <i class="fas fa-file-upload"></i></a>
+
+
+
+
+
+<!-- <div class="padding container">
+        <div class="event-container">
+            <div class="event-card">
+                <div class="event-details">
+                    <img class="event-image" src="./assets/images/upload.png" alt="" />
+                    <div class="event-desc">
+                    <p class="event-title">Time-Table</p>
+                    <form method="post" action="uploadCsv.php" enctype="multipart/form-data">
+                        <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" name="timeTable" required>
+                        <button type="submit" class="btn btn-primary btn-lg btn1" name="tt">upload <i class="fas fa-file-upload"></i></button>
+                    </form>
+                    </div>
+                </div>
+            </div> -->
+           
+
+
+
+
+
+
+
+    
+
+<div class="padding container">
+        <div class="event-container">
+            <div class="event-card">
+                <div class="event-details">
+                    <img class="event-image" src="./assets/images/upload.png" alt="" />
+                    <div class="event-desc">
+                    <h2>Time-Table </h2>
+                    <a href="viewTimeTable.php" class="btn btn-primary btn-lg btn1" role="button">view <i class="fas fa-eye"></i></a>
                 </div>
             </div>
-            <div class="col-3">
+            </div>
+        
+            
+            <div class="event-card">
+                <div class="event-details">
+                    <img class="event-image" src="./assets/images/upload.png" alt="" />
+                    <div class="event-desc">
+                    <h2>Student  Details</h2>
+                    <a href="viewStudentDetails.php" class="btn btn-primary btn-lg btn1" role="button">view <i class="fas fa-eye"></i></a>
+                </div>
+            </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-details">
+                    <img class="event-image" src="./assets/images/upload.png" alt="" />
+                    <div class="event-desc">
+                    <h2> Room Details</h2>
+                    <a href="viewRoomDetails.php" class="btn btn-primary btn-lg btn1" role="button">view <i class="fas fa-eye"></i></a>
+                </div>
+            </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-details">
+                    <img class="event-image" src="./assets/images/upload.png" alt="" />
+                    <div class="event-desc">
+                    <h2> Faculty Details</h2>
+                    <a href="viewFacultyDetails.php" class="btn btn-primary btn-lg btn1" role="button">view <i class="fas fa-eye"></i></a>
+                </div>
+            </div>
+            </div>
+            <div class="event-card">
+                <div class="event-details">
+                    <img class="event-image" src="./assets/images/upload.png" alt="" />
+                    <div class="event-desc">
+                    <h2> Subject Codes</h2>
+                    <a href="viewFacultyDetails.php" class="btn btn-primary btn-lg btn1" role="button">view <i class="fas fa-eye"></i></a>
+                </div>
+            </div>
+            </div>
+            <div class="event-card">
+                <div class="event-details">
+                    <img class="event-image" src="./assets/images/upload.png" alt="" />
+                    <div class="event-desc">
+                    <h2> Subject Names</h2>
+                    <a href="viewSubjectNames.php" class="btn btn-primary btn-lg btn1" role="button">view <i class="fas fa-eye"></i></a>
+                </div>
+            </div>
+            </div>
+
+
+            </div>
+            </div>
+
+            
+            <!-- <div class="col-3">
                 <div class="jumbotron">
                     <h2>View student details</h2>
-                    <a href="viewStudentDetails.php" class="btn btn-primary btn-lg btn1" role="button">view <i class="fas fa-file-upload"></i></a>
+                    <a href="viewStudentDetails.php" class="btn btn-primary btn-lg btn1" role="button">view <i class="fas fa-eye"></i></a>
                 </div>
             </div>
             <div class="col-3">
                 <div class="jumbotron">
                     <h2>View room details</h2>
-                    <a href="viewRoomDetails.php" class="btn btn-primary btn-lg btn1" role="button">view <i class="fas fa-file-upload"></i></a>
+                    <a href="viewRoomDetails.php" class="btn btn-primary btn-lg btn1" role="button">view <i class="fas fa-eye"></i></a>
                 </div>
             </div>
             <div class="col-3">
                 <div class="jumbotron">
                     <h2>View faculty details </h2>
-                    <a href="viewFacultyDetails.php" class="btn btn-primary btn-lg btn1" role="button">view <i class="fas fa-file-upload"></i></a>
+                    <a href="viewFacultyDetails.php" class="btn btn-primary btn-lg btn1" role="button">view <i class="fas fa-eye"></i></a>
                 </div>
             </div>
             <div class="col-3">
                 <div class="jumbotron">
                     <h2>View Subject code </h2>
-                    <a href="viewSubjectCode.php" class="btn btn-primary btn-lg btn1" role="button">view <i class="fas fa-file-upload"></i></a>
+                    <a href="viewSubjectCode.php" class="btn btn-primary btn-lg btn1" role="button">view <i class="fas fa-eye"></i></a>
                 </div>
             </div>
             <div class="col-3">
                 <div class="jumbotron">
                     <h2>View Subject Names </h2>
-                    <a href="viewSubjectNames.php" class="btn btn-primary btn-lg btn1" role="button">view <i class="fas fa-file-upload"></i></a>
+                    <a href="viewSubjectNames.php" class="btn btn-primary btn-lg btn1" role="button">view <i class="fas fa-eye"></i></a>
                 </div>
             </div>
         </div>
-
+ -->
         <!-- JQuery -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <!-- Bootstrap tooltips -->

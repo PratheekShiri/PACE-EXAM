@@ -89,7 +89,7 @@ function generateDutyChart() {
                 <div class="event-details">
                     <a href="uploadCsv.php"><img class="event-image" src="./assets/images/click.jpg" alt="" /></a>
                     <div class="event-desc">
-                        <p class="event-title"><a href="uploadCsv.php/">Upload CSV</a></p>
+                        <p class="event-title"><a href="uploadCsv.php">Upload CSV</a></p>
                         <p class="event-date"><i class="fas fa-upload"></i></p>
                     </div>
                 </div>
@@ -187,7 +187,7 @@ function generateDutyChart() {
                 </div>
                 <form method="post" action="admin.php">
 
-                    <h3>Select Exam Date: &nbsp; </h3>
+                    <h3 style="text-align: center;">Select Exam Date: &nbsp; </h3>
                      <select name="date_from_dropdown">
                         <?php
                         $sql2 = "SELECT * FROM timetable";
@@ -198,7 +198,7 @@ function generateDutyChart() {
                     ?>
   
 
-                    <option value="<?php echo($date); ?>"><?php echo(substr($date,0,2).'-'.substr($date,2,2).'-'.substr($date,4,2).' ['.substr($date,6).']'); ?>
+                    <option style="text-align:center;" value="<?php echo($date); ?>"><?php echo(substr($date,0,2).'-'.substr($date,2,2).'-'.substr($date,4,2).' ['.substr($date,6).']'); ?>
                    
 
                     <?php }} 
