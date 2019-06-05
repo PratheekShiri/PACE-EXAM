@@ -16,7 +16,8 @@ if (isset($_POST['change'])) {
     $cpass = $_POST['cpass'];
 
     if ($pass == $cpass) {
-        $query = mysqli_query($conn, "UPDATE users SET password = '$pass' WHERE facultyId = '$facultyId'");
+        $password = md5($pass);
+        $query = mysqli_query($conn, "UPDATE facultylist SET password = '$password' WHERE facultyId = '$facultyId'");
 
         echo '<script type="text/javascript">';
         echo 'setTimeout(function () { sweetAlert("<b>Changed","Password updated successfully</b>","success");';
